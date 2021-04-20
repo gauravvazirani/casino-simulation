@@ -6,6 +6,5 @@ class Bin(set):
 	:param outcomes: an iterable of outcomes
 	:return: (Bin) set of outcomes 
 
-	Testing Git Changes
 	"""
 	pass
