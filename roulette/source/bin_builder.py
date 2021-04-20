@@ -73,7 +73,6 @@ class IBuilder(metaclass=ABCMeta):
 	    Each number is an outcome with odds 2:1
 		"""
 
-
 	@staticmethod
 	@abstractmethod
 	def generateColumnBets():
@@ -83,7 +82,6 @@ class IBuilder(metaclass=ABCMeta):
 		Generate outcomes and assign to bins based on column membership
 		Odds are 2:1
 		"""
-
 
 	@staticmethod
 	@abstractmethod
@@ -126,7 +124,7 @@ class BinBuilder(IBuilder):
 					RouletteGame.StraightBet)
 			)
 		self.wheel.addOutcome(0,Outcome('Number 0', RouletteGame.StraightBet))
-		self.wheel.addOutcome(00,Outcome('Number 00', RouletteGame.StraightBet))
+		self.wheel.addOutcome(37,Outcome('Number 00', RouletteGame.StraightBet))
 		return self
 	
 

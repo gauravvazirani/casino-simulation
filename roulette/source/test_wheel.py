@@ -54,6 +54,9 @@ class TestWheel(unittest.TestCase):
 		print("\nget")
 		print("bin 0:", self.wheel.get(0))
 		self.assertEqual(self.wheel.get(0),bin.Bin([outcome.Outcome("Number 0",35),outcome.Outcome("00-0-1-2-3",6)]))
+
+	def tearDown(self):
+		self.wheel = None
 	
 if __name__=='__main__':
 	unittest.main()

@@ -167,8 +167,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="test-wheel-module">
-<h1>test_wheel module<a class="headerlink" href="#test-wheel-module" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-test_wheel">
+<span id="test-wheel-module"></span><h1>test_wheel module<a class="headerlink" href="#module-test_wheel" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="test_wheel.TestWheel">
+<em class="property">class </em><code class="descclassname">test_wheel.</code><code class="descname">TestWheel</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#test_wheel.TestWheel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Test class for performing unit test of class wheel</p>
+<dl class="method">
+<dt id="test_wheel.TestWheel.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_wheel.TestWheel.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets seed for random number generator of the wheel
+Create outcomes required to test addition of outcomes
+Inititialize a bin to test get method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test_wheel.TestWheel.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_wheel.TestWheel.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for deconstructing the test fixture after testing it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test_wheel.TestWheel.test_addOutcome">
+<code class="descname">test_addOutcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_wheel.TestWheel.test_addOutcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>method to test addition of outcomes in a bin object
+at a particular location of the wheel</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test_wheel.TestWheel.test_get">
+<code class="descname">test_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_wheel.TestWheel.test_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>method to test the get method
+gets object at specified position of th wheel and prints the returned object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="test_wheel.TestWheel.test_next">
+<code class="descname">test_next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_wheel.TestWheel.test_next" title="Permalink to this definition">¶</a></dt>
+<dd><p>method to test the randomness of the wheel spin
+compares the wheel random number generator to an object
+from random.Random class</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
