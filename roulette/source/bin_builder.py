@@ -13,8 +13,7 @@ class RouletteGame():
 	LineBet = 5
 	DozenBet = 2
 	ColumnBet = 2
-	EvenMoneyBet = 1
-	
+	EvenMoneyBet = 1	
 	
 class IBuilder(metaclass=ABCMeta):
 	
@@ -69,8 +68,9 @@ class IBuilder(metaclass=ABCMeta):
 	def generateDozenBets():
 		"""
 		Adds outcome for Dozen bets, 
-		numbers are divided into 3 dozens
-	    Each number is an outcome with odds 2:1
+		Each number is a member of 1 of 3 dozens
+		Generate outcomes and assign to bins based on column membership
+		Odds are 2:1
 		"""
 
 	@staticmethod
@@ -132,33 +132,23 @@ class BinBuilder(IBuilder):
 		for rownum in range(12):
 			for colnum in range(1,3):
 				idx_left = 3*rownum+colnum
-				self.wheel.addOutcome(
-					idx_left,
-					Outcome(f"Split {idx_left}, {idx_left+1}",
+				idx_right = idx_left+1
+				oc = Outcome(
+						f"Split {idx_left}, {idx_right}",
 						RouletteGame.SplitBet
 					)
-				)
-				self.wheel.addOutcome(
-					idx_left+1,
-					Outcome(f"Split {idx_left}, {idx_left+1}",
-						RouletteGame.SplitBet
-					)
-				)
+				self.wheel.addOutcome(idx_left, oc)
+				self.wheel.addOutcome(idx_right, oc)
 		for rownum in range(11):
-			for colnum in range(1,4):
+			for colnum in range(1, 4):
 				idx_down = 3*rownum+colnum
-				self.wheel.addOutcome(
-					idx_down,
-					Outcome(f"Split {idx_down},{idx_down+3}",
+				idx_up = idx_down+3
+				oc = Outcome(
+						f"Split {idx_down},{idx_up}",
 						RouletteGame.SplitBet
 					)
-				)	
-				self.wheel.addOutcome(
-					idx_down+3,
-					Outcome(f"Split {idx_down},{idx_down+3}",
-						RouletteGame.SplitBet
-					)
-				)
+				self.wheel.addOutcome(idx_down, oc)	
+				self.wheel.addOutcome(idx_up, oc)
 		return self
 	
 	def generateStreetBets(self):
@@ -186,25 +176,23 @@ class BinBuilder(IBuilder):
 				idx_ur = idx_ul+1
 				idx_ll = idx_ul+3
 				idx_lr = idx_ll+1
+				oc = Outcome(
+					"Corner "+str(idx_ul),
+					RouletteGame.CornerBet
+				)
 				for idx in (idx_ul,idx_ur,idx_ll,idx_lr):
-					self.wheel.addOutcome(
-						idx,
-						Outcome("Corner "+str(idx_ul),
-							RouletteGame.CornerBet)
-					) 
+					self.wheel.addOutcome(idx, oc) 
 		return self
 
 
 	def generateDozenBets(self):
 		for idx_dozen in range(3):
-			for rownum in range(1,13):
-				self.wheel.addOutcome(
-					12*idx_dozen+rownum,
-					Outcome(
+			oc = Outcome(
 						f"Dozen {idx_dozen+1}",
 						RouletteGame.DozenBet
 					)
-				)	
+			for rownum in range(1,13):
+				self.wheel.addOutcome(12*idx_dozen+rownum, oc)	
 		return self
 			
 	def generateColumnBets(self):
@@ -214,14 +202,17 @@ class BinBuilder(IBuilder):
 				RouletteGame.ColumnBet
 			)
 			for rownum in range(12):
-				self.wheel.addOutcome(
-					3*rownum+colnum,
-					oc
-				)
+				self.wheel.addOutcome(3*rownum+colnum, oc)
 		return self
 	
 	def generateEvenMoneyBets(self):
 
+		oc = dict()
+		for name in ('Low','High','Even','Odd','Red','Black'):
+			oc[name] = Outcome(
+					name,
+					RouletteGame.EvenMoneyBet
+				)
 		red_nums = set([1, 3, 5, 7, 9,
 			12, 14, 16, 18, 19,
 			21, 23, 25, 27, 30,
@@ -229,60 +220,30 @@ class BinBuilder(IBuilder):
 
 		for binnum in range(1,37):
 			if 1 <= binnum <= 18:
-				self.wheel.addOutcome(
-					binnum,
-					Outcome("Low",
-						RouletteGame.EvenMoneyBet
-					)
-				)
+				self.wheel.addOutcome(binnum, oc["Low"])
 			else:
-				self.wheel.addOutcome(
-					binnum,
-					Outcome("High",
-						RouletteGame.EvenMoneyBet						
-					)
-				) 
-
+				self.wheel.addOutcome(binnum, oc["High"])
+ 
 			if binnum%2==0:
-				self.wheel.addOutcome(
-					binnum,
-					Outcome("Even",
-						RouletteGame.EvenMoneyBet
-					)
-				)
+				self.wheel.addOutcome(binnum, oc["Even"])
 			else:
-				self.wheel.addOutcome(
-					binnum,
-					Outcome("Odd",
-						RouletteGame.EvenMoneyBet
-					)
-				)
-				
+				self.wheel.addOutcome(binnum, oc["Odd"])
+	
 			if binnum in red_nums:
-				self.wheel.addOutcome(
-					binnum,
-					Outcome("Red",
-						RouletteGame.EvenMoneyBet				
-					)
-				)		
+				self.wheel.addOutcome(binnum, oc["Red"])		
 			else:
-				self.wheel.addOutcome(
-					binnum,
-					Outcome("Black",
-						RouletteGame.EvenMoneyBet				
-					)
-				)		
+				self.wheel.addOutcome(binnum, oc["Black"])		
 		return self
 
 	def generateSpecialBets(self):
-		self.wheel.addOutcome(0,Outcome('00-0-1-2-3',6))
-		self.wheel.addOutcome(37,Outcome('00-0-1-2-3',6))
+		oc = Outcome('00-0-1-2-3',6)
+		self.wheel.addOutcome(0, oc)
+		self.wheel.addOutcome(37, oc)
 		return self
 	
 	def buildBins(self):
 		return self.wheel
-	
-	
+
 	
 class WheelDirector():
 	"""

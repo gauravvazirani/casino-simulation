@@ -55,6 +55,16 @@ class TestWheel(unittest.TestCase):
 		print("bin 0:", self.wheel.get(0))
 		self.assertEqual(self.wheel.get(0),bin.Bin([outcome.Outcome("Number 0",35),outcome.Outcome("00-0-1-2-3",6)]))
 
+	def test_getOutcome(self):
+		"""
+		testing getOutcome
+		should return outcome object from all_outcomes 
+		in case the name exists and None otherwise  
+		"""
+		print("\ngetOutcome")
+		self.assertEqual(self.wheel.getOutcome('Number 0'), outcome.Outcome('Number 0', 35))
+		self.assertEqual(self.wheel.getOutcome('Number 85'), None)
+
 	def tearDown(self):
 		self.wheel = None
 	

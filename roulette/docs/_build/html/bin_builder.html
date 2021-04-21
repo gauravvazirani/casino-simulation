@@ -88,9 +88,11 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">source</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bet.html">bet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin.html">bin module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">bin_builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_bet.html">test_bet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bin.html">test_bin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bin_builder.html">test_bin_builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_outcome.html">test_outcome module</a></li>
@@ -201,11 +203,10 @@ Odds are 8:1</p>
 <dl class="method">
 <dt id="bin_builder.BinBuilder.generateDozenBets">
 <code class="descname">generateDozenBets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bin_builder.BinBuilder.generateDozenBets" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>Adds outcome for Dozen bets, </dt>
-<dd>numbers are divided into 3 dozens</dd>
-</dl>
-<p>Each number is an outcome with odds 2:1</p>
+<dd><p>Adds outcome for Dozen bets, 
+Each number is a member of 1 of 3 dozens
+Generate outcomes and assign to bins based on column membership
+Odds are 2:1</p>
 </dd></dl>
 
 <dl class="method">
@@ -287,10 +288,10 @@ Odds are 8:1</p>
 <dl class="staticmethod">
 <dt id="bin_builder.IBuilder.generateDozenBets">
 <em class="property">static </em><code class="descname">generateDozenBets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bin_builder.IBuilder.generateDozenBets" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div>Adds outcome for Dozen bets, 
-numbers are divided into 3 dozens</div></blockquote>
-<p>Each number is an outcome with odds 2:1</p>
+<dd><p>Adds outcome for Dozen bets, 
+Each number is a member of 1 of 3 dozens
+Generate outcomes and assign to bins based on column membership
+Odds are 2:1</p>
 </dd></dl>
 
 <dl class="staticmethod">
