@@ -4,7 +4,7 @@ import random
 import outcome
 import bin
 import bin_builder
-
+from unittest.mock import Mock, MagicMock
 
 class TestWheel(unittest.TestCase):
 	"""
@@ -18,7 +18,9 @@ class TestWheel(unittest.TestCase):
 		Inititialize a bin to test get method
 		"""
 		self.wheel = bin_builder.WheelDirector.construct()
-		self.wheel.rng.seed(1)
+		# self.wheel.rng.seed(1)
+		self.wheel.rng = Mock()
+		self.wheel.rng.randint = Mock(return_value=1)
 		self.outcome_test = outcome.Outcome("00-test",35)
 		
 		
@@ -41,11 +43,12 @@ class TestWheel(unittest.TestCase):
 		from random.Random class
 		"""
 		print("\nnext")
-		test_random = random.Random()
-		test_random.seed(1)
-		print([(self.wheel.bins[test_random.randint(0,37)]) for i in range(10)])
-		print([(self.wheel.bins[self.wheel.rng.randint(0,37)]) for i in range(10)])
-		
+		# test_random = random.Random()
+		# test_random.seed(1)
+		# print([(self.wheel.bins[test_random.randint(0,37)]) for i in range(10)])
+		self.assertEqual(self.wheel.bins[1],self.wheel.next())
+		self.wheel.rng.randint.assert_called_with(0,37)
+
 	def test_get(self):
 		"""
 		method to test the get method

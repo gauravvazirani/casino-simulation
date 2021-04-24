@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>invalid_bet_exception module &mdash; roulette 1.0 documentation</title>
+  <title>passenger57 module &mdash; roulette 1.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="outcome module" href="outcome.html" />
-    <link rel="prev" title="game module" href="game.html" /> 
+    <link rel="next" title="table module" href="table.html" />
+    <link rel="prev" title="outcome module" href="outcome.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,9 +92,9 @@
 <li class="toctree-l2"><a class="reference internal" href="bin.html">bin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin_builder.html">bin_builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">game module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">invalid_bet_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="invalid_bet_exception.html">invalid_bet_exception module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="passenger57.html">passenger57 module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">passenger57 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="table.html">table module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bet.html">test_bet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bin.html">test_bin module</a></li>
@@ -157,13 +157,13 @@
         
           <li><a href="modules.html">source</a> &raquo;</li>
         
-      <li>invalid_bet_exception module</li>
+      <li>passenger57 module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/invalid_bet_exception.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/passenger57.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,14 +176,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-invalid_bet_exception">
-<span id="invalid-bet-exception-module"></span><h1>invalid_bet_exception module<a class="headerlink" href="#module-invalid_bet_exception" title="Permalink to this headline">¶</a></h1>
-<dl class="exception">
-<dt id="invalid_bet_exception.InvalidBetException">
-<em class="property">exception </em><code class="descclassname">invalid_bet_exception.</code><code class="descname">InvalidBetException</code><a class="headerlink" href="#invalid_bet_exception.InvalidBetException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Exception raised when player places an 
-invalid set of bets.</p>
+  <div class="section" id="module-passenger57">
+<span id="passenger57-module"></span><h1>passenger57 module<a class="headerlink" href="#module-passenger57" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="passenger57.Passenger57">
+<em class="property">class </em><code class="descclassname">passenger57.</code><code class="descname">Passenger57</code><a class="headerlink" href="#passenger57.Passenger57" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="passenger57.Passenger57.lose">
+<code class="descname">lose</code><span class="sig-paren">(</span><em>bet</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.lose" title="Permalink to this definition">¶</a></dt>
+<dd><p>used to update passenger balance with the losing amount 
+at the end of the game</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.placeBets">
+<code class="descname">placeBets</code><span class="sig-paren">(</span><em>table</em>, <em>wheel</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.placeBets" title="Permalink to this definition">¶</a></dt>
+<dd><p>used to place a bet of amount 10 on outcome ‘Black’ 
+on the table</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.win">
+<code class="descname">win</code><span class="sig-paren">(</span><em>bet</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.win" title="Permalink to this definition">¶</a></dt>
+<dd><p>used to update passenger balance with the winning amount 
+at the end of the game</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -194,8 +229,8 @@ invalid set of bets.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="outcome.html" class="btn btn-neutral float-right" title="outcome module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="game.html" class="btn btn-neutral float-left" title="game module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="table.html" class="btn btn-neutral float-right" title="table module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="outcome.html" class="btn btn-neutral float-left" title="outcome module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

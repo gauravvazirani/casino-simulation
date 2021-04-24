@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>invalid_bet_exception module &mdash; roulette 1.0 documentation</title>
+  <title>game module &mdash; roulette 1.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="outcome module" href="outcome.html" />
-    <link rel="prev" title="game module" href="game.html" /> 
+    <link rel="next" title="invalid_bet_exception module" href="invalid_bet_exception.html" />
+    <link rel="prev" title="bin_builder module" href="bin_builder.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,8 +91,8 @@
 <li class="toctree-l2"><a class="reference internal" href="bet.html">bet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin.html">bin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin_builder.html">bin_builder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="game.html">game module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">invalid_bet_exception module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">game module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="invalid_bet_exception.html">invalid_bet_exception module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="passenger57.html">passenger57 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="table.html">table module</a></li>
@@ -157,13 +157,13 @@
         
           <li><a href="modules.html">source</a> &raquo;</li>
         
-      <li>invalid_bet_exception module</li>
+      <li>game module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/invalid_bet_exception.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/game.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -176,14 +176,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-invalid_bet_exception">
-<span id="invalid-bet-exception-module"></span><h1>invalid_bet_exception module<a class="headerlink" href="#module-invalid_bet_exception" title="Permalink to this headline">¶</a></h1>
-<dl class="exception">
-<dt id="invalid_bet_exception.InvalidBetException">
-<em class="property">exception </em><code class="descclassname">invalid_bet_exception.</code><code class="descname">InvalidBetException</code><a class="headerlink" href="#invalid_bet_exception.InvalidBetException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Exception raised when player places an 
-invalid set of bets.</p>
+  <div class="section" id="module-game">
+<span id="game-module"></span><h1>game module<a class="headerlink" href="#module-game" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="game.Game">
+<em class="property">class </em><code class="descclassname">game.</code><code class="descname">Game</code><a class="headerlink" href="#game.Game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to perform simulation of the game of roulette</p>
+<dl class="method">
+<dt id="game.Game.cycle">
+<code class="descname">cycle</code><span class="sig-paren">(</span><em>player</em><span class="sig-paren">)</span><a class="headerlink" href="#game.Game.cycle" title="Permalink to this definition">¶</a></dt>
+<dd><p>simulates a single round of single player roulette
+1 player places its bets
+2 game fetches the winning outcomes from a single</p>
+<blockquote>
+<div>spin of the wheel</div></blockquote>
+<dl class="docutils">
+<dt>3 game updates player balances based on the </dt>
+<dd>outcome being a winning or losing outcome.</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>player</strong> – (Passenger57)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -194,8 +215,8 @@ invalid set of bets.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="outcome.html" class="btn btn-neutral float-right" title="outcome module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="game.html" class="btn btn-neutral float-left" title="game module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="invalid_bet_exception.html" class="btn btn-neutral float-right" title="invalid_bet_exception module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="bin_builder.html" class="btn btn-neutral float-left" title="bin_builder module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
