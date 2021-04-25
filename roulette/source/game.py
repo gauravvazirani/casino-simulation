@@ -1,4 +1,3 @@
-import passenger57
 import table
 import bin_builder
 
@@ -22,11 +21,21 @@ class Game():
 
         :param player: (Passenger57)
         """
-
-        player.placeBets(self.table, self.wheel)
-        winning_outcomes = self.wheel.next() 
-        for bet in self.table:
-            if bet.outcome in winning_outcomes:
-                player.win(bet)
-            else:
-                player.lose(bet)
+        round_no = 1
+        while player.playing():
+            print(f"Starting Round {round_no}")
+            print(f"Player Balance : {player.stake} points")
+            print(f"Bet Amount: {player.amount} points")
+            self.table.bets=[]
+            player.placeBets(self.table, self.wheel)
+            self.table.isValid()
+            winning_outcomes = self.wheel.next() 
+            for bet in self.table:
+                if bet.outcome in winning_outcomes:
+                    print("Congratulations! Player Wins")
+                    player.win(bet)
+                else:
+                    print("Player Lost...")
+                    player.lose(bet)
+            round_no += 1
+            print(f"Updated player Balance: {player.stake} points\n")

@@ -263,6 +263,7 @@ class WheelDirector():
 			.generateColumnBets()\
 			.generateCornerBets()\
 			.generateDozenBets()\
+			.generateEvenMoneyBets()\
 			.generateSpecialBets()\
 			.buildBins()
 			

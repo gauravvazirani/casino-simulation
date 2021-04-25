@@ -1,31 +1,25 @@
 import bet
+import player
 
-class Passenger57():
-    def __init__(self):
-        self.balance = 1000
+class Passenger57(player.IPlayer):
+
+    def __init__(self, stake, bet_amount, rounds_to_go):
+        self.stake = stake
+        self.amount = bet_amount
+        self.rounds_to_go = rounds_to_go
+
+    def playing(self):
+        return True if self.rounds_to_go > 0 and self.amount <= self.stake \
+              else False
 
     def placeBets(self, table, wheel):
-        """
-        used to place a bet of amount 10 on outcome 'Black' 
-        on the table
-        """
         black = wheel.all_outcomes.get('Black')
-        table.placeBet(bet.Bet(10 ,black))
+        table.placeBet(bet.Bet(self.amount ,black))
+        self.stake -= self.amount
     
     def win(self, bet):
-        """
-        used to update passenger balance with the winning amount 
-        at the end of the game
-
-        :param bet: (Bet)
-        """
-        self.balance += bet.winAmount()
+        self.stake += bet.winAmount()
+        self.rounds_to_go -= 1
 
     def lose(self, bet):
-        """
-        used to update passenger balance with the losing amount 
-        at the end of the game
-
-        :param bet: (Bet)
-        """
-        self.balance -= bet.loseAmount()
+        self.rounds_to_go -= 1

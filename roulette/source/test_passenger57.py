@@ -13,8 +13,11 @@ class TestGame(unittest.TestCase):
     def setUp(self):
         self.game = game.Game()
         self.game.wheel.rng = Mock()
-        self.game.wheel.rng.randint = Mock(return_value=1)
-        self.player = passenger57.Passenger57()
+        # self.game.wheel.rng.randint = Mock(return_value=1)
+        demo_outputs = [1,2] * 2 + [2] * 2 + [1] * 8
+        self.game.wheel.rng.randint = Mock()
+        self.game.wheel.rng.randint.side_effect = demo_outputs
+        self.player = passenger57.Passenger57(100, 25, 6)
 
     def test_cycle(self):
         """
@@ -23,7 +26,6 @@ class TestGame(unittest.TestCase):
         bet and player balance should be updated to balance - bet_amount. 
         """
         self.game.cycle(self.player)
-        self.assertEqual(self.player.balance,990)
 
     def tearDown(self):
         self.game = None

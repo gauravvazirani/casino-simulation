@@ -1,7 +1,7 @@
-test\_game module
+martingale module
 =================
 
-.. automodule:: test_game
+.. automodule:: martingale
     :members:
     :undoc-members:
     :show-inheritance:

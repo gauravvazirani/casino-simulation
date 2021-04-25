@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>bin module &mdash; roulette 1.0 documentation</title>
+  <title>martingale module &mdash; roulette 1.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="bin_builder module" href="bin_builder.html" />
-    <link rel="prev" title="bet module" href="bet.html" /> 
+    <link rel="next" title="outcome module" href="outcome.html" />
+    <link rel="prev" title="invalid_bet_exception module" href="invalid_bet_exception.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,11 +89,11 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">source</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="bet.html">bet module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">bin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bin.html">bin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin_builder.html">bin_builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">game module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="invalid_bet_exception.html">invalid_bet_exception module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="martingale.html">martingale module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">martingale module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="passenger57.html">passenger57 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
@@ -160,13 +160,13 @@
         
           <li><a href="modules.html">source</a> &raquo;</li>
         
-      <li>bin module</li>
+      <li>martingale module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/bin.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/martingale.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,24 +179,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-bin">
-<span id="bin-module"></span><h1>bin module<a class="headerlink" href="#module-bin" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-martingale">
+<span id="martingale-module"></span><h1>martingale module<a class="headerlink" href="#module-martingale" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="bin.Bin">
-<em class="property">class </em><code class="descclassname">bin.</code><code class="descname">Bin</code><a class="headerlink" href="#bin.Bin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></p>
-<p>Class to create a bin that is associated a frozen set of outcomes 
-The class is an extension of set without any methods being overriden</p>
+<dt id="martingale.Martingale">
+<em class="property">class </em><code class="descclassname">martingale.</code><code class="descname">Martingale</code><span class="sig-paren">(</span><em>stake</em>, <em>initial_bet_amount</em>, <em>rounds_to_go</em><span class="sig-paren">)</span><a class="headerlink" href="#martingale.Martingale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="player.html#player.IPlayer" title="player.IPlayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.IPlayer</span></code></a></p>
+<dl class="method">
+<dt id="martingale.Martingale.lose">
+<code class="descname">lose</code><span class="sig-paren">(</span><em>bet</em><span class="sig-paren">)</span><a class="headerlink" href="#martingale.Martingale.lose" title="Permalink to this definition">¶</a></dt>
+<dd><p>update bet_amount to 2 times the current value 
+reduce rounds left to 1 less than that of current value</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>outcomes</strong> – an iterable of outcomes</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(Bin) set of outcomes</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="martingale.Martingale.placeBets">
+<code class="descname">placeBets</code><span class="sig-paren">(</span><em>table</em>, <em>wheel</em><span class="sig-paren">)</span><a class="headerlink" href="#martingale.Martingale.placeBets" title="Permalink to this definition">¶</a></dt>
+<dd><p>place a bet on outcome ‘Black’ on the table
+update the stake based on bet amount</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>table</strong> – (Table)</li>
+<li><strong>wheel</strong> – (Wheel)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="martingale.Martingale.playing">
+<code class="descname">playing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#martingale.Martingale.playing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if player is still active</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="martingale.Martingale.update_amount">
+<code class="descname">update_amount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#martingale.Martingale.update_amount" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="martingale.Martingale.win">
+<code class="descname">win</code><span class="sig-paren">(</span><em>bet</em><span class="sig-paren">)</span><a class="headerlink" href="#martingale.Martingale.win" title="Permalink to this definition">¶</a></dt>
+<dd><p>update stake with the winning amount
+update bet_amount to initlal value
+reduce rounds left to 1 less than that of current value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -207,8 +256,8 @@ The class is an extension of set without any methods being overriden</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="bin_builder.html" class="btn btn-neutral float-right" title="bin_builder module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="bet.html" class="btn btn-neutral float-left" title="bet module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="outcome.html" class="btn btn-neutral float-right" title="outcome module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="invalid_bet_exception.html" class="btn btn-neutral float-left" title="invalid_bet_exception module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
