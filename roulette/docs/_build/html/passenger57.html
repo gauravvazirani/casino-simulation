@@ -97,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">passenger57 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulator.html">simulator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="table.html">table module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bet.html">test_bet module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bin.html">test_bin module</a></li>
@@ -105,6 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="test_martingale.html">test_martingale module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_outcome.html">test_outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_passenger57.html">test_passenger57 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_simulator.html">test_simulator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_table.html">test_table module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_wheel.html">test_wheel module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wheel.html">wheel module</a></li>
@@ -183,7 +185,7 @@
 <span id="passenger57-module"></span><h1>passenger57 module<a class="headerlink" href="#module-passenger57" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="passenger57.Passenger57">
-<em class="property">class </em><code class="descclassname">passenger57.</code><code class="descname">Passenger57</code><span class="sig-paren">(</span><em>stake</em>, <em>bet_amount</em>, <em>rounds_to_go</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">passenger57.</code><code class="descname">Passenger57</code><span class="sig-paren">(</span><em>table</em>, <em>wheel</em>, <em>initial_bet_amount</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="player.html#player.IPlayer" title="player.IPlayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.IPlayer</span></code></a></p>
 <dl class="method">
 <dt id="passenger57.Passenger57.lose">
@@ -202,7 +204,7 @@ reduce rounds left to 1 less than that of current value</p>
 
 <dl class="method">
 <dt id="passenger57.Passenger57.placeBets">
-<code class="descname">placeBets</code><span class="sig-paren">(</span><em>table</em>, <em>wheel</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.placeBets" title="Permalink to this definition">¶</a></dt>
+<code class="descname">placeBets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.placeBets" title="Permalink to this definition">¶</a></dt>
 <dd><p>place a bet on outcome ‘Black’ on the table
 update the stake based on bet amount</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -223,6 +225,18 @@ update the stake based on bet amount</p>
 <dt id="passenger57.Passenger57.playing">
 <code class="descname">playing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.playing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if player is still active</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.setRounds">
+<code class="descname">setRounds</code><span class="sig-paren">(</span><em>rounds_to_go</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.setRounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set rounds_to_go value before simulation of a session of game play</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.setStake">
+<code class="descname">setStake</code><span class="sig-paren">(</span><em>stake</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.setStake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set stake value before simulation of a session of game play</p>
 </dd></dl>
 
 <dl class="method">

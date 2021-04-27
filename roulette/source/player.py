@@ -40,3 +40,18 @@ class IPlayer(metaclass=ABCMeta):
 
         :param bet: (Bet)
         """
+
+    @staticmethod
+    @abstractmethod
+    def setStake():
+        """
+        Set stake value before simulation of a session of game play
+        """
+
+    @staticmethod
+    @abstractmethod
+    def setRounds():
+        """
+        Set rounds_to_go value before simulation of a session of game play
+        """
+

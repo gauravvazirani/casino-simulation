@@ -13,6 +13,7 @@ source
    outcome
    passenger57
    player
+   simulator
    table
    test_bet
    test_bin
@@ -21,6 +22,7 @@ source
    test_martingale
    test_outcome
    test_passenger57
+   test_simulator
    test_table
    test_wheel
    wheel
