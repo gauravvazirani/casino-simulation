@@ -7,12 +7,10 @@ class Table():
     Table is responsible for holding a list of bets made by the player.
     A Table has a limit on sum total of amount upto which a player 
     can bet at a time.
-    It also has a minimum bet amount restriction for each bet made by the player.
     """
 
-    def __init__(self, minimum=10, limit=1000):
+    def __init__(self, limit=1000):
         self.bets = []
-        self.minimum = minimum
         self.limit = limit
 
     def placeBet(self, bet):
@@ -44,12 +42,7 @@ class Table():
         """
         Raises a invalide bet exception if the following conditions are not met:
         1.The sum of all bets is less than or equal to the table limit.
-        2.All bet amounts are greater than or equal to the table minimum.
         """
         if sum([bet.amount for bet in self.bets]) > self.limit:
             raise invalid_bet_exception.InvalidBetException
-
-        for bet in self.bets:
-            if bet.amount < self.minimum:
-                raise invalid_bet_exception.InvalidBetException
             

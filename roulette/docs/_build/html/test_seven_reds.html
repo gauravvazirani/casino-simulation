@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>player module &mdash; roulette 1.0 documentation</title>
+  <title>test_seven_reds module &mdash; roulette 1.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="seven_reds module" href="seven_reds.html" />
-    <link rel="prev" title="passenger57 module" href="passenger57.html" /> 
+    <link rel="next" title="test_simulator module" href="test_simulator.html" />
+    <link rel="prev" title="test_passenger57 module" href="test_passenger57.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,7 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="martingale.html">martingale module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="passenger57.html">passenger57 module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="seven_reds.html">seven_reds module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="simulator.html">simulator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="table.html">table module</a></li>
@@ -108,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="test_martingale.html">test_martingale module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_outcome.html">test_outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_passenger57.html">test_passenger57 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test_seven_reds.html">test_seven_reds module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">test_seven_reds module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_simulator.html">test_simulator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_table.html">test_table module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_wheel.html">test_wheel module</a></li>
@@ -165,13 +165,13 @@
         
           <li><a href="modules.html">source</a> &raquo;</li>
         
-      <li>player module</li>
+      <li>test_seven_reds module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/player.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/test_seven_reds.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -184,84 +184,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-player">
-<span id="player-module"></span><h1>player module<a class="headerlink" href="#module-player" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-test_seven_reds">
+<span id="test-seven-reds-module"></span><h1>test_seven_reds module<a class="headerlink" href="#module-test_seven_reds" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="player.IPlayer">
-<em class="property">class </em><code class="descclassname">player.</code><code class="descname">IPlayer</code><a class="headerlink" href="#player.IPlayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="staticmethod">
-<dt id="player.IPlayer.lose">
-<em class="property">static </em><code class="descname">lose</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.lose" title="Permalink to this definition">¶</a></dt>
-<dd><p>update bet_amount to 2 times the current value 
-reduce rounds left to 1 less than that of current value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
-</tr>
-</tbody>
-</table>
+<dt id="test_seven_reds.TestSevenReds">
+<em class="property">class </em><code class="descclassname">test_seven_reds.</code><code class="descname">TestSevenReds</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#test_seven_reds.TestSevenReds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="test_seven_reds.TestSevenReds.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_seven_reds.TestSevenReds.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
 </dd></dl>
 
-<dl class="staticmethod">
-<dt id="player.IPlayer.placeBets">
-<em class="property">static </em><code class="descname">placeBets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.placeBets" title="Permalink to this definition">¶</a></dt>
-<dd><p>place a bet on outcome ‘Black’ on the table
-update the stake based on bet amount</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>table</strong> – (Table)</li>
-<li><strong>wheel</strong> – (Wheel)</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<dl class="method">
+<dt id="test_seven_reds.TestSevenReds.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_seven_reds.TestSevenReds.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for deconstructing the test fixture after testing it.</p>
 </dd></dl>
 
-<dl class="staticmethod">
-<dt id="player.IPlayer.playing">
-<em class="property">static </em><code class="descname">playing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.playing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if player is still active</p>
+<dl class="method">
+<dt id="test_seven_reds.TestSevenReds.test_martingale_system">
+<code class="descname">test_martingale_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_seven_reds.TestSevenReds.test_martingale_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assures that the martingale system is being followed along 
+with the seven reds logic.</p>
 </dd></dl>
 
-<dl class="staticmethod">
-<dt id="player.IPlayer.setRounds">
-<em class="property">static </em><code class="descname">setRounds</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.setRounds" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set rounds_to_go value before simulation of a session of game play</p>
+<dl class="method">
+<dt id="test_seven_reds.TestSevenReds.test_placeBets">
+<code class="descname">test_placeBets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_seven_reds.TestSevenReds.test_placeBets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assures that no bets have been placed until
+7 reds have been seen.</p>
 </dd></dl>
 
-<dl class="staticmethod">
-<dt id="player.IPlayer.setStake">
-<em class="property">static </em><code class="descname">setStake</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.setStake" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set stake value before simulation of a session of game play</p>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="player.IPlayer.win">
-<em class="property">static </em><code class="descname">win</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.win" title="Permalink to this definition">¶</a></dt>
-<dd><p>update stake with the winning amount
-update bet_amount to initlal value
-reduce rounds left to 1 less than that of current value</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="staticmethod">
-<dt id="player.IPlayer.winners">
-<em class="property">static </em><code class="descname">winners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.IPlayer.winners" title="Permalink to this definition">¶</a></dt>
-<dd><p>use winning outcomes to count certain special outcomes</p>
+<dl class="method">
+<dt id="test_seven_reds.TestSevenReds.test_winners">
+<code class="descname">test_winners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_seven_reds.TestSevenReds.test_winners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the updation of red_count variable is down correctly 
+for various sequences of reds and blacks.</p>
 </dd></dl>
 
 </dd></dl>
@@ -274,8 +233,8 @@ reduce rounds left to 1 less than that of current value</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="seven_reds.html" class="btn btn-neutral float-right" title="seven_reds module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="passenger57.html" class="btn btn-neutral float-left" title="passenger57 module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="test_simulator.html" class="btn btn-neutral float-right" title="test_simulator module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="test_passenger57.html" class="btn btn-neutral float-left" title="test_passenger57 module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

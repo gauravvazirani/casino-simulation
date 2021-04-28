@@ -54,4 +54,11 @@ class IPlayer(metaclass=ABCMeta):
         """
         Set rounds_to_go value before simulation of a session of game play
         """
+    
+    @staticmethod
+    @abstractmethod
+    def winners():
+        """
+        use winning outcomes to count certain special outcomes
+        """
 

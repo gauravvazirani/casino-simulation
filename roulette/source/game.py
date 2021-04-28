@@ -21,10 +21,11 @@ class Game():
         self.table.bets=[]
         player.placeBets()
         self.table.isValid()
-        winning_outcomes = self.wheel.next() 
+        winning_outcomes = self.wheel.next()
+        player.winners(winning_outcomes)
         for bet in self.table:
             if bet.outcome in winning_outcomes:
                 player.win(bet)
             else:
                 player.lose(bet)
-
+                

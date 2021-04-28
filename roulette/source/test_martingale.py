@@ -35,7 +35,7 @@ class TestGame(unittest.TestCase):
         bet and player balance should be updated to balance +\- bet_amount. 
         """
         self.game.cycle(self.player)
-        self.assertEqual(self.player.stake, 975)
+        self.assertEqual(self.player.stake, 2475)
 
     def tearDown(self):
         self.game = None

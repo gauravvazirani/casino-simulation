@@ -93,10 +93,12 @@
 <li class="toctree-l2"><a class="reference internal" href="bin_builder.html">bin_builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">game module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="invalid_bet_exception.html">invalid_bet_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="martingale.html">martingale module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="outcome.html">outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="passenger57.html">passenger57 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seven_reds.html">seven_reds module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="simulator.html">simulator module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">table module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_bet.html">test_bet module</a></li>
@@ -106,6 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="test_martingale.html">test_martingale module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_outcome.html">test_outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_passenger57.html">test_passenger57 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_seven_reds.html">test_seven_reds module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_simulator.html">test_simulator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_table.html">test_table module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_wheel.html">test_wheel module</a></li>
@@ -185,18 +188,16 @@
 <span id="table-module"></span><h1>table module<a class="headerlink" href="#module-table" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="table.Table">
-<em class="property">class </em><code class="descclassname">table.</code><code class="descname">Table</code><span class="sig-paren">(</span><em>minimum=10</em>, <em>limit=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#table.Table" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">table.</code><code class="descname">Table</code><span class="sig-paren">(</span><em>limit=1000</em><span class="sig-paren">)</span><a class="headerlink" href="#table.Table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Table is responsible for holding a list of bets made by the player.
 A Table has a limit on sum total of amount upto which a player 
-can bet at a time.
-It also has a minimum bet amount restriction for each bet made by the player.</p>
+can bet at a time.</p>
 <dl class="method">
 <dt id="table.Table.isValid">
 <code class="descname">isValid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#table.Table.isValid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raises a invalide bet exception if the following conditions are not met:
-1.The sum of all bets is less than or equal to the table limit.
-2.All bet amounts are greater than or equal to the table minimum.</p>
+1.The sum of all bets is less than or equal to the table limit.</p>
 </dd></dl>
 
 <dl class="method">

@@ -9,10 +9,12 @@ source
    bin_builder
    game
    invalid_bet_exception
+   main
    martingale
    outcome
    passenger57
    player
+   seven_reds
    simulator
    table
    test_bet
@@ -22,6 +24,7 @@ source
    test_martingale
    test_outcome
    test_passenger57
+   test_seven_reds
    test_simulator
    test_table
    test_wheel

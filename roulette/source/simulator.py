@@ -17,17 +17,16 @@ class Simulator():
         The session begins with a player having their full stake. 
         A session ends when the play elects to leave or can no longer participate. 
         """
-        round_no = 1
         max_stake = self.player.stake
         while self.player.playing():
             if debug:
-                print(f"Starting Round {round_no}")
+                print(f"Starting Round {self.init_duration - self.player.rounds_to_go + 1}")
                 print(f"Player Balance: {self.player.stake} points")
                 print(f"Bet Amount: {self.player.bet_amount} points")
             self.game.cycle(self.player)
-            round_no += 1
-            max_stake = max(max_stake, self.player.stake)
-        return round_no-1, max_stake 
+            self.player.rounds_to_go -= 1
+            max_stake = max(max_stake, self.player.stake) 
+        return self.init_duration - self.player.rounds_to_go, max_stake 
 
     def gather(self):
         """

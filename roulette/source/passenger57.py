@@ -6,7 +6,7 @@ class Passenger57(player.IPlayer):
     def __init__(self, table, wheel, initial_bet_amount):
         self.table = table
         self.wheel = wheel
-        self.stake = 100 * table.minimum
+        self.stake = 100 * initial_bet_amount 
         self.rounds_to_go = 250
         self.bet_amount = initial_bet_amount
     
@@ -27,7 +27,9 @@ class Passenger57(player.IPlayer):
     
     def win(self, bet):
         self.stake += bet.winAmount()
-        self.rounds_to_go -= 1
 
     def lose(self, bet):
-        self.rounds_to_go -= 1
+        pass
+
+    def winners(self, winning_outcomes):
+        pass
