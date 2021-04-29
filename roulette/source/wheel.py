@@ -52,3 +52,5 @@ class Wheel():
 		"""
 		return self.bins[number]
 	
+	def __iter__(self):
+		return self.bins.__iter__()

@@ -19,14 +19,14 @@ sys.path.insert(0, os.path.abspath('../source'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'roulette'
+project = 'OOAD'
 copyright = '2021, Gaurav Vazirani'
 author = 'Gaurav Vazirani'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '1.0'
+release = 'v1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -102,7 +102,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'roulettedoc'
+htmlhelp_basename = 'OOADdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -129,7 +129,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'roulette.tex', 'roulette Documentation',
+    (master_doc, 'OOAD.tex', 'OOAD Documentation',
      'Gaurav Vazirani', 'manual'),
 ]
 
@@ -139,7 +139,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'roulette', 'roulette Documentation',
+    (master_doc, 'ooad', 'OOAD Documentation',
      [author], 1)
 ]
 
@@ -150,8 +150,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'roulette', 'roulette Documentation',
-     author, 'roulette', 'One line description of project.',
+    (master_doc, 'OOAD', 'OOAD Documentation',
+     author, 'OOAD', 'One line description of project.',
      'Miscellaneous'),
 ]
 

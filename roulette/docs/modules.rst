@@ -15,6 +15,7 @@ source
    outcome
    passenger57
    player
+   player_random
    seven_reds
    simulator
    table
@@ -26,6 +27,7 @@ source
    test_martingale
    test_outcome
    test_passenger57
+   test_player_random
    test_seven_reds
    test_simulator
    test_table
