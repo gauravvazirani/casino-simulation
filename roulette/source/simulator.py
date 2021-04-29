@@ -1,3 +1,5 @@
+from integer_list import IntegerStatistics
+
 class Simulator():
 
     def __init__(self, game, player, stake=100, init_duration=250, samples=50):
@@ -8,8 +10,8 @@ class Simulator():
         self.init_duration = init_duration
         self.player.setRounds(self.init_duration)
         self.samples = samples
-        self.durations = []
-        self.maxima = []
+        self.durations = IntegerStatistics()
+        self.maxima =  IntegerStatistics()
 
     def session(self, debug=False):
         """
@@ -45,5 +47,8 @@ class Simulator():
             print(index,' '*4, duration,' '*4, max_stake)
             self.durations.append(duration)
             self.maxima.append(max_stake)
-            index += 1        
+            index += 1
+        print(f"Maxima: Mean {self.maxima.mean()} and Standard Deviation {self.maxima.stdev()}")
+        print(f"Durations: Mean {self.durations.mean()} and Standard Deviation {self.durations.stdev()}")
+
 

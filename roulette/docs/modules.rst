@@ -8,6 +8,7 @@ source
    bin
    bin_builder
    game
+   integer_list
    invalid_bet_exception
    main
    martingale
@@ -20,6 +21,7 @@ source
    test_bet
    test_bin
    test_bin_builder
+   test_integer_list
    test_invalid_bet_exception
    test_martingale
    test_outcome

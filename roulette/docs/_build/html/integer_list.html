@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>test_outcome module &mdash; roulette 1.0 documentation</title>
+  <title>integer_list module &mdash; roulette 1.0 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_passenger57 module" href="test_passenger57.html" />
-    <link rel="prev" title="test_martingale module" href="test_martingale.html" /> 
+    <link rel="next" title="invalid_bet_exception module" href="invalid_bet_exception.html" />
+    <link rel="prev" title="game module" href="game.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,7 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="bin.html">bin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bin_builder.html">bin_builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">game module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integer_list.html">integer_list module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">integer_list module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="invalid_bet_exception.html">invalid_bet_exception module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="martingale.html">martingale module</a></li>
@@ -108,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="test_integer_list.html">test_integer_list module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_invalid_bet_exception.html">test_invalid_bet_exception module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_martingale.html">test_martingale module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">test_outcome module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_outcome.html">test_outcome module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_passenger57.html">test_passenger57 module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_seven_reds.html">test_seven_reds module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_simulator.html">test_simulator module</a></li>
@@ -167,13 +167,13 @@
         
           <li><a href="modules.html">source</a> &raquo;</li>
         
-      <li>test_outcome module</li>
+      <li>integer_list module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/test_outcome.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/integer_list.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -186,41 +186,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-test_outcome">
-<span id="test-outcome-module"></span><h1>test_outcome module<a class="headerlink" href="#module-test_outcome" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-integer_list">
+<span id="integer-list-module"></span><h1>integer_list module<a class="headerlink" href="#module-integer_list" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
-<dt id="test_outcome.TestOutcome">
-<em class="property">class </em><code class="descclassname">test_outcome.</code><code class="descname">TestOutcome</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<dt id="integer_list.IntegerStatistics">
+<em class="property">class </em><code class="descclassname">integer_list.</code><code class="descname">IntegerStatistics</code><a class="headerlink" href="#integer_list.IntegerStatistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>An extension of the built in list data structure that stores 
+at hand mehtods to calculate the mean and standard deviation of the elements</p>
 <dl class="method">
-<dt id="test_outcome.TestOutcome.test__eq__">
-<code class="descname">test__eq__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome.test__eq__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="integer_list.IntegerStatistics.mean">
+<code class="descname">mean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#integer_list.IntegerStatistics.mean" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(decimal) mean of the list elements</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
-<dt id="test_outcome.TestOutcome.test__hash__">
-<code class="descname">test__hash__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome.test__hash__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="test_outcome.TestOutcome.test__ne__">
-<code class="descname">test__ne__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome.test__ne__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="test_outcome.TestOutcome.test__repr__">
-<code class="descname">test__repr__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome.test__repr__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="test_outcome.TestOutcome.test__str__">
-<code class="descname">test__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome.test__str__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="test_outcome.TestOutcome.test_winAmount">
-<code class="descname">test_winAmount</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_outcome.TestOutcome.test_winAmount" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="integer_list.IntegerStatistics.stdev">
+<code class="descname">stdev</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#integer_list.IntegerStatistics.stdev" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(decimal) standard deviation of the list elements</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -232,8 +230,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="test_passenger57.html" class="btn btn-neutral float-right" title="test_passenger57 module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="test_martingale.html" class="btn btn-neutral float-left" title="test_martingale module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="invalid_bet_exception.html" class="btn btn-neutral float-right" title="invalid_bet_exception module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="game.html" class="btn btn-neutral float-left" title="game module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
