@@ -4,7 +4,7 @@ import bet
 import table
 import unittest
 
-class TestCancellation(unittest.TestCase):    
+class TestCancellation(unittest.TestCase):
     def setUp(self):
         self.wheel = bin_builder.WheelDirector().construct()
         self.table = table.Table()

@@ -6,7 +6,7 @@ class Simulator():
         self.game = game
         self.player = player
         self.init_stake =  stake
-        self.player.setStake(self.player.bet_amount * self.init_stake)
+        self.player.setStake(self.player.current * self.init_stake)
         self.init_duration = init_duration
         self.player.setRounds(self.init_duration)
         self.samples = samples
@@ -24,7 +24,7 @@ class Simulator():
             if debug:
                 print(f"Starting Round {self.init_duration - self.player.rounds_to_go + 1}")
                 print(f"Player Balance: {self.player.stake} points")
-                print(f"Bet Amount: {self.player.bet_amount} points")
+                print(f"Bet Amount: {self.player.current} points")
             self.game.cycle(self.player)
             self.player.rounds_to_go -= 1
             max_stake = max(max_stake, self.player.stake) 
@@ -41,7 +41,9 @@ class Simulator():
         print(f"Running Simulation for {self.samples} Sessions")
         print("Index Duration MaxStake")
         while index <= self.samples:
-            self.player.setStake(self.player.bet_amount * self.init_stake)
+            self.player.current = 1
+            self.player.current = 0
+            self.player.setStake(self.player.current * self.init_stake)
             self.player.setRounds(self.init_duration)
             duration, max_stake = self.session()
             print(index,' '*4, duration,' '*4, max_stake)

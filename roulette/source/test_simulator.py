@@ -7,6 +7,8 @@ import game
 import bin_builder
 import player_random
 import player1326
+import cancellation
+import fibonacci
 
 class TestSimulator(unittest.TestCase):
     def setUp(self):
@@ -17,8 +19,13 @@ class TestSimulator(unittest.TestCase):
         self.initial_bet_amount = 10
         # self.player = player_random.PlayerRandom(
         # self.player = passenger57.Passenger57(
-        self.player = player1326.Player1326(
-             self.table, self.wheel, self.initial_bet_amount)
+        # self.player = player1326.Player1326(
+        # self.player = cancellation.Cancellation(
+        self.player = fibonacci.Fibonacci(
+              table = self.table
+             ,wheel = self.wheel
+#             ,self.initial_bet_amount
+             )
         self.game = game.Game(self.wheel, self.table)
 
     def test_session(self):
@@ -29,7 +36,7 @@ class TestSimulator(unittest.TestCase):
 
     def test_gather(self):
         print("Simulation 50 Sessions of 250 cycles each")
-        self.simulator = simulator.Simulator(self.game, self.player, stake=300)
+        self.simulator = simulator.Simulator(self.game, self.player, stake=10000, init_duration=10)
         self.simulator.gather()
     
     def tearDown(self):
