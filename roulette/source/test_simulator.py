@@ -6,6 +6,7 @@ import simulator
 import game
 import bin_builder
 import player_random
+import player1326
 
 class TestSimulator(unittest.TestCase):
     def setUp(self):
@@ -14,8 +15,9 @@ class TestSimulator(unittest.TestCase):
         self.wheel.rng = Mock()
         self.wheel.rng.randint = Mock(return_value=1)
         self.initial_bet_amount = 10
-        self.player = player_random.PlayerRandom(
+        # self.player = player_random.PlayerRandom(
         # self.player = passenger57.Passenger57(
+        self.player = player1326.Player1326(
              self.table, self.wheel, self.initial_bet_amount)
         self.game = game.Game(self.wheel, self.table)
 
