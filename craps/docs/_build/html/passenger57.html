@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>passenger57 module &mdash; OOAD v1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> OOAD
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">passenger57 module</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OOAD</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>passenger57 module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/passenger57.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-passenger57">
+<span id="passenger57-module"></span><h1>passenger57 module<a class="headerlink" href="#module-passenger57" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="passenger57.Passenger57">
+<em class="property">class </em><code class="descclassname">passenger57.</code><code class="descname">Passenger57</code><span class="sig-paren">(</span><em>table</em>, <em>wheel</em>, <em>initial_bet_amount</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="player.html#player.IPlayer" title="player.IPlayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.IPlayer</span></code></a></p>
+<dl class="method">
+<dt id="passenger57.Passenger57.lose">
+<code class="descname">lose</code><span class="sig-paren">(</span><em>bet</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.lose" title="Permalink to this definition">¶</a></dt>
+<dd><p>update bet_amount to 2 times the current value 
+reduce rounds left to 1 less than that of current value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.placeBets">
+<code class="descname">placeBets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.placeBets" title="Permalink to this definition">¶</a></dt>
+<dd><p>place a bet on outcome ‘Black’ on the table
+update the stake based on bet amount</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>table</strong> – (Table)</li>
+<li><strong>wheel</strong> – (Wheel)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.playing">
+<code class="descname">playing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.playing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if player is still active</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.setRounds">
+<code class="descname">setRounds</code><span class="sig-paren">(</span><em>rounds_to_go</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.setRounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set rounds_to_go value before simulation of a session of game play</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.setStake">
+<code class="descname">setStake</code><span class="sig-paren">(</span><em>stake</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.setStake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set stake value before simulation of a session of game play</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.win">
+<code class="descname">win</code><span class="sig-paren">(</span><em>bet</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.win" title="Permalink to this definition">¶</a></dt>
+<dd><p>update stake with the winning amount
+update bet_amount to initlal value
+reduce rounds left to 1 less than that of current value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bet</strong> – (Bet)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="passenger57.Passenger57.winners">
+<code class="descname">winners</code><span class="sig-paren">(</span><em>winning_outcomes</em><span class="sig-paren">)</span><a class="headerlink" href="#passenger57.Passenger57.winners" title="Permalink to this definition">¶</a></dt>
+<dd><p>use winning outcomes to count certain special outcomes</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Gaurav Vazirani.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
