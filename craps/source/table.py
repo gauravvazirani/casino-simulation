@@ -1,7 +1,6 @@
 import os
 import invalid_bet_exception
 
-
 class Table():
     """
     Table is responsible for holding a list of bets made by the player.
@@ -12,6 +11,7 @@ class Table():
     def __init__(self, limit=1000):
         self.bets = []
         self.limit = limit
+
 
     def placeBet(self, bet):
         """
@@ -37,12 +37,24 @@ class Table():
         :returns: an iterator over the bet instances
         """
         return self.bets.__iter__()
-
-    def isValid(self):
+        
+    def allValid(self):
         """
         Raises a invalide bet exception if the following conditions are not met:
         1.The sum of all bets is less than or equal to the table limit.
         """
         if sum([bet.amount for bet in self.bets]) > self.limit:
             raise invalid_bet_exception.InvalidBetException
-            
+    
+class  CrapsTable(Table):
+
+    def __init__(self, game):
+      super.__init__(self)
+      self.game = game
+
+    def isValid(self, bet):
+        return self.game.isAllowed(bet.outcome)
+    
+    def allValid(self, bet):
+        return super.allValid() and isValid(bet)
+        

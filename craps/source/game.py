@@ -65,4 +65,22 @@ class CrapsGame():
                 
     def __str__(self):
         return "Point Off" if self.point == 0 else "Point On"
+
+    def isAllowed(self, outcome):
+        if self.point == 0:
+            if outcome in ("Pass", "Don't Pass", "Come", "Don't Come"):
+                return True
+            else:
+                return False
+        else:
+            return True
+
+    def isWorking(self, outcome):
+        if self.point == 0:
+            if outcome in ("Come"):
+                return False
+            else:
+                return True
+        return False        
+
         
