@@ -1,31 +1,68 @@
-class Game():
+class CrapsGame():
     """
-    Class to perform simulation of a game of roulette
+    Class to perform simulation of a game of craps
     """
+    def __init__(self):
+        self.point = 0
 
-    def __init__(self, wheel, table):
-        self.wheel = wheel
-        self.table = table
+    def craps(self):
+        if self.point == 0:
+            """
+            this was a come out roll: Pass Line bets are an immediate loss, 
+            Don’t Pass Line bets are an immediate win.
+            """
+        else:
+            """
+            Come Line bets are an immediate loss; 
+            Don’t Come Line bets are an immediate win. 
+            The state doesn’t change.
+            """
 
-    def cycle(self, player):
-        """
-        simulates a single round of single player roulette
-        1 player places its bets
-        2 game fetches the winning outcomes from a 
-        single spin of the wheel
-        3 game updates player balances based on the outcome being a 
-        winning or losing outcome.
+    def natural(self):
+        if self.point == 0:
+            """
+            this was a come out roll: Pass Line bets are an immediate win; 
+            Don’t Pass Line bets are an immediate loss.
+            """
+        else:        
+            """
+            Come Line bets are an immediate win; 
+            Don’t Come bets are an immediate loss; 
+            the point is also reset to zero because the game is over.
+            Also, hardways bets are all losses.
+            """
 
-        :param player: (Passenger57)
-        """    
-        self.table.bets=[]
-        player.placeBets()
-        self.table.isValid()
-        winning_outcomes = self.wheel.next()
-        player.winners(winning_outcomes)
-        for bet in self.table:
-            if bet.outcome in winning_outcomes:
-                player.win(bet)
+    def eleven(self):
+        if self.point == 0:
+            """
+            this is a come out roll: Pass Line bets are an immediate win; 
+            Don’t Pass Line bets are an immediate loss.
+            """
+        else:
+            """
+            Come Line bets are an immediate win; 
+            Don’t Come bets are an immediate loss. 
+            The game state doesn’t change.
+            """
+
+    def point(self, point):
+        if self.point == 0:
+            self.point = point
+        else:
+            if self.point == point:
+                """
+                Pass Line bets and associated odds bets are winners; 
+                Don’t Pass bets and associated odds bets are losers; 
+                the point is reset to zero
+                """
+                self.point = 0
             else:
-                player.lose(bet)
+                """
+                the state doesn’t change; 
+                however, Come point and Don’t come point bets may be resolved. 
+                Additionally, hardways bets may be resolved.
+                """
                 
+    def __str__(self):
+        return "Point Off" if self.point == 0 else "Point On"
+        
