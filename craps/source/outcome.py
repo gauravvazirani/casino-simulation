@@ -67,30 +67,58 @@ class Outcome():
 		:param amount: (numeric) amount bet on the outcome
 		:return: (numeric) amount won
 		"""
-		if random_event:
+		if random_event is not None:
 			return random_event.odds * amount
 		else:
 			return self.odds * amount
 
 class OutcomeField(Outcome):
-	def winAmount(self, amount, throw=None):
-		if throw and throw.d1+throw.d2 in (2, 12):
+	"""
+	Class to handle special case where the odds of the outcome
+	depends on the sum of the throw.
+	In case of field outcome, if sum of the dice is 2 or 12 then the 
+	odds are 2:1 otherwise its 1:1
+	"""
+
+	def winAmount(self, amount, throw):
+		"""
+		Calculates the winning amount according to the odds associated
+		with the sum of dice numbers fo the throw event passed as input.
+
+		:param amount: (numeric) Amount bet on the field outcome
+		:param throw: (Throw)
+		"""
+		if throw.d1+throw.d2 in (2, 12):
 			throw.odds = Fraction(2,1)			
 		else:
 			throw.odds = Fraction(1,1)
-		return super.winAmount(amount, throw)
+		return super().winAmount(amount, throw)
 
 	def __str__(self):
 		return f"Field (1:1, 2 and 12 - 2:1)"
 
 
 class OutcomeHorn(Outcome):
-	def winAmount(self, amount, throw=None):
-		if throw and throw.d1+throw.d2 in (2, 12):
+	"""
+	Class to handle special case where the odds of the outcome
+	depends on the sum of the throw.
+	In case of horn outcome, if sum of the dice is 2 or 12 then the 
+	odds are 27:4 otherwise its 3:1
+	"""
+
+	def winAmount(self, amount, throw):
+		"""
+		Calculates the winning amount according to the odds associated
+		with the sum of dice numbers fo the throw event passed as input.
+
+		:param amount: (numeric) Amount bet on the horn outcome
+		:param throw: (Throw)
+		"""
+		if throw.d1+throw.d2 in (2, 12):
 			throw.odds = Fraction(27, 4)			
 		else:
 			throw.odds = Fraction(3, 1)
-		return super.winAmount(amount, throw)
+		return super().winAmount(amount, throw)
 
 	def __str__(self):
 		return f"Horn (2 and 12 - 27:4, 3 and 11 - 3:1)"

@@ -3,6 +3,8 @@ import dice
 import outcome
 import throw
 import random
+import throw_builder
+from collections import Counter
 
 class TestDice(unittest.TestCase):
 
@@ -45,12 +47,20 @@ class TestDice(unittest.TestCase):
             )
 
     def test_getThrow(self):
-        self.dice.addThrow(self.throw1)
-        self.dice.addThrow(self.throw2)
-        self.dice.addThrow(self.throw3)
-        self.assertEqual(self.dice.getThrow(1,2),self.throw1)
-        self.assertEqual(self.dice.getThrow(2,2),self.throw2)
-        self.assertEqual(self.dice.getThrow(2,4),self.throw3)
+        self.dice = throw_builder.DiceDirector().construct()
+        oc_aces = outcome.Outcome('Number 2', 31)
+        oc_anycraps = outcome.Outcome('Any Craps', 8)
+        oc_horn = outcome.Outcome('Horn', 3.75)
+        oc_field = outcome.Outcome('Field', 1.25)
+        throw_aces = throw.Throw(1,1,(oc_aces,oc_anycraps,oc_horn,oc_field))
+        self.assertEqual(self.dice.getThrow(1,1),throw_aces)
+        throw_list = []
+        for key, val in self.dice.all_throws.items():
+            if val.hard():
+                throw_list.append('hard' + str(val.d1+val.d2))
+            else:
+                throw_list.append('easy' + str(val.d1+val.d2))
+        print(Counter(throw_list))
 
     def tearDown(self):
         self.dice = None

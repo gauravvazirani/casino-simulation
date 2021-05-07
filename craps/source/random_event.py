@@ -1,2 +1,2 @@
 class RandomEvent(set):
-    pass 
+    pass

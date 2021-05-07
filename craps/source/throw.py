@@ -7,7 +7,7 @@ class Throw(RandomEvent):
     def __init__(self, d1, d2, *outcomes):
         super().__init__(*outcomes)
         self.d1 = d1
-        self.d2 = d2 
+        self.d2 = d2
 
     def hard(self):
         """
