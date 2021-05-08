@@ -68,9 +68,9 @@ class Outcome():
 		:return: (numeric) amount won
 		"""
 		if random_event is not None:
-			return random_event.odds * amount
+			return round(random_event.odds * amount, 2)
 		else:
-			return self.odds * amount
+			return round(self.odds * amount, 2)
 
 class OutcomeField(Outcome):
 	"""

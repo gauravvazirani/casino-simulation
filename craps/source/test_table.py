@@ -7,7 +7,7 @@ import invalid_bet_exception
 class TestTable(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table(minimum=10, limit=500)
+        self.table = table.Table(limit=500)
         self.bets = [
             bet.Bet(5, outcome.Outcome("Number 1",35)),
             bet.Bet(20, outcome.Outcome("Number 2",35)),
@@ -49,7 +49,6 @@ class TestTable(unittest.TestCase):
     def tearDown(self):
         self.table = None
         self.bets = None
-
 
 if __name__ == '__main__':
     unittest.main()

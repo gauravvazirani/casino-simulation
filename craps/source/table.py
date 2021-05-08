@@ -12,7 +12,6 @@ class Table():
         self.bets = []
         self.limit = limit
 
-
     def placeBet(self, bet):
         """
         Player can call this method to place a bet on the Table.
@@ -48,13 +47,26 @@ class Table():
     
 class  CrapsTable(Table):
 
-    def __init__(self, game):
-      super.__init__(self)
+    def __init__(self, game, limit=1000):
+      super().__init__(limit)
       self.game = game
 
     def isValid(self, bet):
+        """
+        Validates this bet by checking with the CrapsGame to see if the bet is valid; 
+        it returns true if the bet is valid, false otherwise.
+        """
         return self.game.isAllowed(bet.outcome)
     
-    def allValid(self, bet):
-        return super.allValid() and isValid(bet)
-        
+    def allValid(self):
+        """
+        This uses the superclass to see if the sum of all bets is less than 
+        or equal to the table limit. 
+        If the individual bet outcomes are also valid, return true. 
+        Otherwise, return false.
+        """
+        super().allValid()
+        for bet in self.bets:
+            if not self.isValid(bet):
+                return False
+        return True

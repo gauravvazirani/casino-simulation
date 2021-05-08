@@ -81,7 +81,7 @@ class CrapsGame():
 
     def isAllowed(self, outcome):
         if self.point == 0:
-            if outcome in ("Pass", "Don't Pass", "Come", "Don't Come"):
+            if outcome.name in ("Pass", "Don't Pass", "Come", "Don't Come"):
                 return True
             else:
                 return False

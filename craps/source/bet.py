@@ -17,7 +17,7 @@ class Bet():
         For most bets, the price is the amount. 
         Subclasses can override this to handle special cases.
         """
-        pass 
+        return self.amount 
 
     def winAmount(self):
         """
@@ -46,13 +46,29 @@ class Bet():
         return f"Bet({self.amount}, {self.outcome.name})"
     
 
-class ComissionBet(Bet):
+class CommissionBet(Bet):
     def __init__(self, amount, outcome):
-        super.__init__(amount, outcome)
+        super().__init__(amount, outcome)
         self.vig = 0.05
 
     def price(self):
-        return self.amount + min(
-            self.outcome.odds.numerator, 
-            self.outcome.odds.denominator
-        )
+        """ 
+        There are two variations of commission bets : Buy bets and Lay bets.
+        
+        A Buy bet is a right bet; it has a numerator greater than or equal to the denominator, 
+        the price is 5% of the amount bet. A $20 Buy bet has a price of $21.
+        
+        A Lay bet is a wrong bet; it has a denominator greater than the numerator, 
+        the price is 5% of num/den of the amount. 
+        A $30 bet Layed at 2:3 odds has a price of $31, 
+        the $30 bet, plus the vig of 5% of $20 payout.
+        """
+        if self.outcome.odds.numerator >= self.outcome.odds.denominator:
+            commission = self.vig * self.amount
+        else:
+            commission = (self.vig 
+                        * self.amount 
+                        * self.outcome.odds.numerator 
+                        / self.outcome.odds.denominator)
+        return self.amount + round(commission,2)                
+        
