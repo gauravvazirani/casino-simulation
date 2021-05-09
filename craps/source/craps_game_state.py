@@ -58,6 +58,17 @@ class CrapsGamePointOff():
             return True
 
     def craps(self, throw):
+        s = throw.d1 + throw.d2
+        for bet in self.game.table:
+            if bet.outcome.name == 'Pass':
+                bet.player.lose()
+                self.game.table.bets.remove(bet)
+            elif bet.outcome.name == 'Dont Pass':
+                if s == 12:
+                    bet.player.stake += bet.amount
+                else:
+                    bet.player.win(bet)
+                self.game.table.bets.remove(bet)
         return self
 
     def natural(self, throw):

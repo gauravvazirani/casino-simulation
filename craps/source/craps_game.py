@@ -1,4 +1,5 @@
 import craps_game_state
+
 class CrapsGame():
     """
     Class to perform simulation of a game of craps
@@ -10,7 +11,18 @@ class CrapsGame():
         self.state = craps_game_state.CrapsGamePointOff(self)
 
     def cycle(self, player):
-        pass
+        player.table = self.table
+        while player.playing():
+            player.placeBets()
+            throw = self.dice.next()
+            throw.updateGame()
+            for bet in table:
+                if throw.resolveOneRoll(bet) or throw.resloveHardways(bet):
+                    self.table.bets.remove(bet)
+                
+
+    
+
 
 
 

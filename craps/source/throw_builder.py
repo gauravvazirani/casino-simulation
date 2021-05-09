@@ -16,7 +16,13 @@ class CrapsGame():
     }
 	field = 1.25
 	horn = 3.75
-	anyCraps = 8	
+	anyCraps = 8
+	hardway = {
+		2:1,
+		4:2,
+		8:3,
+		10:4
+	}
 	
 class IBuilder(metaclass=ABCMeta):
 	
@@ -53,7 +59,14 @@ class IBuilder(metaclass=ABCMeta):
 		"""
 		Adds outcome for Any Craps throws, 
 		"""
-    				
+
+	@staticmethod
+	@abstractmethod
+	def generateHardwayThrows():
+		"""
+		Adds outcome for Harway throws, 
+		"""
+
 	@staticmethod
 	@abstractmethod
 	def buildThrows():
@@ -116,10 +129,24 @@ class ThrowBuilder(IBuilder):
 					self.dice.getThrow(d1,d2).win_1roll.add(oc)
 		return self	
 
+	def generateHardwayThrows(self):		
+		for d1 in range(1,7):
+			for d2 in range(1,7):
+				if d1 + d2 in (4,6,8,10):
+					if self.dice.getThrow(d1,d2).hard():
+						self.dice.getThrow(d1,d2).addHardways(
+							[outcome.Outcome(f'Hardway {d1+d2}', CrapsGame.hardway[d1+d2])], []
+							)
+					else:
+						self.dice.getThrow(d1,d2).addHardways(
+							[], [outcome.Outcome(f'Hardway {d1+d2}', CrapsGame.hardway[d1+d2])]
+							)
+		return self
+
 	def buildThrows(self):
 		return self.dice
 
-	
+
 class DiceDirector():
 	"""
 	The director class for the dice, building a complex representation
@@ -135,5 +162,6 @@ class DiceDirector():
 			.generateFieldThrows()\
 			.generateHornThrows()\
 			.generateAnyCrapsThrows()\
+			.generateHardwayThrows()\
 			.buildThrows()
 			

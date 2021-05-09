@@ -60,7 +60,7 @@ class Throw():
         :returns: (boolean) 
         """
         if bet.outcome in self.win_1roll:
-            #add amount to player stake
+            bet.player.win(bet)
             return True
         elif bet.outcome in self.lose_1roll:
             return True
@@ -78,7 +78,7 @@ class Throw():
         :returns: (boolean) 
         """
         if bet.outcome in self.win_hardway:
-            #add amount to player stake
+            bet.player.win(bet)
             return True
         elif bet.outcome in self.lose_hardway:
             return True
