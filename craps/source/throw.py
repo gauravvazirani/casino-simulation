@@ -1,13 +1,40 @@
-from random_event import RandomEvent
-class Throw(RandomEvent):
+#from random_event import RandomEvent
+#class Throw(RandomEvent):
+class Throw():
     """
     Throw is a collection of outcomes.
     It resembles outcomes from 1 throw of a dice.
     """
-    def __init__(self, d1, d2, *outcomes):
-        super().__init__(*outcomes)
+    def __init__(self, d1, d2, winners=[], losers=[]):
+        #super().__init__(*outcomes)
         self.d1 = d1
         self.d2 = d2
+        self.winners = set(winners)
+        self.losers = set(losers)
+        self.win_1roll = set()
+        self.lose_1roll = set()
+        self.win_hardway = set()
+        self.lose_hardway = set()  
+
+    def add1Roll(self, winners, losers):
+        """
+        Adds outcomes to the one-roll winners and one-roll losers Sets.
+
+        :param winners: (set) All the outcomes which will be paid as winners for this Throw.
+        :param losers: (set) All the outcomes which will be considered as losers for this Throw.
+        """
+        self.win_1roll.update(winners)
+        self.lose_1roll.update(losers)
+
+    def addHardways(self, winners, losers):
+        """
+        Adds outcomes to the hardway winners and hardway losers Sets.
+
+        :param winners: (set) All the outcomes which will be paid as winners for this Throw.
+        :param losers: (set) All the outcomes which will be considered as losers for this Throw.
+        """
+        self.win_hardway.update(winners)
+        self.lose_hardway.update(losers)
 
     def hard(self):
         """
@@ -21,6 +48,42 @@ class Throw(RandomEvent):
         causing appropriate state change of the game.
         """
         pass
+
+    def resolveOneRoll(self, bet):
+        """
+        pay the player if the bet is in the one roll winners set.
+        return true to indicate the bet must be removed from the table 
+        if the bet is present in either one roll outcomes.
+
+        :param bet: The bet to to be resolved
+
+        :returns: (boolean) 
+        """
+        if bet.outcome in self.win_1roll:
+            #add amount to player stake
+            return True
+        elif bet.outcome in self.lose_1roll:
+            return True
+        else:
+            return False
+
+    def resolveHardways(self, bet):
+        """
+        pay the player if the bet is in the hardway winners set.
+        return true to indicate the bet must be removed from the table 
+        if the bet is present in either hardway outcomes.
+
+        :param bet: The bet to to be resolved
+
+        :returns: (boolean) 
+        """
+        if bet.outcome in self.win_hardway:
+            #add amount to player stake
+            return True
+        elif bet.outcome in self.lose_hardway:
+            return True
+        else:
+            return False
 
     def __str__(self):
         """

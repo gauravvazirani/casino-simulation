@@ -63,54 +63,61 @@ class IBuilder(metaclass=ABCMeta):
 		
 
 class ThrowBuilder(IBuilder):
-    """
-    Class responsible for setting the wheel with the
-    correct placement of outcomes on appropriate bins
-    """
+	"""
+	Class responsible for setting the wheel with the
+	correct placement of outcomes on appropriate bins
+	"""
+	def __init__(self):
+		self.dice = dice.Dice()
+		for d1 in range(1,7):
+			for d2 in range(1,7):
+				s = d1 + d2
+				if s in (4,5,6,8,9,10):
+					self.dice.addThrow(throw.PointThrow(d1,d2))
+				elif s == 7:
+					self.dice.addThrow(throw.NaturalThrow(d1,d2))
+				elif s in (2,3,12):
+					self.dice.addThrow(throw.CrapsThrow(d1,d2))
+				elif s == 11:
+					self.dice.addThrow(throw.ElevenThrow(d1,d2))
 
-    def __init__(self):
-        self.dice = dice.Dice()
-        for d1 in range(1,7):
-            for d2 in range(1,7):
-                self.dice.addThrow(throw.Throw(d1,d2))
-        
-    def generateStraightThrows(self):
-        for d1 in range(1,7):
-            for d2 in range(1,7):
-                if d1 + d2 in (2,3,7,11,12):
-                    self.dice.getThrow(d1,d2).add(
-                        outcome.Outcome(
-                        f'Number {d1+d2}', CrapsGame.straight[d1+d2]
-                        )
-                    )
-        return self
+	def generateStraightThrows(self):
+		for d1 in range(1,7):
+			for d2 in range(1,7):
+				if d1 + d2 in (2,3,7,11,12):
+					self.dice.getThrow(d1,d2).win_1roll.add(
+						outcome.Outcome(
+						f'Number {d1+d2}', CrapsGame.straight[d1+d2]
+						)
+					)
+		return self
 
-    def generateFieldThrows(self):
-        oc = outcome.Outcome('Field', CrapsGame.field)
-        for d1 in range(1,7):
-            for d2 in range(1,7):
-                if d1 + d2 in (2,3,4,9,10,11,12):
-                    self.dice.getThrow(d1,d2).add(oc)
-        return self
+	def generateFieldThrows(self):
+		oc = outcome.OutcomeField('Field', CrapsGame.field)
+		for d1 in range(1,7):
+			for d2 in range(1,7):
+				if d1 + d2 in (2,3,4,9,10,11,12):
+					self.dice.getThrow(d1,d2).win_1roll.add(oc)
+		return self
 
-    def generateHornThrows(self):
-        oc = outcome.Outcome('Horn', CrapsGame.horn)
-        for d1 in range(1,7):
-            for d2 in range(1,7):
-                if d1 + d2 in (2,3,11,12):
-                    self.dice.getThrow(d1,d2).add(oc)
-        return self
+	def generateHornThrows(self):
+		oc = outcome.OutcomeHorn('Horn', CrapsGame.horn)
+		for d1 in range(1,7):
+			for d2 in range(1,7):
+				if d1 + d2 in (2,3,11,12):
+					self.dice.getThrow(d1,d2).win_1roll.add(oc)
+		return self
 
-    def generateAnyCrapsThrows(self):
-        oc = outcome.Outcome('Any Craps', CrapsGame.anyCraps)
-        for d1 in range(1,7):
-            for d2 in range(1,7):
-                if d1 + d2 in (2,3,12):
-                    self.dice.getThrow(d1,d2).add(oc)
-        return self	
+	def generateAnyCrapsThrows(self):
+		oc = outcome.Outcome('Any Craps', CrapsGame.anyCraps)
+		for d1 in range(1,7):
+			for d2 in range(1,7):
+				if d1 + d2 in (2,3,12):
+					self.dice.getThrow(d1,d2).win_1roll.add(oc)
+		return self	
 
-    def buildThrows(self):
-        return self.dice
+	def buildThrows(self):
+		return self.dice
 
 	
 class DiceDirector():

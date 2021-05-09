@@ -1,8 +1,9 @@
 class Bet():
 
-    def __init__(self, amount, outcome):
+    def __init__(self, amount, outcome, player=None):
         self.amount = amount
         self.outcome = outcome
+        self.player = player
             
     def setOutcome(self, outcome):
         """
@@ -47,8 +48,8 @@ class Bet():
     
 
 class CommissionBet(Bet):
-    def __init__(self, amount, outcome):
-        super().__init__(amount, outcome)
+    def __init__(self, amount, outcome, player):
+        super().__init__(amount, outcome, player)
         self.vig = 0.05
 
     def price(self):

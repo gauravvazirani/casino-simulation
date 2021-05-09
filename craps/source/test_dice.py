@@ -52,8 +52,9 @@ class TestDice(unittest.TestCase):
         oc_anycraps = outcome.Outcome('Any Craps', 8)
         oc_horn = outcome.Outcome('Horn', 3.75)
         oc_field = outcome.Outcome('Field', 1.25)
-        throw_aces = throw.Throw(1,1,(oc_aces,oc_anycraps,oc_horn,oc_field))
-        self.assertEqual(self.dice.getThrow(1,1),throw_aces)
+        throw_aces = set([oc_aces,oc_anycraps,oc_horn,oc_field])
+        self.assertEqual(self.dice.getThrow(1,1).win_1roll,throw_aces)
+        self.assertEqual(self.dice.getThrow(1,1).lose_1roll,set())
         throw_list = []
         for key, val in self.dice.all_throws.items():
             if val.hard():

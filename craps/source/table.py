@@ -45,6 +45,12 @@ class Table():
         if sum([bet.amount for bet in self.bets]) > self.limit:
             raise invalid_bet_exception.InvalidBetException
     
+    def clear(self):
+        """
+        Clear all the bets currently on the table
+        """
+        self.bets = []
+    
 class  CrapsTable(Table):
 
     def __init__(self, game, limit=1000):

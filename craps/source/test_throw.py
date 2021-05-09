@@ -18,6 +18,26 @@ class TestThrow(unittest.TestCase):
         self.assertEqual(self.game.point,0)
         self.throw.updateGame(self.game)
         self.assertEqual(self.game.point,0)
+    
+    def test_add1Roll(self):
+        self.assertEqual(len(self.throw.win_1roll),0)
+        self.assertEqual(len(self.throw.lose_1roll),0)
+        self.throw.add1Roll(
+            winners=[outcome.Outcome('Pass',1)],
+            losers=[outcome.Outcome('Dont Pass',1)]
+            )
+        self.assertEqual(len(self.throw.win_1roll),1)
+        self.assertEqual(len(self.throw.lose_1roll),1)
+
+    def test_addHardways(self):
+        self.assertEqual(len(self.throw.win_hardway),0)
+        self.assertEqual(len(self.throw.lose_hardway),0)
+        self.throw.addHardways(
+            winners=[outcome.Outcome('Hardway 4',1)],
+            losers=[outcome.Outcome('Easyway 4',1)]
+            )
+        self.assertEqual(len(self.throw.win_hardway),1)
+        self.assertEqual(len(self.throw.lose_hardway),1)
 
     def tearDown(self):
         self.throw = None

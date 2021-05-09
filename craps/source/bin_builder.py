@@ -8,12 +8,12 @@ class RouletteGame():
 	"""
 	StraightBet = 35
 	SplitBet = 17
-	StreetBet = 11 
-	CornerBet = 8 
+	StreetBet = 11
+	CornerBet = 8
 	LineBet = 5
 	DozenBet = 2
 	ColumnBet = 2
-	EvenMoneyBet = 1	
+	EvenMoneyBet = 1
 	
 class IBuilder(metaclass=ABCMeta):
 	
