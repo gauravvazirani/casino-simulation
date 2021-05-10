@@ -53,16 +53,16 @@ class Table():
     
 class  CrapsTable(Table):
 
-    def __init__(self, game, limit=1000):
+    def __init__(self, limit=1000):
       super().__init__(limit)
-      self.game = game
+    #   self.game = game
 
-    def isValid(self, bet):
-        """
-        Validates this bet by checking with the CrapsGame to see if the bet is valid; 
-        it returns true if the bet is valid, false otherwise.
-        """
-        return self.game.isAllowed(bet.outcome)
+    # def isValid(self, bet):
+    #     """
+    #     Validates this bet by checking with the CrapsGame to see if the bet is valid; 
+    #     it returns true if the bet is valid, false otherwise.
+    #     """
+    #     return self.game.isAllowed(bet.outcome)
     
     def allValid(self):
         """
@@ -72,7 +72,7 @@ class  CrapsTable(Table):
         Otherwise, return false.
         """
         super().allValid()
-        for bet in self.bets:
-            if not self.isValid(bet):
-                return False
-        return True
+        # for bet in self.bets:
+        #     if not self.isValid(bet):
+        #         return False
+        # return True

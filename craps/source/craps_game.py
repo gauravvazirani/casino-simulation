@@ -7,7 +7,6 @@ class CrapsGame():
     def __init__(self, dice, table):
         self.dice = dice
         self.table = table 
-        self.point = 0
         self.state = craps_game_state.CrapsGamePointOff(self)
 
     def cycle(self, player):
@@ -15,28 +14,14 @@ class CrapsGame():
         while player.playing():
             player.placeBets()
             throw = self.dice.next()
-            throw.updateGame()
-            for bet in table:
-                if throw.resolveOneRoll(bet) or throw.resloveHardways(bet):
+            throw.updateGame(self)
+            for bet in self.table:
+                if throw.resolveOneRoll(bet) or throw.resolveHardways(bet):
                     self.table.bets.remove(bet)
-                
-
-    
-
-
-
+            player.rounds_to_go -= 1
 
     def moveToThrow(self, bet, throw):
-        s = throw.d1 + throw.d2
-        if s in (4,5,6,8,9,10):
-            if s in (4,10):
-                odds = 2
-            elif s in (6,8):
-                odds = 6/5
-            elif s in (5,9):
-                odds = 3/2
-            oc = outcome.Outcome(f'Point {s}', odds) 
-        bet.set_outcome(oc)
+        self.state.moveToThrow(bet, throw)
 
     def reset(self):
         self.table.clear()

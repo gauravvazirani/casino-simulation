@@ -3,7 +3,7 @@ from abc import abstractmethod,ABCMeta
 import throw
 import dice
 
-class CrapsGame():
+class CrapsGameOdds():
 	"""
 	A class representing the odds of various bets in craps
 	"""
@@ -20,6 +20,7 @@ class CrapsGame():
 	hardway = {
 		2:1,
 		4:2,
+		6:3,
 		8:3,
 		10:4
 	}
@@ -100,13 +101,13 @@ class ThrowBuilder(IBuilder):
 				if d1 + d2 in (2,3,7,11,12):
 					self.dice.getThrow(d1,d2).win_1roll.add(
 						outcome.Outcome(
-						f'Number {d1+d2}', CrapsGame.straight[d1+d2]
+						f'Number {d1+d2}', CrapsGameOdds.straight[d1+d2]
 						)
 					)
 		return self
 
 	def generateFieldThrows(self):
-		oc = outcome.OutcomeField('Field', CrapsGame.field)
+		oc = outcome.OutcomeField('Field', CrapsGameOdds.field)
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,4,9,10,11,12):
@@ -114,7 +115,7 @@ class ThrowBuilder(IBuilder):
 		return self
 
 	def generateHornThrows(self):
-		oc = outcome.OutcomeHorn('Horn', CrapsGame.horn)
+		oc = outcome.OutcomeHorn('Horn', CrapsGameOdds.horn)
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,11,12):
@@ -122,7 +123,7 @@ class ThrowBuilder(IBuilder):
 		return self
 
 	def generateAnyCrapsThrows(self):
-		oc = outcome.Outcome('Any Craps', CrapsGame.anyCraps)
+		oc = outcome.Outcome('Any Craps', CrapsGameOdds.anyCraps)
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,12):
@@ -135,11 +136,11 @@ class ThrowBuilder(IBuilder):
 				if d1 + d2 in (4,6,8,10):
 					if self.dice.getThrow(d1,d2).hard():
 						self.dice.getThrow(d1,d2).addHardways(
-							[outcome.Outcome(f'Hardway {d1+d2}', CrapsGame.hardway[d1+d2])], []
+							[outcome.Outcome(f'Hardway {d1+d2}', CrapsGameOdds.hardway[d1+d2])], []
 							)
 					else:
 						self.dice.getThrow(d1,d2).addHardways(
-							[], [outcome.Outcome(f'Hardway {d1+d2}', CrapsGame.hardway[d1+d2])]
+							[], [outcome.Outcome(f'Hardway {d1+d2}', CrapsGameOdds.hardway[d1+d2])]
 							)
 		return self
 

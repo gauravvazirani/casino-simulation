@@ -1,5 +1,6 @@
 import outcome 
 import player
+import bet
 
 class CrapsPlayer(player.IPlayer):
 
@@ -28,14 +29,18 @@ class CrapsPlayer(player.IPlayer):
     def lose(self, bet):
         pass
 
+    def winners(self):
+        pass
+
+
 class CrapsPlayerPass(CrapsPlayer):
 
     def placeBets(self):
-        for bet in self.table:
-            if bet.outcome.name == 'Pass':
+        for _bet in self.table:
+            if _bet.outcome.name == 'Pass Line':
                 return 
-        bet = bet.Bet(self.bet_amount ,outcome.Outcome('Pass', 1), player=self)
-        self.table.placeBet(bet)
-        self.stake -= bet.price()
+        pass_line_bet = bet.Bet(self.bet_amount ,outcome.Outcome('Pass Line', 1), player=self)
+        self.table.placeBet(pass_line_bet)
+        self.stake -= pass_line_bet.price()
 
 
