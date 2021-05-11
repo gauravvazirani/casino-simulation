@@ -27,7 +27,6 @@ class Bet():
         """
         return self.outcome.winAmount(self.amount) + self.amount
 
-
     def loseAmount(self):
         """
         Calculates the Amount lost in a bet.

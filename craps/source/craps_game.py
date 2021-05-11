@@ -12,7 +12,7 @@ class CrapsGame():
     def cycle(self, player):
         player.table = self.table
         while player.playing():
-            player.placeBets()
+            player.placeBets(self.state.pointval)
             throw = self.dice.next()
             throw.updateGame(self)
             for bet in self.table:
@@ -25,5 +25,4 @@ class CrapsGame():
 
     def reset(self):
         self.table.clear()
-        self.point = 0
         self.state = craps_game_state.CrapsGamePointOff(self)

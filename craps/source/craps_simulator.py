@@ -1,6 +1,7 @@
 import craps_game
 import craps_game_state
-import craps_player
+import craps_player_pass
+import craps_player_martingale
 import table
 import throw_builder
 
@@ -10,7 +11,7 @@ class CrapsSimulator():
         self.dice = throw_builder.DiceDirector().construct()
         self.table = table.CrapsTable()
         self.game = craps_game.CrapsGame(table=self.table, dice=self.dice)
-        self.player = craps_player.CrapsPlayerPass(self.table)
+        self.player = craps_player_martingale.CrapsMartingale(self.table)
     
     def simulate(self):
         self.player.setRounds(1)

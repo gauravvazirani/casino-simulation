@@ -43,6 +43,7 @@ class CrapsGameState():
 class CrapsGamePointOff(CrapsGameState):
 
     def __init__(self, game):
+        self.pointval = 0
         super().__init__(game)
 
     def isValid(self, outcome):
@@ -109,11 +110,11 @@ class CrapsGamePointOff(CrapsGameState):
 class CrapsGamePointOn(CrapsGameState):
 
     def __init__(self, point, game):
-        game.point = point
+        self.pointval = point
         super().__init__(game)
 
     def isValid(self, outcome):
-        if outcome.name in (f'Buy {self.game.point}', f'Lay {self.game.point}', f'Place Bet {self.game.point}'):
+        if outcome.name in (f'Buy {self.pointval}', f'Lay {self.pointval}', f'Place Bet {self.pointval}'):
             return False
         else: 
             return True
@@ -163,7 +164,7 @@ class CrapsGamePointOn(CrapsGameState):
 
     def point(self, throw):
         s = throw.d1 + throw.d2
-        if s != self.game.point:
+        if s != self.pointval:
             for bet in self.game.table:
                 if bet.outcome.name in ('Come Point {s}','Come Point Odds {s}', 'Buy {s}', 'Lay {s}', 'Place {s}'):
                     bet.player.win(bet)
