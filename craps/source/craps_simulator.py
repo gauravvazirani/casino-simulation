@@ -14,7 +14,7 @@ class CrapsSimulator():
         self.player = craps_player_martingale.CrapsMartingale(self.table)
     
     def simulate(self):
-        self.player.setRounds(1)
+        self.player.setRounds(3)
         self.game.cycle(player=self.player)
 
 if __name__ == '__main__':

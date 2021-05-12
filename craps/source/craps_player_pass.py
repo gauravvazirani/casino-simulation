@@ -14,5 +14,3 @@ class CrapsPlayerPass(craps_player.CrapsPlayer):
                 self.table.placeBet(pass_line_bet)
                 self.stake -= pass_line_bet.price()
 
-
-

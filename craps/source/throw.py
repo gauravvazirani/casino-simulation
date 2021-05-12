@@ -107,7 +107,7 @@ class NaturalThrow(Throw):
         return False
 
     def updateGame(self, game):
-        game.state.natural(self)
+        return game.state.natural(self)
 
 class CrapsThrow(Throw):
     """
@@ -119,7 +119,7 @@ class CrapsThrow(Throw):
             raise Exception("Invalid Declaration for Craps Throw, Dice Sum Mismatch.")
 
     def updateGame(self, game):
-        game.state.craps(self)
+        return game.state.craps(self)
 
 class ElevenThrow(Throw):
     """
@@ -134,7 +134,7 @@ class ElevenThrow(Throw):
         return False
 
     def updateGame(self, game):
-        game.state.eleven(self)
+        return game.state.eleven(self)
 
 class PointThrow(Throw):
     """
@@ -147,5 +147,5 @@ class PointThrow(Throw):
         self.point=d1+d2
 
     def updateGame(self, game):
-        game.state.point(self)
+        return game.state.point(self)
     

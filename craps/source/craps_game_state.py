@@ -60,7 +60,7 @@ class CrapsGamePointOff(CrapsGameState):
 
     def craps(self, throw):
         s = throw.d1 + throw.d2
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name == 'Pass Line':
                 bet.player.lose(bet)
                 self.game.table.bets.remove(bet)
@@ -73,7 +73,7 @@ class CrapsGamePointOff(CrapsGameState):
         return self
 
     def natural(self, throw):
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name == 'Pass Line':
                 bet.player.win(bet)
                 self.game.table.bets.remove(bet)
@@ -83,7 +83,7 @@ class CrapsGamePointOff(CrapsGameState):
         return self
 
     def eleven(self, throw):
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name == 'Pass Line':
                 bet.player.win(bet)
                 self.game.table.bets.remove(bet)
@@ -94,7 +94,7 @@ class CrapsGamePointOff(CrapsGameState):
 
     def point(self, throw):
         s = throw.d1 + throw.d2    
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name in ('Come Point {s}','Dont Come Point {s}'):
                 bet.player.stake += bet.amount
                 self.game.table.bets.remove(bet)
@@ -124,7 +124,7 @@ class CrapsGamePointOn(CrapsGameState):
 
     def craps(self, throw):
         s = throw.d1 + throw.d2
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name == 'Come Line':
                 bet.player.lose(bet)
                 self.game.table.bets.remove(bet)
@@ -135,7 +135,7 @@ class CrapsGamePointOn(CrapsGameState):
 
     def natural(self, throw):
         s = throw.d1 + throw.d2
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name in ('Pass Line','Pass Line Odds','Dont Come Line') \
             or 'Come Point' in bet.outcome.name \
             or 'Come Point Odds' in bet.outcome.name \
@@ -153,7 +153,7 @@ class CrapsGamePointOn(CrapsGameState):
 
     def eleven(self, throw):
         s = throw.d1 + throw.d2
-        for bet in self.game.table:
+        for bet in list(self.game.table):
             if bet.outcome.name in ('Dont Come Line'):
                 bet.player.lose(bet)
                 self.game.table.bets.remove(bet)
@@ -165,7 +165,7 @@ class CrapsGamePointOn(CrapsGameState):
     def point(self, throw):
         s = throw.d1 + throw.d2
         if s != self.pointval:
-            for bet in self.game.table:
+            for bet in list(self.game.table):
                 if bet.outcome.name in ('Come Point {s}','Come Point Odds {s}', 'Buy {s}', 'Lay {s}', 'Place {s}'):
                     bet.player.win(bet)
                     self.game.table.bets.remove(bet)
@@ -177,8 +177,8 @@ class CrapsGamePointOn(CrapsGameState):
                 elif bet.outcome.name == 'Dont Come Line':
                     self.game.moveToThrow(bet, throw)
             return self
-        else:
-            for bet in self.game.table:
+        elif s == self.pointval:
+            for bet in list(self.game.table):
                 if bet.outcome.name in ('Pass Line', 'Pass Line Odds'):
                     bet.player.win(bet)
                     self.game.table.bets.remove(bet)

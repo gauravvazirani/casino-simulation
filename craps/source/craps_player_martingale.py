@@ -2,7 +2,7 @@ import craps_player
 import bet
 import outcome
 
-class CrapsMartingale(craps_player.CrapsPlayer):
+class CrapsPlayerMartingale(craps_player.CrapsPlayer):
 
     def __init__(self, table):
         super().__init__(table)
