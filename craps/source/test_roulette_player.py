@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock, MagicMock
 import game
-import martingale
+import roulette_player
 import table
 import bin_builder
 
@@ -18,7 +18,7 @@ class TestGame(unittest.TestCase):
         _wheel.rng.randint = Mock(return_value=1)
         _table = table.Table()
         self.game = game.Game(wheel=_wheel, table=_table)
-        self.player = martingale.Martingale(initial_bet_amount=25, wheel=_wheel, table=_table)
+        self.player = roulette_player.RoulettePlayer(wheel=_wheel, table=_table)
 
     def test_setStake(self):
         self.player.setStake(1000)

@@ -1,12 +1,10 @@
-#from random_event import RandomEvent
-#class Throw(RandomEvent):
-class Throw():
+from random_event import RandomEvent
+class Throw(RandomEvent):
     """
     Throw is a collection of outcomes.
     It resembles outcomes from 1 throw of a dice.
     """
     def __init__(self, d1, d2, winners=[], losers=[]):
-        #super().__init__(*outcomes)
         self.d1 = d1
         self.d2 = d2
         self.winners = set(winners)

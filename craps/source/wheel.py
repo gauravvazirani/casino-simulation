@@ -1,7 +1,9 @@
 import random
 import bin
+from random_event_factory import RandomEventFactory
+import bin_builder
 
-class Wheel():
+class Wheel(RandomEventFactory):
 	"""
 	Wheel contains the 38 bins present on a roulette wheel
 	and a random number generator. Thus, It can select a bin at random,
@@ -12,9 +14,12 @@ class Wheel():
 		Creates a new wheel wth 38 empty bins.
 		It will also create a new random number generator.
 		"""
+		super().__init__(random.Random())
 		self.bins = tuple(bin.Bin() for i in range(38))
-		self.rng = random.Random()
 		self.all_outcomes = dict()
+
+	def initialize(self):
+		self.bins = bin_builder.WheelDirector.construct()
 
 	def addOutcome(self, number, outcome):
 		"""

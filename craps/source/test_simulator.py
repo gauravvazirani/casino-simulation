@@ -1,14 +1,14 @@
 import unittest
 from unittest.mock import Mock, MagicMock
 import table
-import passenger57
+import roulette_passenger57
+import roulette_player_random
+import roulette_player1326
+import roulette_cancellation
+import roulette_fibonacci
 import simulator
 import game
 import bin_builder
-import player_random
-import player1326
-import cancellation
-import fibonacci
 
 class TestSimulator(unittest.TestCase):
     def setUp(self):
@@ -17,14 +17,13 @@ class TestSimulator(unittest.TestCase):
         self.wheel.rng = Mock()
         self.wheel.rng.randint = Mock(return_value=1)
         self.initial_bet_amount = 10
-        # self.player = player_random.PlayerRandom(
-        # self.player = passenger57.Passenger57(
-        # self.player = player1326.Player1326(
-        # self.player = cancellation.Cancellation(
-        self.player = fibonacci.Fibonacci(
+        # self.player = roulette_player_random.PlayerRandom(
+        # self.player = roulette_passenger57.Passenger57(
+        # self.player = roulette_player1326.Player1326(
+        # self.player = roulette_cancellation.Cancellation(
+        self.player = roulette_fibonacci.Fibonacci(
               table = self.table
              ,wheel = self.wheel
-#             ,self.initial_bet_amount
              )
         self.game = game.Game(self.wheel, self.table)
 

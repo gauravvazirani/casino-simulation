@@ -1,19 +1,20 @@
 import unittest
-import player1326
+import roulette1326
 import table 
 import bin_builder
 from unittest.mock import Mock
 import bet
 
-class TestPlayer1326(unittest.TestCase):
+class TestRoulette1326_test(unittest.TestCase):
 
     def setUp(self):
         self.table = table.Table()      
         wheel = bin_builder.WheelDirector().construct() 
         self.wheel = wheel
-        self.player = player1326.Player1326(wheel=self.wheel, table=self.table, initial_bet_amount=10)
+        self.player = roulette1326.Roulette1326(wheel=self.wheel, table=self.table, initial_bet_amount=10)
         self.bet = bet.Bet(outcome=self.wheel.all_outcomes.get('Black'), amount=10)
-   
+        
+
     def test_placeBets(self):
         multiplier_map = {
             1:3,
@@ -29,7 +30,7 @@ class TestPlayer1326(unittest.TestCase):
                 self.player.win(self.bet)
                 self.player.placeBets()
                 self.assertEqual(self.table.bets[-1].amount, multiplier_map[index]*10)
-            self.player.lose(self.bet)
+            self.player.lose()
             self.player.placeBets()            
             self.assertEqual(self.table.bets[-1].amount, 10)
 
@@ -42,7 +43,7 @@ class TestPlayer1326(unittest.TestCase):
     def test_lose(self):
         self.assertEqual(self.player.state.bet_multiple, 1)
         self.player.placeBets()
-        self.player.lose(self.bet)
+        self.player.lose()
         self.assertEqual(self.player.state.bet_multiple, 1)
 
     def tearDown(self):

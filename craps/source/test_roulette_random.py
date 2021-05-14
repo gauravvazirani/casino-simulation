@@ -1,6 +1,6 @@
 import unittest
-import player_random
-import table 
+import roulette_random
+import table
 import bin_builder
 from unittest.mock import Mock, MagicMock
 
@@ -12,7 +12,7 @@ class Test(unittest.TestCase):
     def setUp(self):
         self.wheel = bin_builder.WheelDirector().construct()
         self.table = table.Table()
-        self.player = player_random.PlayerRandom(table=self.table, wheel=self.wheel, initial_bet_amount=10)
+        self.player = roulette_random.RouletteRandom(table=self.table, wheel=self.wheel)
         self.player.rng = Mock()
         self.player.rng.randint = Mock(side_effect=range(len(self.player.outcomes)))
 

@@ -1,13 +1,13 @@
-from martingale import Martingale
+from roulette_martingale import RouletteMartingale
 
-class SevenReds(Martingale):
+class RouletteSevenReds(RouletteMartingale):
     """
     SevenReds is a Martingale player who places bets in Roulette. 
     This player waits until the wheel has spun red 
     seven times in a row before betting black.
     """
-    def __init__(self, table, wheel, initial_bet_amount):
-        Martingale.__init__(self, table, wheel, initial_bet_amount)
+    def __init__(self, table, wheel):
+        Martingale.__init__(self, table, wheel)
         self.red_count=7
 
     def winners(self, winning_outcomes):

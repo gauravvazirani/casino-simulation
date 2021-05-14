@@ -1,14 +1,19 @@
 import random
+from random_event_factory import RandomEventFactory
+import throw_builder
 
-class Dice():
+class Dice(RandomEventFactory):
     """
     Two Dice are rolled on every cycle of the game.
     Dice stop at a random set of numbers between 1 and 6,
     Thus its a collectioin of throws.
     """
     def __init__(self):
+        super().__init__(random.Random())
         self.all_throws = {}
-        self.rng = random.Random()
+
+    def initialize(self):
+        throw_builder.DiceDirector().construct()
 
     def addThrow(self, throw):
         """

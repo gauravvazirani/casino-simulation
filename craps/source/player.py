@@ -1,6 +1,9 @@
 from abc import abstractmethod,ABCMeta
 
-class IPlayer(metaclass=ABCMeta):
+class Player(metaclass=ABCMeta):
+
+    def __init__(self, stake):
+        self.stake = stake
 
     @staticmethod
     @abstractmethod
@@ -20,9 +23,7 @@ class IPlayer(metaclass=ABCMeta):
         :param wheel: (Wheel)
         """
 
-    @staticmethod
-    @abstractmethod
-    def win():
+    def win(self, bet):
         """
         update stake with the winning amount
         update bet_amount to initlal value
@@ -30,9 +31,8 @@ class IPlayer(metaclass=ABCMeta):
 
         :param bet: (Bet)
         """
+        self.stake += bet.winAmount()
 
-    @staticmethod
-    @abstractmethod
     def lose():
         """
         update bet_amount to 2 times the current value 
@@ -40,7 +40,8 @@ class IPlayer(metaclass=ABCMeta):
 
         :param bet: (Bet)
         """
-
+        pass
+    
     @staticmethod
     @abstractmethod
     def setStake():
@@ -55,10 +56,3 @@ class IPlayer(metaclass=ABCMeta):
         Set rounds_to_go value before simulation of a session of game play
         """
     
-    @staticmethod
-    @abstractmethod
-    def winners():
-        """
-        use winning outcomes to count certain special outcomes
-        """
-

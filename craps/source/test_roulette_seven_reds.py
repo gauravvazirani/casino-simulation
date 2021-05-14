@@ -1,8 +1,7 @@
 import unittest
-import seven_reds
+import roulette_seven_reds
 import bin_builder
 import table
-import seven_reds
 import game
 from unittest.mock import Mock, MagicMock
 
@@ -10,7 +9,7 @@ class TestSevenReds(unittest.TestCase):
     def setUp(self):
         self.wheel = bin_builder.WheelDirector().construct()
         self.table = table.Table()
-        self.player = seven_reds.SevenReds(self.table, self.wheel, initial_bet_amount=10)
+        self.player = roulette_seven_reds.SevenReds(self.table, self.wheel)
         self.red = [self.wheel.all_outcomes['Red']]
         self.black = [self.wheel.all_outcomes['Black']]
         self.wheel.rng = Mock()
