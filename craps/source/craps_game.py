@@ -1,12 +1,12 @@
 import craps_game_state
+import game
 
-class CrapsGame():
+class CrapsGame(game.Game):
     """
     Class to perform simulation of a game of craps
     """
     def __init__(self, dice, table):
-        self.dice = dice
-        self.table = table 
+        super().__init__(dice, table)
         self.state = craps_game_state.CrapsGamePointOff(self)
 
     def cycle(self, player):
@@ -18,7 +18,7 @@ class CrapsGame():
             print(f'State of the Game:{self.state}')
             player.placeBets(self.state.pointval)
             print(f'Bets Placed on Table:{self.table.bets}')
-            throw = self.dice.next()
+            throw = self.eventFactory.next()
             print(f'Throw Value - d1:{throw.d1} d2:{throw.d2}')
             self.state = throw.updateGame(self)
             for bet in self.table:
@@ -30,9 +30,12 @@ class CrapsGame():
             if player.rounds_to_go > 0:
                 player.rounds_to_go -= 1
 
+    def isValid(self, outcome):
+        return self.state.isValid(outcome)
+
     def moveToThrow(self, bet, throw):
         self.state.moveToThrow(bet, throw)
 
     def reset(self):
-        self.table.clear()
+        super().reset()
         self.state = craps_game_state.CrapsGamePointOff(self)

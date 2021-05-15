@@ -33,7 +33,6 @@ class CrapsMartingale(craps_player.CrapsPlayer):
         super().win(bet)
         self.loss_count = 0
 
-    def lose(self, bet):
-        super().lose(bet)
+    def lose(self):
         self.loss_count += 1
         self.bet_multiple *= 2

@@ -8,7 +8,7 @@ class Roulette1326(roulette_player.RoulettePlayer):
         super().__init__(table, wheel)
         self.initial_bet_amount = 10
         self.rounds_to_go = 250
-        self.state = roulette1326_state.Roulette1326NoWins(self)
+        self.state = roulette1326_state.RouletteNoWins(self)
         self.outcome = self.wheel.all_outcomes.get('Black') 
 
     def placeBets(self):
@@ -20,5 +20,5 @@ class Roulette1326(roulette_player.RoulettePlayer):
         super().win(bet)
         self.state = self.state.nextWon()
 
-    def lose(self, bet):
+    def lose(self):
         self.state = self.state.nextLost()

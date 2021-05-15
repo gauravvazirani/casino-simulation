@@ -24,7 +24,7 @@ class Table():
         Validates this bet. 
         The first test, checks test to see if the bet is valid.
         """
-        return self.game.isValid(bet) 
+        return self.game.isValid(bet.outcome) 
 
     def allValid(self):
         """
@@ -35,10 +35,18 @@ class Table():
         if sum_of_bets > self.maximum or sum_of_bets < self.minimum:
                 raise invalid_bet_exception.InvalidBetException
           
-    def placeBets(self, bet):
+    def placeBet(self, bet):
         """
         Player can call this method to place a bet on the Table.
         Multiple bets can be placed by calling multiple method multiple times. 
         """
-        self.bets.append(bet)
+        if self.isValid(bet):
+            self.bets.append(bet)
+        else:
+            raise invalid_bet_exception.InvalidBetException
+    
+    def clear(self):
+        self.bets = []
 
+    def __iter__(self):
+        return self.bets.__iter__()

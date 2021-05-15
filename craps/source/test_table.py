@@ -7,7 +7,7 @@ import invalid_bet_exception
 class TestTable(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table(limit=500)
+        self.table = table.Table(minimum=1, maximum=500)
         self.bets = [
             bet.Bet(5, outcome.Outcome("Number 1",35)),
             bet.Bet(20, outcome.Outcome("Number 2",35)),
@@ -25,7 +25,6 @@ class TestTable(unittest.TestCase):
         print("\nTesting __str__")
         self.table.placeBet(self.bets[2])
         self.table.placeBet(self.bets[3])
-
         print(self.table)   
 
     def test___repr__(self):
@@ -39,7 +38,7 @@ class TestTable(unittest.TestCase):
         for bet in self.bets:
             try:
                 self.table.placeBet(bet)
-                self.table.isValid()
+                self.table.allValid()
                 
             except invalid_bet_exception.InvalidBetException as e:
                 print("Table has invalid set of bets:\n", self.table.__repr__())

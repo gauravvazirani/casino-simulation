@@ -33,7 +33,7 @@ class Player(metaclass=ABCMeta):
         """
         self.stake += bet.winAmount()
 
-    def lose():
+    def lose(self):
         """
         update bet_amount to 2 times the current value 
         reduce rounds left to 1 less than that of current value 

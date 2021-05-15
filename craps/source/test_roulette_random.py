@@ -1,7 +1,7 @@
 import unittest
 import roulette_random
 import table
-import bin_builder
+import wheel
 from unittest.mock import Mock, MagicMock
 
 class Test(unittest.TestCase):
@@ -10,8 +10,8 @@ class Test(unittest.TestCase):
     using mock object testing to test bet placement   
     """
     def setUp(self):
-        self.wheel = bin_builder.WheelDirector().construct()
-        self.table = table.Table()
+        self.wheel = wheel.Wheel()
+        self.table = table.Table(minimum=1, maximum=1000)
         self.player = roulette_random.RouletteRandom(table=self.table, wheel=self.wheel)
         self.player.rng = Mock()
         self.player.rng.randint = Mock(side_effect=range(len(self.player.outcomes)))

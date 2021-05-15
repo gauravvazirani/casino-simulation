@@ -1,12 +1,16 @@
-class Game():
+from abc import abstractmethod,ABCMeta
+
+class Game(metaclass=ABCMeta):
     """
     Class to perform simulation of a game of roulette
     """
 
-    def __init__(self, wheel, table):
-        self.wheel = wheel
+    def __init__(self, eventFactory, table):
+        self.eventFactory = eventFactory
         self.table = table
-
+    
+    @staticmethod
+    @abstractmethod
     def cycle(self, player):
         """
         simulates a single round of single player roulette
@@ -18,14 +22,6 @@ class Game():
 
         :param player: (Passenger57)
         """    
-        self.table.bets=[]
-        player.placeBets()
-        self.table.isValid()
-        winning_outcomes = self.wheel.next()
-        player.winners(winning_outcomes)
-        for bet in self.table:
-            if bet.outcome in winning_outcomes:
-                player.win(bet)
-            else:
-                player.lose(bet)
                 
+    def reset(self):
+        self.table.clear()

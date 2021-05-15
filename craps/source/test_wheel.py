@@ -1,9 +1,7 @@
 import unittest
 import wheel
-import random
 import outcome
 import bin
-import bin_builder
 from unittest.mock import Mock, MagicMock
 
 class TestWheel(unittest.TestCase):
@@ -17,7 +15,7 @@ class TestWheel(unittest.TestCase):
 		Create outcomes required to test addition of outcomes
 		Inititialize a bin to test get method
 		"""
-		self.wheel = bin_builder.WheelDirector.construct()
+		self.wheel = wheel.Wheel()
 		# self.wheel.rng.seed(1)
 		self.wheel.rng = Mock()
 		self.wheel.rng.randint = Mock(return_value=1)

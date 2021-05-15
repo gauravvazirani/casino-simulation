@@ -1,6 +1,5 @@
 import unittest
 import bin_builder
-import wheel
 import inspect
 fname = lambda: inspect.stack()[1][3] 
 			

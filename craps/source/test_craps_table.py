@@ -8,8 +8,9 @@ import craps_game
 class TestCrapsTable(unittest.TestCase):
 
     def setUp(self):
+        self.table = table.Table(minimum=1, maximum=1000)
         self.game = craps_game.CrapsGame()
-        self.table = table.CrapsTable(self.game, limit=500)
+        self.table.setGame(self.game)
         self.bets = [
             bet.Bet(5, outcome.Outcome("Pass", 2)),
             bet.Bet(10, outcome.Outcome("Any Craps", 31)),
@@ -45,16 +46,16 @@ class TestCrapsTable(unittest.TestCase):
         print("\nTesting allValid")
         test_outcome = [True, False, False, False]
         for index in range(4):
-        for bet in self.bets:
-            try:
-                self.table.placeBet(self.bets[index])
-                self.assertEqual(
-                    self.table.allValid(),
-                    test_outcome[index]
-                )                
-            except invalid_bet_exception.InvalidBetException as e:
-                print("Table limit exceeded:\n", self.table.__repr__())
-                self.table.bets = []
+            for _ in self.bets:
+                try:
+                    self.table.placeBet(self.bets[index])
+                    self.assertEqual(
+                        self.table.allValid(),
+                        test_outcome[index]
+                    )                
+                except invalid_bet_exception.InvalidBetException as e:
+                    print("Table limit exceeded:\n", self.table.__repr__())
+                    self.table.bets = []
     
     def tearDown(self):
         self.table = None

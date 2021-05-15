@@ -9,11 +9,11 @@ class Dice(RandomEventFactory):
     Thus its a collectioin of throws.
     """
     def __init__(self):
-        super().__init__(random.Random())
         self.all_throws = {}
-
+        super().__init__(random.Random())
+        
     def initialize(self):
-        throw_builder.DiceDirector().construct()
+        throw_builder.DiceDirector().construct(self)
 
     def addThrow(self, throw):
         """

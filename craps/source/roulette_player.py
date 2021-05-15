@@ -21,7 +21,8 @@ class RoulettePlayer(player.Player):
               else False
 
     def placeBets(self):
+        bet_amount = 10
         black = self.wheel.all_outcomes.get('Black')
-        self.table.placeBet(bet.Bet(10 ,black))
-        self.stake -= self.bet_amount
+        self.table.placeBet(bet.Bet(bet_amount ,black))
+        self.stake -= bet_amount
     

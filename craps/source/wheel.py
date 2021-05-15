@@ -14,12 +14,12 @@ class Wheel(RandomEventFactory):
 		Creates a new wheel wth 38 empty bins.
 		It will also create a new random number generator.
 		"""
-		super().__init__(random.Random())
 		self.bins = tuple(bin.Bin() for i in range(38))
 		self.all_outcomes = dict()
+		super().__init__(random.Random())
 
 	def initialize(self):
-		self.bins = bin_builder.WheelDirector.construct()
+		bin_builder.WheelDirector.construct(self)
 
 	def addOutcome(self, number, outcome):
 		"""

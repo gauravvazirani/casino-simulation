@@ -3,7 +3,7 @@ from unittest.mock import Mock, MagicMock
 import game
 import roulette_martingale
 import table
-import bin_builder
+import wheel
 
 class TestGame(unittest.TestCase):
     """
@@ -13,10 +13,10 @@ class TestGame(unittest.TestCase):
     """
 
     def setUp(self):
-        _wheel = bin_builder.WheelDirector().construct()
+        _wheel = wheel.Wheel()
         _wheel.rng = Mock()
         _wheel.rng.randint = Mock(return_value=1)
-        _table = table.Table()
+        _table = table.Table(minimum=1, maximum=1000)
         self.game = game.Game(wheel=_wheel, table=_table)
         self.player = roulette_martingale.RouletteMartingale(wheel=_wheel, table=_table)
 
@@ -34,8 +34,9 @@ class TestGame(unittest.TestCase):
         If the simulation works correctly the player should win\lose the 
         bet and player balance should be updated to balance +\- bet_amount. 
         """
+        self.player.setStake(2500)
         self.game.cycle(self.player)
-        self.assertEqual(self.player.stake, 2475)
+        self.assertEqual(self.player.stake, 2490)
 
     def tearDown(self):
         self.game = None

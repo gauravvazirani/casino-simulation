@@ -1,5 +1,5 @@
 import unittest
-import craps_player_pass
+import craps_player
 import table 
 import bet
 import outcome
@@ -7,8 +7,8 @@ import outcome
 class TestCrapsPlayerPass(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table()
-        self.player = craps_player_pass.CrapsPlayerPass(self.table)
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.player = craps_player.CrapsPlayer(self.table)
         self.outcome = outcome.Outcome('Pass Line',1)
         self.bet = bet.Bet(outcome=self.outcome, amount=10)
 

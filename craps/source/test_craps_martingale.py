@@ -1,5 +1,5 @@
 import unittest
-import craps_player_martingale
+import craps_martingale
 import table 
 import bet
 import outcome
@@ -7,8 +7,8 @@ import outcome
 class TestCrapsPlayerMartingale(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table()
-        self.player = craps_player_martingale.CrapsPlayerMartingale(self.table)
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.player = craps_martingale.CrapsMartingale(self.table)
         self.outcome = outcome.Outcome('Pass Line', 1)
         self.odds_outcome = outcome.Outcome('Pass Line Odds', 1)
         self.bet = bet.Bet(outcome=self.outcome, amount=10)        
@@ -70,7 +70,7 @@ class TestCrapsPlayerMartingale(unittest.TestCase):
         self.player.setStake(30)
         self.assertEqual(self.player.loss_count, 0)
         self.assertEqual(self.player.bet_multiple, 1)        
-        self.player.lose(self.bet)
+        self.player.lose()
         self.assertEqual(self.player.stake, 30)
         self.assertEqual(self.player.loss_count, 1)
         self.assertEqual(self.player.bet_multiple, 2)

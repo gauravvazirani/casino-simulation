@@ -14,7 +14,7 @@ class RouletteMartingale(roulette_player.RoulettePlayer):
         bet_amount = self.initial_bet_amount * bet_multiple
         black = self.wheel.all_outcomes.get('Black')
         self.table.placeBet(bet.Bet(bet_amount ,black))
-        self.stake -= self.bet_amount
+        self.stake -= bet_amount
     
     def win(self, bet):
         super().win(bet)

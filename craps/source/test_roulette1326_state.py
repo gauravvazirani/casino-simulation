@@ -1,17 +1,16 @@
 import unittest
 import roulette1326
 import table 
-import bin_builder
+import wheel
 from unittest.mock import Mock
 import bet
 
 class TestRoulette1326_test(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table()      
-        wheel = bin_builder.WheelDirector().construct() 
-        self.wheel = wheel
-        self.player = roulette1326.Roulette1326(wheel=self.wheel, table=self.table, initial_bet_amount=10)
+        self.table = table.Table(minimum=1, maximum=1000)      
+        self.wheel = wheel.Wheel()
+        self.player = roulette1326.Roulette1326(wheel=self.wheel, table=self.table)
         self.bet = bet.Bet(outcome=self.wheel.all_outcomes.get('Black'), amount=10)
         
 

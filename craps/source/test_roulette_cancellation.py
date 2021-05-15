@@ -1,4 +1,4 @@
-import bin_builder
+import wheel
 import roulette_cancellation
 import bet
 import table
@@ -6,8 +6,8 @@ import unittest
 
 class TestCancellation(unittest.TestCase):
     def setUp(self):
-        self.wheel = bin_builder.WheelDirector().construct()
-        self.table = table.Table()
+        self.wheel = wheel.Wheel()
+        self.table = table.Table(minimum=10, maximum=1000)
         self.player = roulette_cancellation.RouletteCancellation(table=self.table, wheel=self.wheel)
         
     def test_placeBets(self):
@@ -19,17 +19,19 @@ class TestCancellation(unittest.TestCase):
 
     def test_win(self):
         self.assertEqual(len(self.player.sequence), 6)
-        self.player.win(bet.Bet(outcome=self.player.outcome, amount=self.player.bet_amount))
+        if len(self.player.sequence)==1:
+            bet_amount = self.player.sequence[0]
+        elif len(self.player.sequence)>1:
+            bet_amount = self.player.sequence[0] + self.player.sequence[-1]
+        self.player.win(bet.Bet(outcome=self.wheel.all_outcomes.get('Black'), amount=bet_amount))
         self.assertEqual(len(self.player.sequence), 4)
         self.assertEqual(len(self.player.sequence), 4)
-        self.assertEqual(self.player.bet_amount, self.player.sequence[0]+self.player.sequence[-1])
 
     def test_lose(self):
         self.assertEqual(len(self.player.sequence), 6)
         self.player.lose()
         self.assertEqual(len(self.player.sequence), 7)
         self.assertEqual(self.player.sequence[-1], self.player.sequence[0]+self.player.sequence[-2])
-        self.assertEqual(self.player.bet_amount, self.player.sequence[0]+self.player.sequence[-1])
 
     def tearDown(self):
         self.wheel = None

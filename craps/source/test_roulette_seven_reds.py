@@ -1,15 +1,15 @@
 import unittest
 import roulette_seven_reds
-import bin_builder
+import wheel
 import table
 import game
 from unittest.mock import Mock, MagicMock
 
 class TestSevenReds(unittest.TestCase):
     def setUp(self):
-        self.wheel = bin_builder.WheelDirector().construct()
-        self.table = table.Table()
-        self.player = roulette_seven_reds.SevenReds(self.table, self.wheel)
+        self.wheel = wheel.Wheel()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.player = roulette_seven_reds.RouletteSevenReds(self.table, self.wheel)
         self.red = [self.wheel.all_outcomes['Red']]
         self.black = [self.wheel.all_outcomes['Black']]
         self.wheel.rng = Mock()
@@ -54,10 +54,10 @@ class TestSevenReds(unittest.TestCase):
         Assures that the martingale system is being followed along 
         with the seven reds logic.
         """
-        self.assertEqual(self.player.bet_amount, 10) 
+        self.assertEqual(self.player.loss_count, 0) 
         self.player.red_count=0
         self.game.cycle(self.player)
-        self.assertEqual(self.player.bet_amount, 20)
+        self.assertEqual(self.player.loss_count, 1)
 
     def tearDown(self):
         self.wheel = None

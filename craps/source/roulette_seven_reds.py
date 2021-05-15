@@ -7,7 +7,7 @@ class RouletteSevenReds(RouletteMartingale):
     seven times in a row before betting black.
     """
     def __init__(self, table, wheel):
-        Martingale.__init__(self, table, wheel)
+        RouletteMartingale.__init__(self, table, wheel)
         self.red_count=7
 
     def winners(self, winning_outcomes):
@@ -31,5 +31,5 @@ class RouletteSevenReds(RouletteMartingale):
         using the bet multiplier.
         """
         if self.red_count == 0:
-            Martingale.placeBets(self)
+            RouletteMartingale.placeBets(self)
     

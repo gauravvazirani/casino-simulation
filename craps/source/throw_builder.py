@@ -81,8 +81,8 @@ class ThrowBuilder(IBuilder):
 	Class responsible for setting the wheel with the
 	correct placement of outcomes on appropriate bins
 	"""
-	def __init__(self):
-		self.dice = dice.Dice()
+	def __init__(self, dice):
+		self.dice = dice
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				s = d1 + d2
@@ -145,7 +145,7 @@ class ThrowBuilder(IBuilder):
 		return self
 
 	def buildThrows(self):
-		return self.dice
+		return
 
 
 class DiceDirector():
@@ -154,11 +154,11 @@ class DiceDirector():
 	"""
 
 	@staticmethod
-	def construct():
+	def construct(self):
 		"""
 		Constructs and returns the dice with all the outcomes
 		"""
-		return ThrowBuilder()\
+		return ThrowBuilder(self)\
 			.generateStraightThrows()\
 			.generateFieldThrows()\
 			.generateHornThrows()\

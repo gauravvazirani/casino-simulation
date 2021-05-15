@@ -10,7 +10,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
     def __init__(self, wheel, table):
         super().__init__(table, wheel)
         self.sequence = []
-        self.reset_sequence()
+        self.resetSequence()
 
     def resetSequence(self):
         """
@@ -44,13 +44,13 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         Uses the superclass method to update the stake with an amount won.
         It then removes the fist and last element from sequence.
         """
-        super().win()
+        super().win(bet)
         del self.sequence[0]
         if self.sequence:
             del self.sequence[-1]
 
 
-    def lose(self, bet):
+    def lose(self):
         """
         Uses the superclass method to update the stake with an amount lost. 
         It then appends the sum of the first and list elements of sequence 

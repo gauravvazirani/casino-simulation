@@ -113,8 +113,8 @@ class BinBuilder(IBuilder):
 	correct placement of outcomes on appropriate bins
 	"""
 
-	def __init__(self):
-		self.wheel = wheel.Wheel()
+	def __init__(self, wheel):
+		self.wheel = wheel
 
 	def generateStraightBets(self):
 		for num in range(1,37):
@@ -242,8 +242,8 @@ class BinBuilder(IBuilder):
 		return self
 	
 	def buildBins(self):
-		return self.wheel
-
+		#return self.wheel.bins
+		return
 	
 class WheelDirector():
 	"""
@@ -251,11 +251,11 @@ class WheelDirector():
 	"""
 
 	@staticmethod
-	def construct():
+	def construct(wheel):
 		"""
 		Constructs and returns the wheel with all the outcomes
 		"""
-		return BinBuilder()\
+		return BinBuilder(wheel)\
 			.generateStraightBets()\
 			.generateSplitBets()\
 			.generateStreetBets()\

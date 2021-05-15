@@ -3,7 +3,6 @@ import dice
 import outcome
 import throw
 import random
-import throw_builder
 from collections import Counter
 
 class TestDice(unittest.TestCase):
@@ -19,6 +18,7 @@ class TestDice(unittest.TestCase):
         self.dice.rng.seed(1)        
 
     def test_addThrow(self):
+        self.dice.all_throws={}
         self.assertEqual(len(self.dice.all_throws),0)
         self.dice.addThrow(self.throw1)
         self.assertEqual(len(self.dice.all_throws),1)
@@ -47,7 +47,7 @@ class TestDice(unittest.TestCase):
             )
 
     def test_getThrow(self):
-        self.dice = throw_builder.DiceDirector().construct()
+        self.dice = dice.Dice()
         oc_aces = outcome.Outcome('Number 2', 31)
         oc_anycraps = outcome.Outcome('Any Craps', 8)
         oc_horn = outcome.Outcome('Horn', 3.75)
@@ -56,7 +56,7 @@ class TestDice(unittest.TestCase):
         self.assertEqual(self.dice.getThrow(1,1).win_1roll,throw_aces)
         self.assertEqual(self.dice.getThrow(1,1).lose_1roll,set())
         throw_list = []
-        for key, val in self.dice.all_throws.items():
+        for _, val in self.dice.all_throws.items():
             if val.hard():
                 throw_list.append('hard' + str(val.d1+val.d2))
             else:

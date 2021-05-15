@@ -14,5 +14,5 @@ class RouletteRandom(roulette_player.RoulettePlayer):
         bet_amount = 10
         random_outcome = self.outcomes[self.rng.randint(0, len(self.outcomes)-1)]
         self.table.placeBet(bet.Bet(bet_amount ,random_outcome))
-        self.stake -= self.bet_amount
+        self.stake -= bet_amount
         
