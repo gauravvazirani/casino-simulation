@@ -33,7 +33,7 @@ class Table():
         """
         sum_of_bets = sum([bet.amount for bet in self.bets])
         if sum_of_bets > self.maximum or sum_of_bets < self.minimum:
-                raise invalid_bet_exception.InvalidBetException
+            raise invalid_bet_exception.InvalidBetException
           
     def placeBet(self, bet):
         """

@@ -4,12 +4,15 @@ import table
 import wheel
 from unittest.mock import Mock
 import bet
+import roulette_game
 
 class TestPlayer1326(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table(minimum=1, maximum=1000)      
         self.wheel = wheel.Wheel()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  roulette_game.RouletteGame(table=self.table, wheel=self.wheel)
+        self.table.setGame(self.game)
         self.player = roulette1326.Roulette1326(wheel=self.wheel, table=self.table)
         self.bet = bet.Bet(outcome=self.wheel.all_outcomes.get('Black'), amount=10)
    

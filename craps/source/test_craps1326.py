@@ -1,21 +1,28 @@
-import unittest
-import roulette1326
-import table 
-import wheel
 from unittest.mock import Mock
+import unittest
+import craps1326
+import table
+import wheel
 import bet
-import roulette_game
+import craps_game
+import dice
+import outcome
+import craps_game_state
 
-class TestRoulette1326_test(unittest.TestCase):
+class TestPlayer1326(unittest.TestCase):
 
     def setUp(self):
-        self.wheel = wheel.Wheel()
+        self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
-        self.game =  roulette_game.RouletteGame(table=self.table, wheel=self.wheel)
-        self.table.setGame(self.game)        
-        self.player = roulette1326.Roulette1326(wheel=self.wheel, table=self.table)
-        self.bet = bet.Bet(outcome=self.wheel.all_outcomes.get('Black'), amount=10)
-        
+        self.game =  craps_game.CrapsGame(
+            table=self.table, dice=self.dice)
+        self.table.setGame(self.game)
+        self.line = outcome.Outcome('Pass Line', 1)
+        self.odds = outcome.Outcome('Pass Line Odds', 1)
+        self.player = craps1326.Craps1326(
+            table=self.table, line=self.line, odds=self.odds)    
+        self.bet = bet.Bet(outcome=self.odds, amount=10)
+   
     def test_placeBets(self):
         multiplier_map = {
             1:3,
@@ -23,27 +30,32 @@ class TestRoulette1326_test(unittest.TestCase):
             3:6,
             4:1
         }
+        self.game.state = craps_game_state.CrapsGamePointOn(point=5 ,game=self.game)
         self.assertEqual(len(self.table.bets), 0)
-        self.player.placeBets()
+        self.player.placeBets(5)
         self.assertEqual(self.table.bets[0].amount, 10)      
         for num_wins in range(1,5):
             for index in range(1,num_wins+1):                
+                self.table.clear()
                 self.player.win(self.bet)
-                self.player.placeBets()
+                self.player.placeBets(5)
                 self.assertEqual(self.table.bets[-1].amount, multiplier_map[index]*10)
             self.player.lose()
-            self.player.placeBets()            
+            self.table.clear()
+            self.player.placeBets(5)            
             self.assertEqual(self.table.bets[-1].amount, 10)
 
     def test_win(self):
         self.assertEqual(self.player.state.bet_multiple, 1)
-        self.player.placeBets()
         self.player.win(self.bet)
         self.assertEqual(self.player.state.bet_multiple, 3)
+        self.player.win(self.bet)
+        self.assertEqual(self.player.state.bet_multiple, 2)
+        self.player.win(self.bet)
+        self.assertEqual(self.player.state.bet_multiple, 6)
 
     def test_lose(self):
         self.assertEqual(self.player.state.bet_multiple, 1)
-        self.player.placeBets()
         self.player.lose()
         self.assertEqual(self.player.state.bet_multiple, 1)
 

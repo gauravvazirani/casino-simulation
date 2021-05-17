@@ -1,22 +1,22 @@
 import bet
-import roulette_player
+import craps_player
 import player1326_state
 
-class Roulette1326(roulette_player.RoulettePlayer):
+class Craps1326(craps_player.CrapsSimplePlayer):
 
-    def __init__(self, table, wheel):
-        super().__init__(table, wheel)
+    def __init__(self, table, line, odds):
+        super().__init__(table, line, odds)
         self.initial_bet_amount = 10
         self.rounds_to_go = 250
         self.state = player1326_state.PlayerNoWins(
             self, 
-            self.wheel.all_outcomes.get('Black')
+            self.odds
             )
 
-    def placeBets(self):
+    def oddsBet(self):
         bet = self.state.currentBet()
         self.table.placeBet(bet)
-        self.stake -= bet.amount
+        self.stake -= bet.price()
     
     def win(self, bet):
         super().win(bet)

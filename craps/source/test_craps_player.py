@@ -3,14 +3,24 @@ import craps_player
 import table 
 import bet
 import outcome
+import dice
+import craps_game
 
 class TestCrapsPlayerPass(unittest.TestCase):
 
     def setUp(self):
+        self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
-        self.player = craps_player.CrapsPlayer(self.table)
+        self.game = craps_game.CrapsGame(table=self.table, dice=self.dice)
+        self.table.setGame(self.game)
         self.outcome = outcome.Outcome('Pass Line',1)
+        self.odds = outcome.Outcome('Pass Line Odds',1)
         self.bet = bet.Bet(outcome=self.outcome, amount=10)
+        self.player = craps_player.CrapsSimplePlayer(
+            self.table, 
+            line=self.outcome, 
+            odds=self.odds
+        )
 
     def test_setRounds(self):
         self.assertEqual(self.player.rounds_to_go, 250)
