@@ -5,7 +5,7 @@ from abc import abstractmethod
 
 class CrapsSimplePlayer(player.Player):
 
-    def __init__(self, table, line, odds):
+    def __init__(self, table, line=None, odds=None):
         self.table = table
         super().__init__(stake=10000)
         self.rounds_to_go = 250
