@@ -2,11 +2,10 @@ import betting_strategy
 import outcome
 import bet
 
-class MartingaleBetting(betting_strategy):
+class MartingaleBetting(betting_strategy.BettingStrategy):
 
-    def __init__(self):
-        super().outcome = outcome.Outcome(
-            'Pass Line', 1) 
+    def __init__(self, outcome):
+        super().__init__(outcome, 10) 
         self.loss_count = 0
 
     def createBet(self, player):

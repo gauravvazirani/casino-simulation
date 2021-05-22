@@ -2,9 +2,9 @@ from abc import ABCMeta, abstractmethod
 
 class BettingStrategy(metaclass=ABCMeta):
 
-    def __init__(self, outcome, bet_amount=1):
+    def __init__(self, outcome, bet_amount):
         self.outcome = outcome
-        self.bet_ammount = bet_amount
+        self.bet_amount = bet_amount
 
     @staticmethod
     @abstractmethod
@@ -20,7 +20,7 @@ class BettingStrategy(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def creatBet(self):
+    def createBet(self):
         """
         """
 

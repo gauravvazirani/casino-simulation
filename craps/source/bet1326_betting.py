@@ -1,24 +1,20 @@
 import betting_strategy
-import outcome
-import bet
 import player1326_state
 
-class craps1326Betting(betting_strategy):
+class Craps1326Betting(betting_strategy.BettingStrategy):
 
-    def __init__(self):
-        super().outcome = outcome.Outcome(
-            'Pass Line', 1) 
-        self.loss_count = 0
+    def __init__(self, outcome):
+        super().__init__(outcome, 10)  
+        self.initial_bet_amount = self.bet_amount
         self.state = player1326_state.PlayerNoWins(
             self, 
-            self.odds
+            outcome
             )
 
     def createBet(self, player):
-        bet = bet.Bet(
-            self.bet_amount, self.outcome, player)
-        bet.player = player
-        return bet
+        _bet = self.state.currentBet()
+        _bet.player = player
+        return _bet
 
     def win(self):
         self.state = self.state.nextWon()
