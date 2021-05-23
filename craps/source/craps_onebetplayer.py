@@ -13,7 +13,7 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
             if point == 0:
                 if 'Pass Line' not in outcome_names \
                     and 'Dont Pass Line' not in outcome_names:
-                    pass_line_bet = self.strategy.createBet(self)
+                    pass_line_bet = self.line_strategy.createBet(self)
                     self.table.placeBet(pass_line_bet)
                     self.stake -= pass_line_bet.price()
             else:
@@ -29,6 +29,8 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
             self.line_strategy.win()
         super().win(bet)
 
-    def lose(self):
+    def lose(self, bet):
+        if bet.outcome == self.line_strategy.outcome:
+            self.line_strategy.lose()
         super().lose()
         return

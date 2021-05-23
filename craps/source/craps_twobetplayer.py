@@ -1,6 +1,6 @@
 import craps_onebetplayer
 
-class CrapsTwoBetPlayer(craps_onebetplayer.CrapsOneBetPlayer):
+class CrapsTwoBetPlayer(craps_onebetplayer.OneBetPlayer):
 
     def __init__(self, table, line_strategy, odds_strategy):
         self.table = table
@@ -20,5 +20,7 @@ class CrapsTwoBetPlayer(craps_onebetplayer.CrapsOneBetPlayer):
             self.odds_strategy.win()
         super().win(bet)
 
-    def lose(self):
-        super().lose()
+    def lose(self, bet):
+        if bet.outcome == self.odds_strategy.outcome:
+            self.odds_strategy.lose()
+        super().lose(bet)
