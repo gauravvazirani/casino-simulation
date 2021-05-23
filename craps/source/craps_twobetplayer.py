@@ -3,7 +3,6 @@ import craps_onebetplayer
 class CrapsTwoBetPlayer(craps_onebetplayer.OneBetPlayer):
 
     def __init__(self, table, line_strategy, odds_strategy):
-        self.table = table
         super().__init__(table, line_strategy)
         self.odds_strategy = odds_strategy     
 

@@ -33,4 +33,4 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
         if bet.outcome == self.line_strategy.outcome:
             self.line_strategy.lose()
         super().lose()
-        return
+        

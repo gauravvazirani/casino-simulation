@@ -1,6 +1,6 @@
 import unittest
 import outcome
-import craps_sevencountplayer
+import craps_twobetplayer
 import table
 import nochange_betting
 import martingale_betting
@@ -25,7 +25,7 @@ class TestTwoBetPlayer(unittest.TestCase):
             dice=dice.Dice()
         ) 
         self.table.setGame(self.game)
-        self.player = craps_sevencountplayer.CrapsSevenCountPlayer(
+        self.player = craps_twobetplayer.CrapsTwoBetPlayer(
            table = self.table,
            line_strategy = self.strategy_nochange,
            odds_strategy = self.strategy_martingale
