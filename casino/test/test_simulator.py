@@ -6,13 +6,14 @@ from src import roulette1326
 from src import roulette_cancellation
 from src import roulette_fibonacci
 from src import simulator
-from src import game
+from src import roulette_game
 from src import bin_builder
+from src import wheel
 
 class TestSimulator(unittest.TestCase):
     def setUp(self):
-        self.table = table.Table(5,5000)
-        self.wheel = bin_builder.WheelDirector().construct()
+        self.table = table.Table(1,5000)
+        self.wheel = wheel.Wheel()
         self.wheel.rng = Mock()
         self.wheel.rng.randint = Mock(return_value=1)
         self.initial_bet_amount = 10
@@ -20,11 +21,12 @@ class TestSimulator(unittest.TestCase):
         # self.player = roulette_passenger57.Passenger57(
         # self.player = roulette_player1326.Player1326(
         # self.player = roulette_cancellation.Cancellation(
-        self.player = roulette_fibonacci.Fibonacci(
+        self.player = roulette_fibonacci.RouletteFibonacci(
               table = self.table
              ,wheel = self.wheel
              )
-        self.game = game.Game(self.wheel, self.table)
+        self.game = roulette_game.RouletteGame(self.wheel, self.table)
+        self.table.setGame(self.game)
 
     def test_session(self):
         print("Simulating a Single Session of 5 cycles")

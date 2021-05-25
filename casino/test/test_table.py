@@ -1,13 +1,18 @@
 import unittest
+from src import wheel
 from src import table
 from src import bet
 from src import outcome
 from src import invalid_bet_exception
+from src import roulette_game
 
 class TestTable(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table(minimum=1, maximum=500)
+        self.wheel = wheel.Wheel()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  roulette_game.RouletteGame(table=self.table, wheel=self.wheel)
+        self.table.setGame(self.game)        
         self.bets = [
             bet.Bet(5, outcome.Outcome("Number 1",35)),
             bet.Bet(20, outcome.Outcome("Number 2",35)),

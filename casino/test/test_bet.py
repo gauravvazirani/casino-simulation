@@ -8,9 +8,9 @@ class TestBet(unittest.TestCase):
     """
 
     def setUp(self):
-        self.bet = bet.Bet(10, outcome.Outcome('Number 0', 35))
-        self.bet_commission_buy = bet.CommissionBet(20, outcome.Outcome('Buy',2))
-        self.bet_commission_lay = bet.CommissionBet(30, outcome.Outcome('Lay',2/3))
+        self.bet = bet.Bet(10, outcome.Outcome('Number 0', 35), None)
+        self.bet_commission_buy = bet.CommissionBet(20, outcome.Outcome('Buy',2), None)
+        self.bet_commission_lay = bet.CommissionBet(30, outcome.Outcome('Lay',2/3), None)
     
     def test_winAmount(self):
         """

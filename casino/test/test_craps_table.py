@@ -4,34 +4,36 @@ from src import bet
 from src import outcome
 from src import invalid_bet_exception
 from src import craps_game
+from src import dice
 
 class TestCrapsTable(unittest.TestCase):
 
     def setUp(self):
-        self.table = table.Table(minimum=1, maximum=1000)
-        self.game = craps_game.CrapsGame()
+        self.table = table.Table(minimum=1, maximum=450)
+        self.dice = dice.Dice()
+        self.game = craps_game.CrapsGame(self.dice,self.table)
         self.table.setGame(self.game)
         self.bets = [
-            bet.Bet(5, outcome.Outcome("Pass", 2)),
+            bet.Bet(5, outcome.Outcome("Pass Line", 1)),
             bet.Bet(10, outcome.Outcome("Any Craps", 31)),
             bet.Bet(50, outcome.Outcome("Odds on Come", 16)),
-            bet.Bet(490, outcome.Outcome("Don't Pass", 2))
+            bet.Bet(490, outcome.Outcome("Dont Pass Line", 2))
         ]
 
     def test_placeBet(self):
         print("\nTesting placeBet")
         self.table.placeBet(self.bets[0])
-        self.table.placeBet(self.bets[1])
+        self.table.placeBet(self.bets[3])
         print(self.table)
 
     def test___str__(self):
         print("\nTesting __str__")
-        self.table.placeBet(self.bets[2])
+        self.table.placeBet(self.bets[0])
         self.table.placeBet(self.bets[3])
         print(self.table)   
 
     def test___repr__(self):
-        self.table.placeBet(self.bets[2])
+        self.table.placeBet(self.bets[0])
         self.table.placeBet(self.bets[3])
         print("\nTesting __repr__")
         print(self.table.__repr__())   
@@ -44,18 +46,18 @@ class TestCrapsTable(unittest.TestCase):
 
     def test_allValid(self):
         print("\nTesting allValid")
-        test_outcome = [True, False, False, False]
-        for index in range(4):
-            for _ in self.bets:
-                try:
-                    self.table.placeBet(self.bets[index])
-                    self.assertEqual(
-                        self.table.allValid(),
-                        test_outcome[index]
-                    )                
-                except invalid_bet_exception.InvalidBetException as e:
-                    print("Table limit exceeded:\n", self.table.__repr__())
-                    self.table.bets = []
+        try:
+            self.table.placeBet(self.bets[0])
+            self.table.allValid()
+            print("Placed Bet Number 1")
+            self.assertEqual(len(self.table.bets),1)
+            self.table.placeBet(self.bets[3])
+            self.table.allValid()
+            print("Placed Bet Number 2")
+        except invalid_bet_exception.InvalidBetException as e:
+            print("Table limit exceeded:\n", self.table.__repr__())
+            self.assertEqual(len(self.table.bets),2)
+            self.table.bets = []
     
     def tearDown(self):
         self.table = None

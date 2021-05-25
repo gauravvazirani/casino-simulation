@@ -2,22 +2,28 @@ import unittest
 from src import throw
 from src import craps_game 
 from src import outcome
+from src import dice
+from src import table
+from src import craps_game_state
 
 class TestThrow(unittest.TestCase):
 
     def setUp(self):
         self.throw = throw.Throw(1,2)
-        self.game = craps_game.CrapsGame()
-
+        self.dice = dice.Dice()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  craps_game.CrapsGame(self.dice, self.table)
+        self.table.setGame(self.game)        
+ 
     def test_hard(self):
         self.assertEqual(self.throw.hard(), False)
         self.throw.d1 = 2
         self.assertEqual(self.throw.hard(), True)
 
     def test_updateGame(self):
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
         self.throw.updateGame(self.game)
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
     
     def test_add1Roll(self):
         self.assertEqual(len(self.throw.win_1roll),0)
@@ -47,19 +53,22 @@ class TestNaturalThrow(unittest.TestCase):
 
     def setUp(self):
         self.throw = throw.NaturalThrow(3,4)
-        self.game = craps_game.CrapsGame()
+        self.dice = dice.Dice()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  craps_game.CrapsGame(self.dice, self.table)
+        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw.hard(), False)
 
     def test_updateGame(self):
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
         self.throw.updateGame(self.game)
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
 
-        self.game.point=1
-        self.throw.updateGame(self.game)
-        self.assertEqual(self.game.point,0)
+        self.game.state = craps_game_state.CrapsGamePointOn(4, self.game)
+        self.game.state = self.throw.updateGame(self.game)
+        self.assertEqual(self.game.state.pointval,0)
 
     def tearDown(self):
         self.throw = None
@@ -70,20 +79,23 @@ class TestCrapsThrow(unittest.TestCase):
     def setUp(self):
         self.throw_hard = throw.CrapsThrow(1,1)
         self.throw_easy = throw.CrapsThrow(2,1)
-        self.game = craps_game.CrapsGame()
+        self.dice = dice.Dice()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  craps_game.CrapsGame(self.dice, self.table)
+        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw_hard.hard(), True)
         self.assertEqual(self.throw_easy.hard(), False)
 
     def test_updateGame(self):
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
         self.throw_hard.updateGame(self.game)
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
 
-        self.game.point=1
+        self.game.state.pointval=1
         self.throw_hard.updateGame(self.game)
-        self.assertEqual(self.game.point,1)
+        self.assertEqual(self.game.state.pointval,1)
 
     def tearDown(self):
         self.throw = None
@@ -93,19 +105,22 @@ class TestElevenThrow(unittest.TestCase):
 
     def setUp(self):
         self.throw = throw.ElevenThrow(6,5)
-        self.game = craps_game.CrapsGame()
+        self.dice = dice.Dice()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  craps_game.CrapsGame(self.dice, self.table)
+        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw.hard(), False)
 
     def test_updateGame(self):
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
         self.throw.updateGame(self.game)
-        self.assertEqual(self.game.point,0)
+        self.assertEqual(self.game.state.pointval,0)
 
-        self.game.point=1
+        self.game.state.pointval=1
         self.throw.updateGame(self.game)
-        self.assertEqual(self.game.point,1)
+        self.assertEqual(self.game.state.pointval,1)
 
     def tearDown(self):
         self.throw = None
@@ -116,22 +131,25 @@ class TestPointThrow(unittest.TestCase):
     def setUp(self):
         self.throw_hard = throw.PointThrow(3,3)
         self.throw_easy = throw.PointThrow(3,2)
-        self.game = craps_game.CrapsGame()
+        self.dice = dice.Dice()
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game =  craps_game.CrapsGame(self.dice, self.table)
+        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw_hard.hard(), True)
         self.assertEqual(self.throw_easy.hard(), False)
 
     def test_updateGame(self):
-        self.assertEqual(self.game.point,0)
-        self.throw_hard.updateGame(self.game)
-        self.assertEqual(self.game.point,6)
+        self.assertEqual(self.game.state.pointval,0)
+        self.game.state = self.throw_hard.updateGame(self.game)
+        self.assertEqual(self.game.state.pointval,6)
 
-        self.throw_easy.updateGame(self.game)
-        self.assertEqual(self.game.point,6)    
+        self.game.state = self.throw_easy.updateGame(self.game)
+        self.assertEqual(self.game.state.pointval,6)    
 
-        self.throw_hard.updateGame(self.game)
-        self.assertEqual(self.game.point,0)
+        self.game.state = self.throw_hard.updateGame(self.game)
+        self.assertEqual(self.game.state.pointval,0)
 
     def tearDown(self):
         self.throw = None

@@ -64,7 +64,9 @@ class TestOneBetPlayer(unittest.TestCase):
         )
 
     def test_lose(self):
-        self.player.lose()
+        self.player.lose(            
+            bet.Bet(amount=10,outcome=self.outcome)
+        )
         self.assertEqual(
             self.player.line_strategy.loss_count,
             1

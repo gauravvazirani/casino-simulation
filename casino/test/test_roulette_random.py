@@ -2,6 +2,7 @@ import unittest
 from src import roulette_random
 from src import table
 from src import wheel
+from src import roulette_game
 from unittest.mock import Mock, MagicMock
 
 class Test(unittest.TestCase):
@@ -12,6 +13,8 @@ class Test(unittest.TestCase):
     def setUp(self):
         self.wheel = wheel.Wheel()
         self.table = table.Table(minimum=1, maximum=1000)
+        self.game = roulette_game.RouletteGame(wheel=self.wheel, table=self.table)
+        self.table.setGame(self.game)
         self.player = roulette_random.RouletteRandom(table=self.table, wheel=self.wheel)
         self.player.rng = Mock()
         self.player.rng.randint = Mock(side_effect=range(len(self.player.outcomes)))

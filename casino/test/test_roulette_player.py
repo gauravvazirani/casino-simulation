@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock, MagicMock
-from src import game
+from src import roulette_game
 from src import roulette_player
 from src import table
 from src import wheel
@@ -16,9 +16,10 @@ class TestGame(unittest.TestCase):
         _wheel = wheel.Wheel()
         _wheel.rng = Mock()
         _wheel.rng.randint = Mock(return_value=1)
-        _table = table.Table(minimum=1, maximum=1000)
-        self.game = game.Game(wheel=_wheel, table=_table)
-        self.player = roulette_player.RoulettePlayer(wheel=_wheel, table=_table)
+        self.table = table.Table(minimum=1, maximum=1000)
+        self.game = roulette_game.RouletteGame(wheel=_wheel, table=self.table)
+        self.table.setGame(self.game)
+        self.player = roulette_player.RoulettePlayer(wheel=_wheel, table=self.table)
 
     def test_setStake(self):
         self.player.setStake(1000)

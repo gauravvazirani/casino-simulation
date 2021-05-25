@@ -2,12 +2,16 @@ import wheel
 from src import roulette_cancellation
 from src import bet
 from src import table
+from src import wheel
+from src import roulette_game
 import unittest
 
 class TestCancellation(unittest.TestCase):
     def setUp(self):
         self.wheel = wheel.Wheel()
         self.table = table.Table(minimum=10, maximum=1000)
+        self.game = roulette_game.RouletteGame(self.wheel, self.table)
+        self.table.setGame(self.game)
         self.player = roulette_cancellation.RouletteCancellation(table=self.table, wheel=self.wheel)
         
     def test_placeBets(self):
