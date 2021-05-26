@@ -3,7 +3,7 @@ from . import player
 
 class RoulettePlayer(player.Player):
     """
-    Implementation of Player interface for the game of craps.
+    Implementation of Player interface for the game of roulette.
     """
 
     def __init__(self, table, wheel):
