@@ -102,7 +102,9 @@ class OutcomeHorn(Outcome):
 	"""
 	Class to handle special case where the odds of the outcome
 	depends on the sum of the throw.
-	In case of horn outcome, if sum of the dice is 2 or 12 then the 
+
+
+
 	odds are 27:4 otherwise its 3:1
 	"""
 

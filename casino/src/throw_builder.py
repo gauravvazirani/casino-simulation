@@ -52,7 +52,7 @@ class IBuilder(metaclass=ABCMeta):
 		Adds outcome for Horn throws, 
         In case of horn outcome, if sum of the dice is 2 or 12 then the 
  	    odds are 27:4 otherwise its 3:1
-        """
+		"""
 
 	@staticmethod
 	@abstractmethod

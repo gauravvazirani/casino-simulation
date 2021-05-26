@@ -8,6 +8,11 @@ from . import dice
 from . import wheel
 
 class CrapsSimulator():
+    """
+    Class which simualtes Sessions of game play.
+    It initialises the various components and stores the results after running
+    a session of multiple cycles of play.
+    """
 
     def __init__(self):
         # self.dice = dice.Dice()
