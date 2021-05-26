@@ -14,12 +14,19 @@ class RouletteFibonacci(roulette_player.RoulettePlayer):
         self.current = 1
 
     def playing(self):
+        """
+        whether or not a player is ready to play the next round.
+        """
         if self.current <= self.stake:
             return super().playing()
         else:
             return False
 
     def placeBets(self):
+        """
+        Places and even money bet based on amount as per fibonacci betting strategy.
+        Deducts bet amount from player's stake.
+        """
         _bet = bet.Bet(amount=self.current, 
             outcome=self.wheel.all_outcomes.get('Black'))  
         self.table.placeBet(_bet)
@@ -28,6 +35,8 @@ class RouletteFibonacci(roulette_player.RoulettePlayer):
     def win(self, bet):
         """
         resets current and previous to their initial values of 1 and 0
+        
+        :param bet: (Bet) winning bet
         """
         super().win(bet)
         self.previous, self.current = 0, 1

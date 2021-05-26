@@ -46,7 +46,13 @@ class Table():
             raise invalid_bet_exception.InvalidBetException
     
     def clear(self):
+        """
+        Clear the game table, Useful if game needs to restart.
+        """
         self.bets = []
 
     def __iter__(self):
+        """
+        :return: an iterable of bets on the table.
+        """
         return self.bets.__iter__()

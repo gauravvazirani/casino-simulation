@@ -43,6 +43,8 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         """
         Uses the superclass method to update the stake with an amount won.
         It then removes the fist and last element from sequence.
+        
+        :param bet: (Bet) winning bet
         """
         super().win(bet)
         del self.sequence[0]

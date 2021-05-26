@@ -37,7 +37,7 @@ class Throw(RandomEvent):
 
     def hard(self):
         """
-        :returns: (boolean) whether or not throw was a hard throw
+        :return: (boolean) whether or not throw was a hard throw
         """
         return self.d1 == self.d2
 
@@ -56,7 +56,7 @@ class Throw(RandomEvent):
 
         :param bet: The bet to to be resolved
 
-        :returns: (boolean) 
+        :return: (boolean) 
         """
         if bet.outcome in self.win_1roll:
             bet.player.win(bet)
@@ -74,7 +74,7 @@ class Throw(RandomEvent):
 
         :param bet: The bet to to be resolved
 
-        :returns: (boolean) 
+        :return: (boolean) 
         """
         if bet.outcome in self.win_hardway:
             bet.player.win(bet)

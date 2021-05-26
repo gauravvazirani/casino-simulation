@@ -1,6 +1,9 @@
 from . import game
 
 class RouletteGame(game.Game):
+    """
+    Implementation of the general game interface for the game of roulette.    
+    """
 
     def __init__(self, wheel, table):
         super().__init__(wheel, table)
@@ -27,4 +30,7 @@ class RouletteGame(game.Game):
             self.table.bets.remove(bet)
 
     def isValid(self, outcome):
+        """
+        :return: (Boolean) whether or not the outcome is valid for a given game state.
+        """
         return True

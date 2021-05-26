@@ -1,6 +1,11 @@
 from .integer_list import IntegerStatistics
 
 class Simulator():
+    """
+    Class which simualtes Sessions of game play.
+    It initialises the various components and stores the results after running
+    a session of multiple cycles of play.
+    """
 
     def __init__(self, game, player, stake=100, init_duration=250, samples=50):
         self.game = game

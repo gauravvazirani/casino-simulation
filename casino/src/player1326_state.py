@@ -1,6 +1,8 @@
 from . import bet 
 
 class Player1326State():
+    """
+    """
 
     def __init__(self, player, bet_multiple, outcome):
         self.player = player 
