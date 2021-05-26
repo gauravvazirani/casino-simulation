@@ -1,6 +1,10 @@
 from . import craps_player
 
 class OneBetPlayer(craps_player.CrapsSimplePlayer):
+    """
+    Player that places a single bet on the table.
+    A Pass Line/Dont Pass Line bet when the point is off.
+    """
 
     def __init__(self, table, strategy):
         self.table = table
@@ -8,6 +12,14 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
         super().__init__(table)     
 
     def placeBets(self, point):
+        """
+        places a bet if the player is ready to play another round and has enough in 
+        its stake to place the bet.
+        if its a come out roll, then places a line bet if not already present.
+        places no bet if the roll is a point roll.
+
+        :param point: (integer) point on the board after the throw.
+        """
         if self.rounds_to_go > 0 and self.bet_amount <= self.stake:
             outcome_names = [ _bet.outcome.name for _bet in self.table ]
             if point == 0:
@@ -25,11 +37,25 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
         pass
 
     def win(self, bet):
+        """
+        matches the winning parameter outcome with the line outcome and calls the 
+        win method of the line strategy.
+        leaves the stake adjustment to ancestors.
+
+        :param bet: (Bet) 
+        """
         if bet.outcome == self.line_strategy.outcome:
             self.line_strategy.win()
         super().win(bet)
 
-    def lose(self, bet):
+    def lose(self, bet):        
+        """
+        matches the losing parameter outcome with the line outcome and calls the 
+        loss method of the line strategy.
+        leaves the stake adjustment to ancestors.
+        
+        :param bet: (Bet) 
+        """
         if bet.outcome == self.line_strategy.outcome:
             self.line_strategy.lose()
         super().lose()

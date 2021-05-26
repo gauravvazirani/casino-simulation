@@ -1,6 +1,6 @@
 from .outcome import Outcome
 from abc import abstractmethod,ABCMeta
-import wheel
+from . import wheel
 
 class RouletteGame():
 	"""

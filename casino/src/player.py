@@ -1,6 +1,9 @@
 from abc import abstractmethod,ABCMeta
 
 class Player(metaclass=ABCMeta):
+    """
+    An abstract class defining the behavior of a player playing a game of casino.
+    """
 
     def __init__(self, stake):
         self.stake = stake

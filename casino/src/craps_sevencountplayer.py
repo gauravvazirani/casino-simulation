@@ -1,6 +1,8 @@
 from . import craps_twobetplayer
 
 class CrapsSevenCountPlayer(craps_twobetplayer.CrapsTwoBetPlayer):
+    """
+    """
 
     def __init__(self, table, line_strategy, odds_strategy, seven_strategy):
         self.seven_strategy = seven_strategy
