@@ -14,19 +14,21 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../source'))
-
+#sys.path.insert(0, os.path.abspath('../src`'))
+#sys.path.insert(0, '/home/gauravv/Desktop/ooad/casino/src')
+#for x in os.walk('../../src'):
+#  sys.path.insert(0, x[0])
 
 # -- Project information -----------------------------------------------------
 
-project = 'OOAD'
+project = 'Casino'
 copyright = '2021, Gaurav Vazirani'
 author = 'Gaurav Vazirani'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'v1.0'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -102,7 +104,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'OOADdoc'
+htmlhelp_basename = 'Casinodoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -129,7 +131,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'OOAD.tex', 'OOAD Documentation',
+    (master_doc, 'Casino.tex', 'Casino Documentation',
      'Gaurav Vazirani', 'manual'),
 ]
 
@@ -139,7 +141,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ooad', 'OOAD Documentation',
+    (master_doc, 'casino', 'Casino Documentation',
      [author], 1)
 ]
 
@@ -150,8 +152,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'OOAD', 'OOAD Documentation',
-     author, 'OOAD', 'One line description of project.',
+    (master_doc, 'Casino', 'Casino Documentation',
+     author, 'Casino', 'One line description of project.',
      'Miscellaneous'),
 ]
 
