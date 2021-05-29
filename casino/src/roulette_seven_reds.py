@@ -32,4 +32,3 @@ class RouletteSevenReds(RouletteMartingale):
         """
         if self.red_count == 0:
             RouletteMartingale.placeBets(self)
-    

@@ -28,6 +28,7 @@ class RouletteGame(game.Game):
             else:
                 player.lose()
             self.table.bets.remove(bet)
+        #player.rounds_to_go -= 1    
 
     def isValid(self, outcome):
         """

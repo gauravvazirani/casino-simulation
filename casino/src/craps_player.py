@@ -57,6 +57,7 @@ class CrapsSimplePlayer(player.Player):
                 if 'Pass Line Odds' not in outcome_names \
                     and 'Dont Pass Line Odds' not in outcome_names:
                     self.oddsBet()
+        self.rounds_to_go -= 1
 
 #    @abstractmethod
     def oddsBet(self):

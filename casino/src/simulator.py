@@ -1,5 +1,8 @@
 from .integer_list import IntegerStatistics
 
+from copy import deepcopy
+import csv
+
 class Simulator():
     """
     Class which simualtes Sessions of game play.
@@ -7,35 +10,30 @@ class Simulator():
     a session of multiple cycles of play.
     """
 
-    def __init__(self, game, player, stake=100, init_duration=250, samples=50):
+    def __init__(self, game, player):        
         self.game = game
         self.player = player
-        self.init_stake =  stake
-        self.player.setStake(self.player.current * self.init_stake)
-        self.init_duration = init_duration
-        self.player.setRounds(self.init_duration)
-        self.samples = samples
         self.durations = IntegerStatistics()
         self.maxima =  IntegerStatistics()
+        self.report = []
 
-    def session(self, debug=False):
+    def session(self, player):
         """
         One or more cycles. 
         The session begins with a player having their full stake. 
         A session ends when the play elects to leave or can no longer participate. 
         """
-        max_stake = self.player.stake
-        while self.player.playing():
-            if debug:
-                print(f"Starting Round {self.init_duration - self.player.rounds_to_go + 1}")
-                print(f"Player Balance: {self.player.stake} points")
-                print(f"Bet Amount: {self.player.current} points")
-            self.game.cycle(self.player)
-            self.player.rounds_to_go -= 1
-            max_stake = max(max_stake, self.player.stake) 
-        return self.init_duration - self.player.rounds_to_go, max_stake 
+        duration = 0
+        max_stake = player.stake
+        before  = player.stake
+        while player.playing():
+            self.game.cycle(player)
+            player.rounds_to_go -= 1
+            max_stake = max(max_stake, player.stake)
+            duration += 1 
+        return duration, max_stake , before - player.stake 
 
-    def gather(self):
+    def gather(self, sessions):
         """
         Executes the number of game sessions in samples. 
         Every session returns the duration and the maximum stake value in the session.  
@@ -43,19 +41,23 @@ class Simulator():
         The durations and maxima lists are printed on stdout. 
         """
         index = 1
-        print(f"Running Simulation for {self.samples} Sessions")
-        print("Index Duration MaxStake")
-        while index <= self.samples:
-            self.player.current = 1
-            self.player.current = 0
-            self.player.setStake(self.player.current * self.init_stake)
-            self.player.setRounds(self.init_duration)
-            duration, max_stake = self.session()
-            print(index,' '*4, duration,' '*4, max_stake)
+        while index <= sessions:
+            duration, max_stake, net_difference = self.session(deepcopy(self.player))
             self.durations.append(duration)
             self.maxima.append(max_stake)
-            index += 1
-        print(f"Maxima: Mean {self.maxima.mean()} and Standard Deviation {self.maxima.stdev()}")
-        print(f"Durations: Mean {self.durations.mean()} and Standard Deviation {self.durations.stdev()}")
+            self.report.append((index, duration, net_difference))
+            index += 1            
 
-
+    def save(self, filename):
+        """
+        Save findings from the simulation in a file
+        """
+        with open(filename, 'wb') as out:
+            csv_out = csv.writer(out)
+            csv_out.writerow(('Session No','Duration in Rounds','Net Won'))
+            for row in self.report:
+                csv_out.writerow(row)
+            csv_out.writerow()
+            csv_out.writerow(f"Durations: Mean {self.durations.mean()} and Standard Deviation {self.durations.stdev()}")
+            csv_out.writerow()
+            csv_out.writerow(f"Maxima: Mean {self.maxima.mean()} and Standard Deviation {self.maxima.stdev()}")
