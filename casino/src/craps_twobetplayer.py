@@ -1,4 +1,6 @@
 from . import craps_onebetplayer
+from .bet1326_betting import Bet1326Betting
+from .outcome import Outcome
 
 class CrapsTwoBetPlayer(craps_onebetplayer.OneBetPlayer):
     """
@@ -7,7 +9,7 @@ class CrapsTwoBetPlayer(craps_onebetplayer.OneBetPlayer):
     2. A Pass Line Odds/Dont Pass Line odds bet when the point is on.
     """
 
-    def __init__(self, table, line_strategy, odds_strategy):
+    def __init__(self, table, line_strategy, odds_strategy=Bet1326Betting(Outcome('Pass Line Odds', 1))):
         super().__init__(table, line_strategy)
         self.odds_strategy = odds_strategy     
 

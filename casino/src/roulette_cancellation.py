@@ -7,8 +7,8 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
     This player allocates their available budget into a sequence of bets 
     that have an accelerating potential gain as well as recouping any losses.
     """
-    def __init__(self, wheel, table):
-        super().__init__(table, wheel)
+    def __init__(self, table, wheel):
+        super().__init__(table = table, wheel = wheel)
         self.sequence = []
         self.resetSequence()
 
@@ -18,7 +18,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         the sequence variable. 
         These Integers are built from the values 1 through 6.
         """
-        self.sequence = [num for num in range(1,7)]
+        self.sequence = [num for num in range(1,150)]
 
     def playing(self):
         if self.sequence:

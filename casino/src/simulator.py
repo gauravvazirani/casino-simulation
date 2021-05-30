@@ -1,7 +1,9 @@
 from .integer_list import IntegerStatistics
+from .invalid_bet_exception import InvalidBetException
 
 from copy import deepcopy
 import csv
+
 
 class Simulator():
     """
@@ -9,7 +11,6 @@ class Simulator():
     It initialises the various components and stores the results after running
     a session of multiple cycles of play.
     """
-
     def __init__(self, game, player):        
         self.game = game
         self.player = player
@@ -30,14 +31,19 @@ class Simulator():
         duration = 0
         max_stake = player.stake
         before  = player.stake
+        print("before", before)
         while player.playing():
-            self.game.cycle(player)
+            try:
+                self.game.cycle(player)
+            except InvalidBetException as e:
+                break
             player.rounds_to_go -= 1
             max_stake = max(max_stake, player.stake)
-            duration += 1 
-        return duration, max_stake , before - player.stake 
+            duration += 1
+        print("after", player.stake) 
+        return duration, max_stake , player.stake - before
 
-    def gather(self, sessions):
+    def gather(self, sessions, event_factory):
         """
         Executes the number of game sessions in samples. 
         Every session returns the duration and the maximum stake value in the session.  
@@ -45,15 +51,18 @@ class Simulator():
         The durations and maxima lists are printed on stdout. 
         """
         index = 1
+        init_stake = self.player.stake
+        init_rounds = self.player.rounds_to_go
         while index <= sessions:
             duration, max_stake, net_difference = self.session(self.player)
             self.durations.append(duration)
             self.maxima.append(max_stake)
             self.report.append((index, duration, net_difference, max_stake))
             index += 1            
-            self.player.table.clear()
-            self.player.__init__(self.player.table, self.player.wheel)
-
+            self.player.table.clear()            
+            self.player.__init__(self.player.table, event_factory)
+            self.player.setStake(init_stake)
+            self.player.setRounds(init_rounds)
 
     def save(self, filename):
         """

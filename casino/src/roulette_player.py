@@ -11,7 +11,7 @@ class RoulettePlayer(player.Player):
         self.table = table
         self.wheel = wheel
         #self.stake = 100 * initial_bet_amount 
-        self.rounds_to_go = 250
+        #self.rounds_to_go = 250
     
     def setRounds(self, rounds_to_go):
         """
@@ -45,3 +45,6 @@ class RoulettePlayer(player.Player):
         black = self.wheel.all_outcomes.get('Black')
         self.table.placeBet(bet.Bet(bet_amount ,black))
         self.stake -= bet_amount
+
+    def winners(self, winning_outcomes):
+        pass

@@ -5,7 +5,7 @@ class Player(metaclass=ABCMeta):
     An abstract class defining the behavior of a player playing a game of casino.
     """
 
-    def __init__(self, stake):
+    def __init__(self, stake, event_factory):
         self.stake = stake
 
     @staticmethod

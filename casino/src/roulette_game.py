@@ -22,13 +22,13 @@ class RouletteGame(game.Game):
         player.placeBets()
         self.table.allValid()
         winning_outcomes = self.eventFactory.next()
+        player.winners(winning_outcomes)
         for bet in list(self.table):
             if bet.outcome in winning_outcomes:
                 player.win(bet)
             else:
                 player.lose()
             self.table.bets.remove(bet)
-        #player.rounds_to_go -= 1    
 
     def isValid(self, outcome):
         """

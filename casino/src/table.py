@@ -32,7 +32,7 @@ class Table():
         Returns false if the minimum is not met or the maximum is exceeded.
         """
         sum_of_bets = sum([bet.amount for bet in self.bets])
-        if sum_of_bets > self.maximum or sum_of_bets < self.minimum:
+        if self.bets and (sum_of_bets > self.maximum or sum_of_bets < self.minimum):
             print("Sum of bets:",sum_of_bets)
             print("Bets on the table", self.bets)
             raise invalid_bet_exception.InvalidBetException

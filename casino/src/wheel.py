@@ -48,8 +48,7 @@ class Wheel(RandomEventFactory):
 		:return: (Bin)
 		"""
 		return self.bins[self.rng.randint(0,37)] 
-		
-		
+				
 	def get(self, number):
 		"""
 		:param bin: (int)
