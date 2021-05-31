@@ -27,7 +27,7 @@ class Casino():
             self.event_factory = self.event_factory_map[self.game_type]
             self.player_map = {
                 'craps' : {
-                    'onebet': craps_onebetplayer.OneBetPlayer(_table)
+                    'onebet': craps_onebetplayer.OneBetPlayer(_table, self.event_factory_map['craps'])
                 }
                 ,
                 'roulette' : {

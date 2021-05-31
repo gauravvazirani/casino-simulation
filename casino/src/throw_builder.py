@@ -1,7 +1,7 @@
 from . import outcome
 from abc import abstractmethod,ABCMeta
 from . import throw
-from . import dice
+
 
 class CrapsGameOdds():
 	"""
@@ -24,7 +24,15 @@ class CrapsGameOdds():
 		8:3,
 		10:4
 	}
-	
+	passLine = 1
+	dontPassLine = 1
+	comeLine = 1
+	dontComeLine = 1
+	passLineOdds = 1
+	dontPassLineOdds = 1
+	comeLineOdds = 1
+	dontComeLineOdds = 1
+
 class IBuilder(metaclass=ABCMeta):
 	
 	@staticmethod
@@ -95,19 +103,37 @@ class ThrowBuilder(IBuilder):
 				elif s == 11:
 					self.dice.addThrow(throw.ElevenThrow(d1,d2))
 
+		oc_dict = {
+			'Field': CrapsGameOdds.field,
+			'Horn': CrapsGameOdds.horn,
+			'AnyCraps': CrapsGameOdds.anyCraps,
+			'Pass Line': CrapsGameOdds.passLine,
+			'Dont Pass Line': CrapsGameOdds.dontPassLine,
+			'Pass Line Odds': CrapsGameOdds.passLineOdds,
+			'Dont Pass Line Odds': CrapsGameOdds.dontPassLineOdds,
+			'Come Line': CrapsGameOdds.comeLine,
+			'Dont Come Line': CrapsGameOdds.dontComeLine,
+			'Come Line Odds': CrapsGameOdds.comeLineOdds,
+			'Dont Come Line Odds': CrapsGameOdds.dontComeLineOdds
+		}
+		for name, odds in oc_dict.items():
+			self.dice.all_outcomes.update({
+				name: outcome.Outcome(name, odds)
+			})
+
 	def generateStraightThrows(self):
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,7,11,12):
-					self.dice.getThrow(d1,d2).win_1roll.add(
-						outcome.Outcome(
+					oc = outcome.Outcome(
 						f'Number {d1+d2}', CrapsGameOdds.straight[d1+d2]
-						)
-					)
+						)	
+					self.dice.getThrow(d1,d2).win_1roll.add(oc)
+					self.dice.all_outcomes.update({oc.name:oc})
 		return self
 
 	def generateFieldThrows(self):
-		oc = outcome.OutcomeField('Field', CrapsGameOdds.field)
+		oc = self.dice.all_outcomes.get('Field')
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,4,9,10,11,12):
@@ -115,7 +141,7 @@ class ThrowBuilder(IBuilder):
 		return self
 
 	def generateHornThrows(self):
-		oc = outcome.OutcomeHorn('Horn', CrapsGameOdds.horn)
+		oc = self.dice.all_outcomes.get('Horn')
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,11,12):
@@ -123,7 +149,7 @@ class ThrowBuilder(IBuilder):
 		return self
 
 	def generateAnyCrapsThrows(self):
-		oc = outcome.Outcome('Any Craps', CrapsGameOdds.anyCraps)
+		oc = self.dice.all_outcomes.get('Any Craps')
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (2,3,12):
@@ -134,13 +160,15 @@ class ThrowBuilder(IBuilder):
 		for d1 in range(1,7):
 			for d2 in range(1,7):
 				if d1 + d2 in (4,6,8,10):
+					oc = outcome.Outcome(f'Hardway {d1+d2}', CrapsGameOdds.hardway[d1+d2])
+					self.dice.all_outcomes.update({oc.name:oc})
 					if self.dice.getThrow(d1,d2).hard():
 						self.dice.getThrow(d1,d2).addHardways(
-							[outcome.Outcome(f'Hardway {d1+d2}', CrapsGameOdds.hardway[d1+d2])], []
+							[oc], []
 							)
 					else:
 						self.dice.getThrow(d1,d2).addHardways(
-							[], [outcome.Outcome(f'Hardway {d1+d2}', CrapsGameOdds.hardway[d1+d2])]
+							[], [oc]
 							)
 		return self
 
@@ -154,11 +182,11 @@ class DiceDirector():
 	"""
 
 	@staticmethod
-	def construct(self):
+	def construct(dice):
 		"""
 		Constructs and returns the dice with all the outcomes
 		"""
-		return ThrowBuilder(self)\
+		return ThrowBuilder(dice)\
 			.generateStraightThrows()\
 			.generateFieldThrows()\
 			.generateHornThrows()\

@@ -1,6 +1,5 @@
 from . import craps_player
 from .nochange_betting import NoChangeBetting
-from .outcome import Outcome
 
 class OneBetPlayer(craps_player.CrapsSimplePlayer):
     """
@@ -8,10 +7,11 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
     A Pass Line/Dont Pass Line bet when the point is off.
     """
 
-    def __init__(self, table, strategy=NoChangeBetting(Outcome('Pass Line', 1))):
+    def __init__(self, table, dice):
         self.table = table
-        self.line_strategy = strategy
-        super().__init__(table)     
+        self.dice = dice
+        self.line_strategy = NoChangeBetting(self.dice.all_outcomes.get('Pass Line'))
+        super().__init__(table, dice)     
 
     def placeBets(self, point):
         """

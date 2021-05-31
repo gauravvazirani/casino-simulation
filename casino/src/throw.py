@@ -5,11 +5,9 @@ class Throw(RandomEvent):
     Throw is a collection of outcomes.
     It resembles outcomes from 1 throw of a dice.
     """
-    def __init__(self, d1, d2, winners=[], losers=[]):
+    def __init__(self, d1, d2):
         self.d1 = d1
         self.d2 = d2
-        self.winners = set(winners)
-        self.losers = set(losers)
         self.win_1roll = set()
         self.lose_1roll = set()
         self.win_hardway = set()
@@ -97,8 +95,8 @@ class NaturalThrow(Throw):
     """
     Case when sum of two dice is 7
     """
-    def __init__(self, d1, d2, *outcomes):
-        super().__init__(d1, d2, *outcomes)
+    def __init__(self, d1, d2):
+        super().__init__(d1, d2)
         if d1 + d2 != 7:
             raise Exception("Invalid Declaration for Natural Throw, Dice Sum Mismatch.")
         
@@ -112,8 +110,8 @@ class CrapsThrow(Throw):
     """
     Case when sum of dice is one out of 2, 3 and 12.
     """
-    def __init__(self, d1, d2, *outcomes):
-        super().__init__(d1, d2, *outcomes)
+    def __init__(self, d1, d2):
+        super().__init__(d1, d2)
         if d1 + d2 not in (2, 3, 12):
             raise Exception("Invalid Declaration for Craps Throw, Dice Sum Mismatch.")
 
@@ -124,8 +122,8 @@ class ElevenThrow(Throw):
     """
     Case when sum of dice is 11
     """
-    def __init__(self, d1, d2, *outcomes):
-        super().__init__(d1, d2, *outcomes)
+    def __init__(self, d1, d2):
+        super().__init__(d1, d2)
         if d1 + d2 != 11:
             raise Exception("Invalid Declaration for Eleven Throw, Dice Sum Mismatch.")
 
@@ -139,8 +137,8 @@ class PointThrow(Throw):
     """
     Case when sum of dice is one out of 4, 5, 6, 8, 9, 10. 
     """
-    def __init__(self, d1, d2, *outcomes):
-        super().__init__(d1, d2, *outcomes)
+    def __init__(self, d1, d2):
+        super().__init__(d1, d2)
         if d1 + d2 not in (4, 5, 6, 8, 9, 10):
             raise Exception("Invalid Declaration for Point Throw, Dice Sum Mismatch.")
         self.point=d1+d2

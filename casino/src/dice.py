@@ -10,6 +10,7 @@ class Dice(RandomEventFactory):
     """
     def __init__(self):
         self.all_throws = {}
+        self.all_outcomes = dict()
         super().__init__(random.Random())
         
     def initialize(self):

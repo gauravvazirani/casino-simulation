@@ -1,6 +1,5 @@
 from . import craps_twobetplayer
 from .martingale_betting import MartingaleBetting
-from .outcome import Outcome
 
 class CrapsSevenCountPlayer(craps_twobetplayer.CrapsTwoBetPlayer):
     """
@@ -10,9 +9,10 @@ class CrapsSevenCountPlayer(craps_twobetplayer.CrapsTwoBetPlayer):
     3. A Number 7 proposition bet if the game lasts longer than 7 rounds.
     """
 
-    def __init__(self, table, line_strategy, odds_strategy, seven_strategy=MartingaleBetting(Outcome('Number 7', 4))):
-        self.seven_strategy = seven_strategy
-        super().__init__(table, line_strategy, odds_strategy)
+    def __init__(self, table, dice):
+        self.dice = dice
+        self.seven_strategy = MartingaleBetting(self.dice.all_outcomes.get('Number 7'))
+        super().__init__(table, dice)
         self.throwCount = 0
 
     def placeBets(self, point):

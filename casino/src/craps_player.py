@@ -7,9 +7,9 @@ class CrapsSimplePlayer(player.Player):
     Implementation of Player interface for the game of craps.
     """
 
-    def __init__(self, table, line=None, odds=None):
+    def __init__(self, table, dice, line=None, odds=None):
         self.table = table
-        super().__init__(stake=10000)
+        super().__init__(dice)
         self.rounds_to_go = 250
         self.bet_amount = 10
         self.line = line

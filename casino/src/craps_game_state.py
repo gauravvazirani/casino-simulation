@@ -174,7 +174,7 @@ class CrapsGamePointOn(CrapsGameState):
         If the point is 6, for example, it is invalid to buy the “Come Point 6” Outcome. 
         All other Outcomes are valid.
         """
-        if outcome.name in (f'Buy {self.pointval}', f'Lay {self.pointval}', f'Place Bet {self.pointval}'):
+        if outcome.name in (f'Buy {self.pointval}', f'Lay {self.pointval}', f'Place {self.pointval}'):
             return False
         else: 
             return True

@@ -7,11 +7,9 @@ class RoulettePlayer(player.Player):
     """
 
     def __init__(self, table, wheel):
-        super().__init__(stake=1000)
+        super().__init__(wheel)
         self.table = table
         self.wheel = wheel
-        #self.stake = 100 * initial_bet_amount 
-        #self.rounds_to_go = 250
     
     def setRounds(self, rounds_to_go):
         """
