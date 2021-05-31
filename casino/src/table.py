@@ -11,20 +11,12 @@ class Table():
         self.minimum = minimum
         self.maximum = maximum
         self.bets = []
-        self.game = None
 
     def setGame(self, game):
         """
         Saves the given game to be used to validate bets
         """
         self.game = game
-
-    def isValid(self, bet):
-        """
-        Validates this bet. 
-        The first test, checks test to see if the bet is valid.
-        """
-        return self.game.isValid(bet.outcome) 
 
     def allValid(self):
         """
@@ -37,12 +29,12 @@ class Table():
             print("Bets on the table", self.bets)
             raise invalid_bet_exception.InvalidBetException
           
-    def placeBet(self, bet):
+    def placeBet(self, bet, game):
         """
         Player can call this method to place a bet on the Table.
         Multiple bets can be placed by calling multiple method multiple times. 
         """
-        if self.isValid(bet):
+        if game.isValid(bet.outcome):
             self.bets.append(bet)
         else:
             raise invalid_bet_exception.InvalidBetException

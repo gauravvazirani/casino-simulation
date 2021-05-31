@@ -26,7 +26,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         else:
             return False
 
-    def placeBets(self):
+    def placeBets(self, game):
         """
         Creates a bet from the sum of the first and last values of sequence 
         and the preferred outcome.
@@ -36,7 +36,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         elif len(self.sequence)>1:
             bet_amount = self.sequence[0] + self.sequence[-1] 
         _bet = bet.Bet(amount=bet_amount, outcome=self.wheel.all_outcomes.get('Black'))  
-        self.table.placeBet(_bet)
+        self.table.placeBet(_bet, game)
         self.stake -= bet_amount
         
     def win(self, bet):

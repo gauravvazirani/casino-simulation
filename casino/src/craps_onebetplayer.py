@@ -13,7 +13,7 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
         self.line_strategy = NoChangeBetting(self.dice.all_outcomes.get('Pass Line'))
         super().__init__(table, dice)     
 
-    def placeBets(self, point):
+    def placeBets(self, point, game):
         """
         places a bet if the player is ready to play another round and has enough in 
         its stake to place the bet.
@@ -28,14 +28,14 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
                 if 'Pass Line' not in outcome_names \
                     and 'Dont Pass Line' not in outcome_names:
                     pass_line_bet = self.line_strategy.createBet(self)
-                    self.table.placeBet(pass_line_bet)
+                    self.table.placeBet(pass_line_bet, game)
                     self.stake -= pass_line_bet.price()
             else:
                 if 'Pass Line Odds' not in outcome_names \
                     and 'Dont Pass Line Odds' not in outcome_names:
-                    self.oddsBet()
+                    self.oddsBet(game)
 
-    def oddsBet(self):
+    def oddsBet(self, game):
         pass
 
     def win(self, bet):

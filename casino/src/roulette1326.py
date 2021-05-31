@@ -18,13 +18,13 @@ class Roulette1326(roulette_player.RoulettePlayer):
             self.wheel.all_outcomes.get('Black')
             )
 
-    def placeBets(self):
+    def placeBets(self, game):
         """
         places a bet based on the current state of the game.
         i.e. number of wins and deducts the amount from the stake.
         """
         bet = self.state.currentBet()
-        self.table.placeBet(bet)
+        self.table.placeBet(bet, game)
         self.stake -= bet.amount
     
     def win(self, bet):

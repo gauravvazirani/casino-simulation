@@ -26,24 +26,21 @@ class Simulator():
         
         :param player: (Player) 
         """
-        print("player_stake",player.stake)
-        print("player_rounds",player.rounds_to_go)
         duration = 0
         max_stake = player.stake
         before  = player.stake
-        print("before", before)
         while player.playing():
             try:
                 self.game.cycle(player)
             except InvalidBetException as e:
                 break
-            player.rounds_to_go -= 1
             max_stake = max(max_stake, player.stake)
             duration += 1
-        print("after", player.stake) 
+            if player.rounds_to_go > 0:
+                player.rounds_to_go -= 1
         return duration, max_stake , player.stake - before
 
-    def gather(self, sessions, event_factory):
+    def gather(self, sessions):
         """
         Executes the number of game sessions in samples. 
         Every session returns the duration and the maximum stake value in the session.  
@@ -59,8 +56,8 @@ class Simulator():
             self.maxima.append(max_stake)
             self.report.append((index, duration, net_difference, max_stake))
             index += 1            
-            self.player.table.clear()            
-            self.player.__init__(self.player.table, event_factory)
+            self.player.table.clear()           
+            self.player.__init__(self.player.table, self.player.event_factory)
             self.player.setStake(init_stake)
             self.player.setRounds(init_rounds)
 

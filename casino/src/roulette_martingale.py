@@ -13,7 +13,7 @@ class RouletteMartingale(roulette_player.RoulettePlayer):
         self.rounds_to_go = 250
         self.loss_count = 0
               
-    def placeBets(self):
+    def placeBets(self, game):
         """
         Calculates the bet multiplier based on the number of consecutive loses encountered.
         Places an even money bet on the table.
@@ -22,7 +22,7 @@ class RouletteMartingale(roulette_player.RoulettePlayer):
         bet_multiple = 2**self.loss_count
         bet_amount = self.initial_bet_amount * bet_multiple
         black = self.wheel.all_outcomes.get('Black')
-        self.table.placeBet(bet.Bet(bet_amount ,black))
+        self.table.placeBet(bet.Bet(bet_amount ,black), game)
         self.stake -= bet_amount
     
     def win(self, bet):

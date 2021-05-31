@@ -22,14 +22,12 @@ class CrapsGame(game.Game):
         :param player: (Passenger57)
         """    
         player.table = self.table
-        player.placeBets(self.state.pointval)
+        player.placeBets(self.state.pointval, self)
         throw = self.eventFactory.next()
         self.state = throw.updateGame(self)
         for bet in self.table:
             if throw.resolveOneRoll(bet) or throw.resolveHardways(bet):
                 self.table.bets.remove(bet)
-        if player.rounds_to_go > 0:
-            player.rounds_to_go -= 1
 
     def isValid(self, outcome):
         """

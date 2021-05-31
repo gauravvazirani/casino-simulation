@@ -25,10 +25,10 @@ class RouletteSevenReds(RouletteMartingale):
         else:
             self.red_count = 7
 
-    def placeBets(self):
+    def placeBets(self, game):
         """
         If redCount is zero, this places a bet on black, 
         using the bet multiplier.
         """
         if self.red_count == 0:
-            RouletteMartingale.placeBets(self)
+            RouletteMartingale.placeBets(self, game)

@@ -19,7 +19,7 @@ class RouletteGame(game.Game):
 
         :param player: (Passenger57)
         """    
-        player.placeBets()
+        player.placeBets(self)
         self.table.allValid()
         winning_outcomes = self.eventFactory.next()
         player.winners(winning_outcomes)

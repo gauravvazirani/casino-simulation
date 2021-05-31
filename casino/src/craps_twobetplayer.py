@@ -1,5 +1,5 @@
 from . import craps_onebetplayer
-from .bet1326_betting import Bet1326Betting
+from .bet1326_betting import Craps1326Betting
 
 class CrapsTwoBetPlayer(craps_onebetplayer.OneBetPlayer):
     """
@@ -8,18 +8,18 @@ class CrapsTwoBetPlayer(craps_onebetplayer.OneBetPlayer):
     2. A Pass Line Odds/Dont Pass Line odds bet when the point is on.
     """
 
-    def __init__(self, table, dice, line_strategy):
-        super().__init__(table, dice, line_strategy)
+    def __init__(self, table, dice):
+        super().__init__(table, dice)
         self.dice = dice
-        self.odds_strategy = Bet1326Betting(self.dice.all_outcomes.get('Pass Line Odds'))
+        self.odds_strategy = Craps1326Betting(self.dice.all_outcomes.get('Pass Line Odds'))
 
-    def oddsBet(self):
+    def oddsBet(self, game):
         """
         overrides the simple craps player odds method to 
         implement logic for placing the odds bet.
         """ 
         pass_line_odds_bet = self.odds_strategy.createBet(self) 
-        self.table.placeBet(pass_line_odds_bet)
+        self.table.placeBet(pass_line_odds_bet, game)
         self.stake -= pass_line_odds_bet.price()
 
     def win(self, bet):

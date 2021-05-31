@@ -15,7 +15,7 @@ class CrapsSevenCountPlayer(craps_twobetplayer.CrapsTwoBetPlayer):
         super().__init__(table, dice)
         self.throwCount = 0
 
-    def placeBets(self, point):
+    def placeBets(self, point, game):
         """
         places a bet if the player is ready to play another round and has enough in 
         its stake to place the bet.
@@ -31,16 +31,17 @@ class CrapsSevenCountPlayer(craps_twobetplayer.CrapsTwoBetPlayer):
                 if 'Pass Line' not in outcome_names \
                     and 'Dont Pass Line' not in outcome_names:
                     pass_line_bet = self.line_strategy.createBet(self)
-                    self.table.placeBet(pass_line_bet)
+                    self.table.placeBet(pass_line_bet, game)
                     self.stake -= pass_line_bet.price()
                 self.throwCount = 0
             else:
                 if 'Pass Line Odds' not in outcome_names \
                         and 'Dont Pass Line Odds' not in outcome_names:
-                    self.oddsBet()
+                    self.oddsBet(game)
                 elif self.throwCount >= 7 and 'Number 7' not in outcome_names:
                     self.table.placeBet(
-                        self.seven_strategy.createBet(self)
+                        self.seven_strategy.createBet(self),
+                        game
                     )
                 self.throwCount += 1
     

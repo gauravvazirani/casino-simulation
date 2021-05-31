@@ -8,7 +8,7 @@ class RouletteFibonacci(roulette_player.RoulettePlayer):
     that have an accelerating potential gain.
     """
 
-    def __init__(self, wheel, table):
+    def __init__(self, table, wheel):
         super().__init__(table, wheel)
         self.previous = 0
         self.current = 1
@@ -22,14 +22,14 @@ class RouletteFibonacci(roulette_player.RoulettePlayer):
         else:
             return False
 
-    def placeBets(self):
+    def placeBets(self, game):
         """
         Places and even money bet based on amount as per fibonacci betting strategy.
         Deducts bet amount from player's stake.
         """
         _bet = bet.Bet(amount=self.current, 
             outcome=self.wheel.all_outcomes.get('Black'))  
-        self.table.placeBet(_bet)
+        self.table.placeBet(_bet, game)
         self.stake -= self.current
         
     def win(self, bet):

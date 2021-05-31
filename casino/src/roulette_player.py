@@ -34,14 +34,14 @@ class RoulettePlayer(player.Player):
         return True if self.rounds_to_go > 0 and self.stake >= self.table.minimum \
               else False
 
-    def placeBets(self):
+    def placeBets(self, game):
         """
         Places a bet on the table.
         Deducts the bet amount from player's stake.
         """
         bet_amount = 10
         black = self.wheel.all_outcomes.get('Black')
-        self.table.placeBet(bet.Bet(bet_amount ,black))
+        self.table.placeBet(bet.Bet(bet_amount ,black), game)
         self.stake -= bet_amount
 
     def winners(self, winning_outcomes):

@@ -39,7 +39,7 @@ class CrapsSimplePlayer(player.Player):
             or self.table.bets \
               else False
 
-    def placeBets(self, point):
+    def placeBets(self, point, game):
         """
         Player that places, 
         1. A Pass Line/Dont Pass Line bet when the point is off.
@@ -51,7 +51,7 @@ class CrapsSimplePlayer(player.Player):
                 if 'Pass Line' not in outcome_names \
                     and 'Dont Pass Line' not in outcome_names:
                     pass_line_bet = bet.Bet(self.bet_amount , self.line)
-                    self.table.placeBet(pass_line_bet)
+                    self.table.placeBet(pass_line_bet, game)
                     self.stake -= pass_line_bet.price()
             else:
                 if 'Pass Line Odds' not in outcome_names \

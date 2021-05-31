@@ -13,13 +13,13 @@ class RouletteRandom(roulette_player.RoulettePlayer):
         self.rng = random.Random()
         self.outcomes = tuple(outcome_obj for bin_obj in self.wheel for outcome_obj in bin_obj)
 
-    def placeBets(self):
+    def placeBets(self, game):
         """
         Places a bet on a random outcome.
         adjusts player stake for making the bet.
         """
         bet_amount = 10
         random_outcome = self.outcomes[self.rng.randint(0, len(self.outcomes)-1)]
-        self.table.placeBet(bet.Bet(bet_amount ,random_outcome))
+        self.table.placeBet(bet.Bet(bet_amount ,random_outcome), game)
         self.stake -= bet_amount
         
