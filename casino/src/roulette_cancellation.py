@@ -18,7 +18,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         the sequence variable. 
         These Integers are built from the values 1 through 6.
         """
-        self.sequence = [num for num in range(1,150)]
+        self.sequence = [num for num in range(1,7)]
 
     def playing(self):
         if self.sequence:

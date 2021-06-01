@@ -12,9 +12,9 @@ class TestDice(unittest.TestCase):
         self.outcome1 = outcome.Outcome('Any Craps',3)
         self.outcome2 = outcome.Outcome('Hard 4',30)
         self.outcome3 = outcome.Outcome('Easy 6',10)
-        self.throw1 = throw.Throw(1,2,[self.outcome1])
-        self.throw2 = throw.Throw(2,2,[self.outcome2])
-        self.throw3 = throw.Throw(2,4,[self.outcome3])
+        self.throw1 = throw.Throw(1,2)
+        self.throw2 = throw.Throw(2,2)
+        self.throw3 = throw.Throw(2,4)
         self.dice.rng.seed(1)        
 
     def test_addThrow(self):

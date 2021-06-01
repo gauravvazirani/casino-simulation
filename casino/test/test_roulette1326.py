@@ -24,26 +24,26 @@ class TestPlayer1326(unittest.TestCase):
             4:1
         }
         self.assertEqual(len(self.table.bets), 0)
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.assertEqual(self.table.bets[0].amount, 10)      
         for num_wins in range(1,5):
             for index in range(1,num_wins+1):                
                 self.player.win(self.bet)
-                self.player.placeBets()
+                self.player.placeBets(self.game)
                 self.assertEqual(self.table.bets[-1].amount, multiplier_map[index]*10)
             self.player.lose()
-            self.player.placeBets()            
+            self.player.placeBets(self.game)            
             self.assertEqual(self.table.bets[-1].amount, 10)
 
     def test_win(self):
         self.assertEqual(self.player.state.bet_multiple, 1)
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.player.win(self.bet)
         self.assertEqual(self.player.state.bet_multiple, 3)
 
     def test_lose(self):
         self.assertEqual(self.player.state.bet_multiple, 1)
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.player.lose()
         self.assertEqual(self.player.state.bet_multiple, 1)
 

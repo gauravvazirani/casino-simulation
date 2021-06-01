@@ -106,7 +106,7 @@ class ThrowBuilder(IBuilder):
 		oc_dict = {
 			'Field': CrapsGameOdds.field,
 			'Horn': CrapsGameOdds.horn,
-			'AnyCraps': CrapsGameOdds.anyCraps,
+			'Any Craps': CrapsGameOdds.anyCraps,
 			'Pass Line': CrapsGameOdds.passLine,
 			'Dont Pass Line': CrapsGameOdds.dontPassLine,
 			'Pass Line Odds': CrapsGameOdds.passLineOdds,

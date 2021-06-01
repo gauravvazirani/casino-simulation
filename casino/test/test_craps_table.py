@@ -22,36 +22,31 @@ class TestCrapsTable(unittest.TestCase):
 
     def test_placeBet(self):
         print("\nTesting placeBet")
-        self.table.placeBet(self.bets[0])
-        self.table.placeBet(self.bets[3])
+        self.table.placeBet(self.bets[0],self.game)
+        self.table.placeBet(self.bets[3],self.game)
         print(self.table)
 
     def test___str__(self):
         print("\nTesting __str__")
-        self.table.placeBet(self.bets[0])
-        self.table.placeBet(self.bets[3])
+        self.table.placeBet(self.bets[0],self.game)
+        self.table.placeBet(self.bets[3],self.game)
         print(self.table)   
 
     def test___repr__(self):
-        self.table.placeBet(self.bets[0])
-        self.table.placeBet(self.bets[3])
+        self.table.placeBet(self.bets[0],self.game)
+        self.table.placeBet(self.bets[3],self.game)
         print("\nTesting __repr__")
         print(self.table.__repr__())   
 
-    def test_isValid(self):
-        self.assertEqual(self.table.isValid(self.bets[0]), True)
-        self.assertEqual(self.table.isValid(self.bets[1]), False)
-        self.assertEqual(self.table.isValid(self.bets[2]), False)
-        self.assertEqual(self.table.isValid(self.bets[3]), True)
 
     def test_allValid(self):
         print("\nTesting allValid")
         try:
-            self.table.placeBet(self.bets[0])
+            self.table.placeBet(self.bets[0],self.game)
             self.table.allValid()
             print("Placed Bet Number 1")
             self.assertEqual(len(self.table.bets),1)
-            self.table.placeBet(self.bets[3])
+            self.table.placeBet(self.bets[3],self.game)
             self.table.allValid()
             print("Placed Bet Number 2")
         except invalid_bet_exception.InvalidBetException as e:

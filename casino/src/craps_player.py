@@ -14,6 +14,7 @@ class CrapsSimplePlayer(player.Player):
         self.bet_amount = 10
         self.line = line
         self.odds = odds
+        self.stake = 1000
 
     def setRounds(self, rounds_to_go):
         """

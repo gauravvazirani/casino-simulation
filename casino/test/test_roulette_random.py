@@ -25,7 +25,7 @@ class Test(unittest.TestCase):
         for all outcomes
         """
         for i in range(len(self.player.outcomes)):
-            self.player.placeBets()
+            self.player.placeBets(self.game)
         self.assertEqual(len(self.table.bets), len(self.player.outcomes)) 
 
     def tearDown(self):

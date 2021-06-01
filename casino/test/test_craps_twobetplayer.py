@@ -26,10 +26,13 @@ class TestTwoBetPlayer(unittest.TestCase):
         ) 
         self.table.setGame(self.game)
         self.player = craps_twobetplayer.CrapsTwoBetPlayer(
-           table = self.table,
-           line_strategy = self.strategy_nochange,
-           odds_strategy = self.strategy_martingale
+           self.table,
+           dice.Dice()
+
         )
+        self.player.line_strategy = self.strategy_nochange
+        self.player.odds_strategy = self.strategy_martingale
+
 
     def test_placeBets(self):
         self.assertEqual(len(self.table.bets),0)

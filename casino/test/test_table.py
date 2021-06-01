@@ -22,33 +22,21 @@ class TestTable(unittest.TestCase):
 
     def test_placeBet(self):
         print("\nTesting placeBet")
-        self.table.placeBet(self.bets[0])
-        self.table.placeBet(self.bets[1])
+        self.table.placeBet(self.bets[0],self.game)
+        self.table.placeBet(self.bets[1],self.game)
         print(self.table)
 
     def test___str__(self):
         print("\nTesting __str__")
-        self.table.placeBet(self.bets[2])
-        self.table.placeBet(self.bets[3])
+        self.table.placeBet(self.bets[2],self.game)
+        self.table.placeBet(self.bets[3],self.game)
         print(self.table)   
 
     def test___repr__(self):
-        self.table.placeBet(self.bets[2])
-        self.table.placeBet(self.bets[3])
+        self.table.placeBet(self.bets[2],self.game)
+        self.table.placeBet(self.bets[3],self.game)
         print("\nTesting __repr__")
         print(self.table.__repr__())   
-
-    def test_isValid(self):
-        print("\nTesting isValid")
-        for bet in self.bets:
-            try:
-                self.table.placeBet(bet)
-                self.table.allValid()
-                
-            except invalid_bet_exception.InvalidBetException as e:
-                print("Table has invalid set of bets:\n", self.table.__repr__())
-                print("Please add valid bets")
-                self.table.bets = []
     
     def tearDown(self):
         self.table = None

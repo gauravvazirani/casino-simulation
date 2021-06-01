@@ -17,7 +17,7 @@ class TestCancellation(unittest.TestCase):
     def test_placeBets(self):
         self.assertEqual(len(self.table.bets), 0)
         self.assertEqual(self.player.stake, 1000)
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.assertEqual(len(self.table.bets), 1)
         self.assertEqual(self.player.stake, 993)
 

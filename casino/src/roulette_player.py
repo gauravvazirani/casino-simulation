@@ -10,6 +10,8 @@ class RoulettePlayer(player.Player):
         super().__init__(wheel)
         self.table = table
         self.wheel = wheel
+        self.rounds_to_go = 250
+        self.stake = 1000
     
     def setRounds(self, rounds_to_go):
         """

@@ -22,22 +22,20 @@ class TestSimulator(unittest.TestCase):
         # self.player = roulette_player1326.Player1326(
         # self.player = roulette_cancellation.Cancellation(
         self.player = roulette_fibonacci.RouletteFibonacci(
-              table = self.table
-             ,wheel = self.wheel
-             )
+              self.table, self.wheel
+        )
         self.game = roulette_game.RouletteGame(self.wheel, self.table)
-        self.table.setGame(self.game)
 
     def test_session(self):
         print("Simulating a Single Session of 5 cycles")
-        self.simulator = simulator.Simulator(self.game, self.player, init_duration=5, stake=300)
-        duration, max_stake = self.simulator.session(debug=True)
-        print(f"Session Duration: {duration},Max Stake: {max_stake}")
+        self.simulator = simulator.Simulator(self.game, self.player)
+        duration, max_stake, net_won = self.simulator.session(self.player)
+        print(f"Session Duration: {duration},Max Stake: {max_stake}, Net Won {net_won}")
 
     def test_gather(self):
         print("Simulation 50 Sessions of 250 cycles each")
-        self.simulator = simulator.Simulator(self.game, self.player, stake=10000, init_duration=10)
-        self.simulator.gather()
+        self.simulator = simulator.Simulator(self.game, self.player)
+        self.simulator.gather(50)
     
     def tearDown(self):
         self.table = None

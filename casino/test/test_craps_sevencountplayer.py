@@ -31,20 +31,21 @@ class TestSevenCountPlayer(unittest.TestCase):
         ) 
         self.table.setGame(self.game)
         self.player = craps_sevencountplayer.CrapsSevenCountPlayer(
-           table = self.table,
-           line_strategy = self.strategy_nochange,
-           odds_strategy = self.strategy_bet1326,
-           seven_strategy = self.strategy_martingale
+           self.table,
+           dice=dice.Dice()
         )
+        self.player.line_strategy = self.strategy_nochange
+        self.player.odds_strategy = self.strategy_bet1326
+        self.player.seven_strategy = self.strategy_martingale
 
     def test_placeBets(self):
-        self.player.placeBets(0)
+        self.player.placeBets(0,self.game)
         self.game.state = craps_game_state.CrapsGamePointOn(
             game=self.game, point=5)
-        self.player.placeBets(5)
+        self.player.placeBets(5,self.game)
         self.assertEqual(len(self.game.table.bets), 2)
         for multiplier in  [1,3,2,6]:
-            self.player.placeBets(5)
+            self.player.placeBets(5,self.game)
             test_bet = self.player.odds_strategy.createBet(
                 self.player)
             self.assertEqual(test_bet.amount, 
@@ -54,7 +55,7 @@ class TestSevenCountPlayer(unittest.TestCase):
             )
         self.assertEqual(len(self.game.table.bets), 2)
         for _ in range(3):
-                self.player.placeBets(5)
+                self.player.placeBets(5,self.game)
         self.assertEqual(len(self.game.table.bets), 3)
         self.assertEqual(
             self.game.table.bets[2].outcome, self.seven_outcome)

@@ -39,15 +39,15 @@ class TestSevenReds(unittest.TestCase):
         7 reds have been seen.
         """
         self.player.red_count=7
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.assertEqual(len(self.table.bets), 0)
 
         self.player.red_count=3
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.assertEqual(len(self.table.bets), 0)
 
         self.player.red_count=0
-        self.player.placeBets()
+        self.player.placeBets(self.game)
         self.assertEqual(len(self.table.bets), 1)
 
     def test_martingale_system(self):

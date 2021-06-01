@@ -3,6 +3,7 @@ from src import outcome
 from src import craps_onebetplayer
 from src import table 
 from src import bet1326_betting
+from src import dice
 
 class TestNochangeBetting(unittest.TestCase):
     def setUp(self):
@@ -12,9 +13,10 @@ class TestNochangeBetting(unittest.TestCase):
         )
         self.table = table.Table(5,1000) 
         self.player = craps_onebetplayer.OneBetPlayer(
-          table = self.table,
-          strategy = self.strategy  
+          self.table,
+          dice.Dice()
         )
+        self.player.strategy = self.strategy
 
     def test_createBet(self):
         test_bet = self.strategy.createBet(self.player)

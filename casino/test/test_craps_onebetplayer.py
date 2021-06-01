@@ -29,12 +29,13 @@ class TestOneBetPlayer(unittest.TestCase):
         # )
         self.player = craps_onebetplayer.OneBetPlayer(
            table = self.table,
-           strategy = self.strategy_martingale
+           dice = dice.Dice()
         )
+        self.player.line_strategy = self.strategy_martingale
 
     def test_placeBets(self):
         self.assertEqual(len(self.table.bets),0)
-        self.player.placeBets(0)
+        self.player.placeBets(0, self.game)
         self.assertEqual(len(self.table.bets), 1)
         self.assertEqual(
             self.table.bets[0].amount, 
@@ -44,9 +45,9 @@ class TestOneBetPlayer(unittest.TestCase):
             self.table.bets[0].outcome.name, 
             'Pass Line'
         )
-        self.player.placeBets(0)
+        self.player.placeBets(0, self.game)
         self.assertEqual(len(self.table.bets), 1)
-        self.player.placeBets(5)
+        self.player.placeBets(5, self.game)
         self.assertEqual(len(self.table.bets), 1)
 
     def test_win(self):
