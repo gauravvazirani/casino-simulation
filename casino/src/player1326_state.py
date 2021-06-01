@@ -37,7 +37,7 @@ class Player1326State():
         """
         leaves implementation to the specific state classes. 
         """
-        return self.next_state_win
+        return self.next_state_win(self.player, self.outcome)
 
     def nextLost(self):
         """
@@ -47,16 +47,16 @@ class Player1326State():
 
 class PlayerNoWins(Player1326State):
     def __init__(self, player, outcome):
-        super().__init__(player, 1, outcome, PlayerOneWin(self.player, self.outcome))
+        super().__init__(player, 1, outcome, PlayerOneWin)
 
 class PlayerOneWin(Player1326State):
     def __init__(self, player, outcome):
-        super().__init__(player, 3, outcome, PlayerTwoWins(self.player, self.outcome))
+        super().__init__(player, 3, outcome, PlayerTwoWins)
 
 class PlayerTwoWins(Player1326State):
     def __init__(self, player, outcome):
-        super().__init__(player, 2, outcome, PlayerThreeWins(self.player, self.outcome))
+        super().__init__(player, 2, outcome, PlayerThreeWins)
 
 class PlayerThreeWins(Player1326State):
     def __init__(self, player, outcome):
-        super().__init__(player, 6, outcome, PlayerNoWins(self.player, self.outcome))
+        super().__init__(player, 6, outcome, PlayerNoWins)
