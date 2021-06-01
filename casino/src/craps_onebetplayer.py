@@ -22,7 +22,7 @@ class OneBetPlayer(craps_player.CrapsSimplePlayer):
 
         :param point: (integer) point on the board after the throw.
         """
-        if self.rounds_to_go > 0 and self.bet_amount <= self.stake:
+        if self.rounds_to_go > 0 and self.line_strategy.bet_amount <= self.stake:
             outcome_names = [ _bet.outcome.name for _bet in self.table ]
             if point == 0:
                 if 'Pass Line' not in outcome_names \

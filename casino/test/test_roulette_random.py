@@ -14,7 +14,6 @@ class Test(unittest.TestCase):
         self.wheel = wheel.Wheel()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game = roulette_game.RouletteGame(wheel=self.wheel, table=self.table)
-        self.table.setGame(self.game)
         self.player = roulette_random.RouletteRandom(table=self.table, wheel=self.wheel)
         self.player.rng = Mock()
         self.player.rng.randint = Mock(side_effect=range(len(self.player.outcomes)))

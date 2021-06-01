@@ -12,7 +12,6 @@ class TestPlayer1326(unittest.TestCase):
         self.wheel = wheel.Wheel()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  roulette_game.RouletteGame(table=self.table, wheel=self.wheel)
-        self.table.setGame(self.game)
         self.player = roulette1326.Roulette1326(wheel=self.wheel, table=self.table)
         self.bet = bet.Bet(outcome=self.wheel.all_outcomes.get('Black'), amount=10)
    

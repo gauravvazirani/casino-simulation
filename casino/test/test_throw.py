@@ -13,8 +13,7 @@ class TestThrow(unittest.TestCase):
         self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  craps_game.CrapsGame(self.dice, self.table)
-        self.table.setGame(self.game)        
- 
+
     def test_hard(self):
         self.assertEqual(self.throw.hard(), False)
         self.throw.d1 = 2
@@ -56,7 +55,6 @@ class TestNaturalThrow(unittest.TestCase):
         self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  craps_game.CrapsGame(self.dice, self.table)
-        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw.hard(), False)
@@ -82,7 +80,6 @@ class TestCrapsThrow(unittest.TestCase):
         self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  craps_game.CrapsGame(self.dice, self.table)
-        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw_hard.hard(), True)
@@ -108,7 +105,6 @@ class TestElevenThrow(unittest.TestCase):
         self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  craps_game.CrapsGame(self.dice, self.table)
-        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw.hard(), False)
@@ -134,7 +130,6 @@ class TestPointThrow(unittest.TestCase):
         self.dice = dice.Dice()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  craps_game.CrapsGame(self.dice, self.table)
-        self.table.setGame(self.game)        
 
     def test_hard(self):
         self.assertEqual(self.throw_hard.hard(), True)

@@ -24,7 +24,6 @@ class TestTwoBetPlayer(unittest.TestCase):
             table=self.table,
             dice=dice.Dice()
         ) 
-        self.table.setGame(self.game)
         self.player = craps_twobetplayer.CrapsTwoBetPlayer(
            self.table,
            dice.Dice()
@@ -36,7 +35,7 @@ class TestTwoBetPlayer(unittest.TestCase):
 
     def test_placeBets(self):
         self.assertEqual(len(self.table.bets),0)
-        self.player.placeBets(0)
+        self.player.placeBets(0,self.game)
         self.assertEqual(len(self.table.bets), 1)
         self.assertEqual(
             self.table.bets[0].amount, 
@@ -46,11 +45,11 @@ class TestTwoBetPlayer(unittest.TestCase):
             self.table.bets[0].outcome.name, 
             'Pass Line'
         )
-        self.player.placeBets(0)
+        self.player.placeBets(0,self.game)
         self.assertEqual(len(self.table.bets), 1)
         self.game.state = craps_game_state.CrapsGamePointOn(
             game=self.game,point=5)
-        self.player.placeBets(5)
+        self.player.placeBets(5,self.game)
         self.assertEqual(len(self.table.bets), 2)
         self.assertEqual(
             self.table.bets[1].amount, 
@@ -60,9 +59,9 @@ class TestTwoBetPlayer(unittest.TestCase):
             self.table.bets[1].outcome.name, 
             'Pass Line Odds'
         )
-        self.player.placeBets(0)
+        self.player.placeBets(0,self.game)
         self.assertEqual(len(self.table.bets), 2)
-        self.player.placeBets(5)
+        self.player.placeBets(5,self.game)
         self.assertEqual(len(self.table.bets), 2)
 
     def test_win(self):

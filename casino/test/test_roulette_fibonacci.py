@@ -11,15 +11,14 @@ class TestFibonacci(unittest.TestCase):
         self.wheel = wheel.Wheel()
         self.table = table.Table(minimum=10, maximum=1000)
         self.game = roulette_game.RouletteGame(self.wheel, self.table)
-        self.table.setGame(self.game)
         self.player = roulette_fibonacci.RouletteFibonacci(table=self.table, wheel=self.wheel)
         
     def test_placeBets(self):
         self.assertEqual(len(self.table.bets), 0)
-        self.assertEqual(self.player.stake, 1000)
+        self.assertEqual(self.player.stake, 10000)
         self.player.placeBets(self.game)
         self.assertEqual(len(self.table.bets), 1)
-        self.assertEqual(self.player.stake, 999)
+        self.assertEqual(self.player.stake, 9999)
 
     def test_win(self):
         self.assertEqual(self.player.current, 1)

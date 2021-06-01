@@ -1,6 +1,7 @@
 from . import betting_strategy
 from . import outcome
 from . import bet
+from .config import MARTINGALE_BETTING_AMOUNT as BET_AMOUNT
 
 class MartingaleBetting(betting_strategy.BettingStrategy):
     """
@@ -9,7 +10,7 @@ class MartingaleBetting(betting_strategy.BettingStrategy):
     """
 
     def __init__(self, outcome):
-        super().__init__(outcome, 10) 
+        super().__init__(outcome, BET_AMOUNT) 
         self.loss_count = 0
 
     def createBet(self, player):

@@ -1,5 +1,6 @@
 from . import betting_strategy
 from . import player1326_state
+from .config import BET1326_BETTING_AMOUNT as BET_AMOUNT
 
 class Craps1326Betting(betting_strategy.BettingStrategy):
     """
@@ -10,7 +11,7 @@ class Craps1326Betting(betting_strategy.BettingStrategy):
     """
 
     def __init__(self, outcome):
-        super().__init__(outcome, 10)  
+        super().__init__(outcome, BET_AMOUNT)  
         self.initial_bet_amount = self.bet_amount
         self.state = player1326_state.PlayerNoWins(
             self, 

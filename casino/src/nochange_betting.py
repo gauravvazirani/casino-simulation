@@ -1,15 +1,14 @@
 from . import betting_strategy
 from . import bet
+from .config import NOCHANGE_BETTING_AMOUNT as BET_AMOUNT
 
 class NoChangeBetting(betting_strategy.BettingStrategy):
     """
     Betting strategy which repeatedly makes the same bets without change. 
     """
-
+    
     def __init__(self, outcome):
-        super().__init__(outcome, 10)
-        # self.outcome = outcome
-        # self.bet_amount = bet_amount
+        super().__init__(outcome, BET_AMOUNT)
 
     def createBet(self, player):
         """

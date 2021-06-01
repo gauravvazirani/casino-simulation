@@ -22,7 +22,6 @@ class TestOneBetPlayer(unittest.TestCase):
             table=self.table,
             dice=dice.Dice()
         ) 
-        self.table.setGame(self.game)
         # self.player = craps_onebetplayer.OneBetPlayer(
         #   table = self.table,
         #   strategy = self.strategy_nochange  

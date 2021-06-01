@@ -18,7 +18,6 @@ class TestGame(unittest.TestCase):
         _wheel.rng.randint = Mock(return_value=1)
         self.table = table.Table(minimum=1, maximum=1000)
         self.game = roulette_game.RouletteGame(wheel=_wheel, table=self.table)
-        self.table.setGame(self.game)
         self.player = roulette_martingale.RouletteMartingale(wheel=_wheel, table=self.table)
 
 

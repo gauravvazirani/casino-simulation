@@ -1,4 +1,6 @@
 from . import invalid_bet_exception
+from .config import TABLE_MAXIMUM as MAX
+from .config import TABLE_MINIMUM as MIN
 
 class Table():
     """
@@ -7,16 +9,11 @@ class Table():
     can bet at a time.
     """
 
-    def __init__(self, minimum, maximum):
+    def __init__(self, minimum=MIN, maximum=MAX):
         self.minimum = minimum
         self.maximum = maximum
         self.bets = []
 
-    def setGame(self, game):
-        """
-        Saves the given game to be used to validate bets
-        """
-        self.game = game
 
     def allValid(self):
         """

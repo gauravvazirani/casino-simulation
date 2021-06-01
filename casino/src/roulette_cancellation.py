@@ -1,5 +1,6 @@
 from . import bet
 from . import roulette_player
+from .config import CANCELLATION_SEQ_START as SEQ_START, CANCELLATION_SEQ_END as SEQ_END
 
 class RouletteCancellation(roulette_player.RoulettePlayer):
     """
@@ -9,7 +10,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
     """
     def __init__(self, table, wheel):
         super().__init__(table = table, wheel = wheel)
-        self.sequence = []
+        self.sequence = [num for num in range(SEQ_START,SEQ_END)]
         self.resetSequence()
 
     def resetSequence(self):
@@ -18,7 +19,7 @@ class RouletteCancellation(roulette_player.RoulettePlayer):
         the sequence variable. 
         These Integers are built from the values 1 through 6.
         """
-        self.sequence = [num for num in range(1,7)]
+        self.sequence = [num for num in range(SEQ_START,SEQ_END)]
 
     def playing(self):
         if self.sequence:

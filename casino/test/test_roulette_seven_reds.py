@@ -14,7 +14,6 @@ class TestSevenReds(unittest.TestCase):
         self.wheel.rng.randint = Mock(return_value=1)
         self.table = table.Table(minimum=1, maximum=1000)
         self.game = roulette_game.RouletteGame(wheel=self.wheel, table=self.table)
-        self.table.setGame(self.game)
         self.player = roulette_seven_reds.RouletteSevenReds(self.table, self.wheel)
 
     def test_winners(self):

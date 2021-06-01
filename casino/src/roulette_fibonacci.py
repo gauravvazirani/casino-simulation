@@ -1,5 +1,6 @@
 from . import roulette_player
 from . import bet
+from .config import FIBONACCI_PREVIOUS, FIBONACCI_CURRENT
 
 class RouletteFibonacci(roulette_player.RoulettePlayer):
     """
@@ -10,8 +11,8 @@ class RouletteFibonacci(roulette_player.RoulettePlayer):
 
     def __init__(self, table, wheel):
         super().__init__(table, wheel)
-        self.previous = 0
-        self.current = 1
+        self.previous = FIBONACCI_PREVIOUS
+        self.current = FIBONACCI_CURRENT
 
     def playing(self):
         """

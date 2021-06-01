@@ -1,5 +1,6 @@
 from . import roulette_player
 from . import bet
+from .config import MARTINGALE_BET_AMOUNT as BET_AMOUNT
 
 class RouletteMartingale(roulette_player.RoulettePlayer):
     """
@@ -9,8 +10,7 @@ class RouletteMartingale(roulette_player.RoulettePlayer):
 
     def __init__(self, table, wheel):
         super().__init__(table, wheel)
-        self.initial_bet_amount = 10
-        self.rounds_to_go = 250
+        self.initial_bet_amount = BET_AMOUNT
         self.loss_count = 0
               
     def placeBets(self, game):

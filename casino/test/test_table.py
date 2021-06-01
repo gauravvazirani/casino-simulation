@@ -12,7 +12,6 @@ class TestTable(unittest.TestCase):
         self.wheel = wheel.Wheel()
         self.table = table.Table(minimum=1, maximum=1000)
         self.game =  roulette_game.RouletteGame(table=self.table, wheel=self.wheel)
-        self.table.setGame(self.game)        
         self.bets = [
             bet.Bet(5, outcome.Outcome("Number 1",35)),
             bet.Bet(20, outcome.Outcome("Number 2",35)),

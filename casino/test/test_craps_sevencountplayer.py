@@ -29,7 +29,6 @@ class TestSevenCountPlayer(unittest.TestCase):
             table=self.table,
             dice=dice.Dice()
         ) 
-        self.table.setGame(self.game)
         self.player = craps_sevencountplayer.CrapsSevenCountPlayer(
            self.table,
            dice=dice.Dice()

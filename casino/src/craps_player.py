@@ -1,6 +1,7 @@
 from . import player
 from . import bet
 from abc import abstractmethod
+from .config import PLAYER_STAKE, PLAYER_ROUNDS
 
 class CrapsSimplePlayer(player.Player):
     """
@@ -10,11 +11,10 @@ class CrapsSimplePlayer(player.Player):
     def __init__(self, table, dice, line=None, odds=None):
         self.table = table
         super().__init__(dice)
-        self.rounds_to_go = 250
-        self.bet_amount = 10
         self.line = line
         self.odds = odds
-        self.stake = 1000
+        self.stake = PLAYER_STAKE
+        self.rounds_to_go = PLAYER_ROUNDS
 
     def setRounds(self, rounds_to_go):
         """
@@ -40,32 +40,16 @@ class CrapsSimplePlayer(player.Player):
             or self.table.bets \
               else False
 
+    @abstractmethod
     def placeBets(self, point, game):
         """
-        Player that places, 
-        1. A Pass Line/Dont Pass Line bet when the point is off.
-        2. A Pass Line Odds/Dont Pass Line odds bet when the point is on.
+        override this method to configure line bet strategy
         """
-        if self.rounds_to_go > 0 and self.bet_amount <= self.stake:
-            outcome_names = [ _bet.outcome.name for _bet in self.table ]
-            if point == 0:
-                if 'Pass Line' not in outcome_names \
-                    and 'Dont Pass Line' not in outcome_names:
-                    pass_line_bet = bet.Bet(self.bet_amount , self.line)
-                    self.table.placeBet(pass_line_bet, game)
-                    self.stake -= pass_line_bet.price()
-            else:
-                if 'Pass Line Odds' not in outcome_names \
-                    and 'Dont Pass Line Odds' not in outcome_names:
-                    self.oddsBet()
-        self.rounds_to_go -= 1
+        pass
 
-#    @abstractmethod
+    @abstractmethod
     def oddsBet(self):
         """
         override this method to configure odds bet strategy
         """ 
-        pass_line_odds_bet = bet.Bet(self.bet_amount, self.odd, 
-            player=self)
-        self.table.placeBet(pass_line_odds_bet)
-        self.stake -= pass_line_odds_bet.price()
+        pass

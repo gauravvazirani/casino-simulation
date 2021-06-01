@@ -1,5 +1,6 @@
 from . import bet
 from . import player
+from .config import PLAYER_STAKE, PLAYER_ROUNDS, RANDOM_BET_AMOUNT as BET_AMOUNT
 
 class RoulettePlayer(player.Player):
     """
@@ -10,9 +11,10 @@ class RoulettePlayer(player.Player):
         super().__init__(wheel)
         self.table = table
         self.wheel = wheel
-        self.rounds_to_go = 250
-        self.stake = 1000
-    
+        self.rounds_to_go = PLAYER_ROUNDS
+        self.stake = PLAYER_STAKE
+        self.bet_amount = BET_AMOUNT
+            
     def setRounds(self, rounds_to_go):
         """
         setter method for rounds_to_go
@@ -41,10 +43,9 @@ class RoulettePlayer(player.Player):
         Places a bet on the table.
         Deducts the bet amount from player's stake.
         """
-        bet_amount = 10
         black = self.wheel.all_outcomes.get('Black')
-        self.table.placeBet(bet.Bet(bet_amount ,black), game)
-        self.stake -= bet_amount
+        self.table.placeBet(bet.Bet(self.bet_amount ,black), game)
+        self.stake -= self.bet_amount
 
     def winners(self, winning_outcomes):
         pass

@@ -12,7 +12,6 @@ class TestCrapsTable(unittest.TestCase):
         self.table = table.Table(minimum=1, maximum=450)
         self.dice = dice.Dice()
         self.game = craps_game.CrapsGame(self.dice,self.table)
-        self.table.setGame(self.game)
         self.bets = [
             bet.Bet(5, outcome.Outcome("Pass Line", 1)),
             bet.Bet(10, outcome.Outcome("Any Craps", 31)),
